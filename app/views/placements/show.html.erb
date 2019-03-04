@@ -1,0 +1,48 @@
+<h3>Placement details</h3>
+<br>
+
+<div>
+    <h2><%= @placement.name %></h2>
+        <p><%= @placement.address %></p>
+        <p><%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %></p>
+        <p>County: <%= @placement.county %></p>
+        <p>Placement Phone: <%= @placement.phone %></p>
+</div>
+
+<div>
+    <h5>To refer a potential resident, contact:</h5>
+        <p><%= @licensee.contact_name %></p>
+        <p>Phone: <%= @licensee.phone %></p>
+        <p>Fax: <%= @licensee.fax %></p>
+        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id) %>
+</div>
+
+<div>
+    <h4>Other</h4>
+    <p>Gender: <%= @placement.gender %></p>
+    <p>Beds: <%= @placement.beds %></p>
+    <br>
+    <%= link_to 'Edit', edit_placement_path(@placement.id) %> 
+    <br>
+    <%= link_to 'Delete', placement_path(@placement.id), method: :delete %>
+</div>
+
+<h2>Comments</h2>
+<h4>New Comment</h4>
+<%= render 'new_comment' %>
+
+<% @comments.each do |c| %>
+    <div class="box">
+        <%= c.text %>
+        <br>
+        <p>By: <%= c.user.email %></p>
+        <p> At: <%= c.created_at %></p>
+        <%= link_to 'Delete', comment_path(c.id), method: :delete %>
+    </div>
+<% end %>
+
+
+
+<%#= @placement.service_id %>
+
+

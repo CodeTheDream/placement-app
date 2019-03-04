@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Placements</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1 class="title">Placements</h1>
+    </div>
+    <div class="center">
+        <%= link_to 'Home', placements_path %>
+    
+        <%= link_to 'New Placement', new_placement_path %>
+      
+        <%= link_to 'Licensees', licensees_path %>
+        
+        <% if current_user == nil %>
+          <%= link_to 'Log In', new_user_session_path %>
+        <% else %>
+          <%= current_user.email %>
+          <%= link_to 'Log Out', destroy_user_session_path, method: :delete  %>
+        <% end %>
+    </div>
+    <div class="center">
+    <%= yield %>
+    </div>
+    
+    <div>
+      <br>
+    </div>
+  </body>
+</html>

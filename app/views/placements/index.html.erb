@@ -1,0 +1,27 @@
+<h3>Placement Index</h3>
+<br>
+<h4>Click on a placement to view details</h4>
+
+<!--
+<div>
+<%#= form_tag(placements_path, method: :get) do %>
+  <%#= text_field_tag :search %>
+  <%#= submit_tag 'Search' %>
+<%# end %>
+</div>
+-->
+
+<form action="/" method="get">
+  <input type="text" name="search" placeholder="Search">
+  <input type="submit" value="Go">
+</form>
+
+
+<% @placements.each do |p| %>
+    <div class="box">
+        <p><%= link_to p.name, placement_path(p.id) %></p>
+        <%= p.address %>
+        <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
+        <%= link_to 'Edit', edit_placement_path(p.id) %>
+    </div>
+<% end %>

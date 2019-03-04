@@ -1,0 +1,10 @@
+<h3>Licensees</h3>
+
+<%= link_to 'New Licensee', new_licensee_path %>
+<br><br>
+
+<% @licensees.each do |l| %>
+<div>
+    <%= link_to l.contact_name, licensee_path(l.id) %>
+</div>
+<% end %>

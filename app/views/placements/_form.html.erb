@@ -1,0 +1,24 @@
+<%= form_for @placement do |f| %>
+<div>
+    <%= f.hidden_field :id, :value => @placement.id %>
+    <%= f.text_field :name, placeholder: 'Name' %> 
+    <%= f.select :licensee_id, 
+        @licensees.collect { |l| [l.facility_name, l.id]}, 
+        :prompt => 'Licensee' %> 
+        <br>
+    <%= f.text_field :address, placeholder: 'Address' %>
+    <%= f.text_field :city, placeholder: 'City' %> 
+    <br>
+    <%= f.text_field :state, placeholder: 'State', :value => 'NC' %>
+    <%= f.text_field :zip, placeholder: 'Zip' %> 
+    <br>
+    <%= f.text_field :county, placeholder: 'County' %>
+    <%= f.telephone_field :phone, placeholder: 'Phone' %>
+    <br>
+    <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
+    <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
+    <%= f.text_field :beds, placeholder: 'Beds' %>
+    <%= f.submit 'Save' %>
+</div>
+<% end %>  
+    

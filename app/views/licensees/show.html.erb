@@ -1,0 +1,21 @@
+<h3>Licensee Details</h3>
+
+<h4><%= @licensee.facility_name %></h2>
+<p>Contact: <%= @licensee.contact_name %></p>
+<p>Phone: <%= @licensee.phone %></p>
+<p>Fax: <%= @licensee.fax %></p>
+<p><%= @licensee.address %></p>
+<p><%= @licensee.city %>, <%= @licensee.state %> <%= @licensee.zip %></p>
+
+
+<br>
+<%= link_to 'Edit', edit_licensee_path(params[:id]) %>
+<br>
+<%= link_to 'Delete', licensee_path(params[:id]), method: :delete %>
+
+<%# List contact info for licensee %>
+
+<%# h3: Associated Placements %>
+<%# h4: Call this licensee to refer to the following placements: %>
+
+<%# Show a list with each placement associated with the licensee %>
