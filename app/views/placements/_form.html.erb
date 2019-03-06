@@ -16,7 +16,7 @@
     <%= f.telephone_field :phone, placeholder: 'Phone' %>
     <br>
     <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
-    <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
+    <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other",  "Unknown"], :prompt => 'Gender' %>
     <%= f.text_field :beds, placeholder: 'Beds' %>
     <%= f.submit 'Save' %>
 </div>

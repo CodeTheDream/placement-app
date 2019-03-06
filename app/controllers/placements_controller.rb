@@ -24,13 +24,21 @@ class PlacementsController < ApplicationController
         redirect_to placements_path
     end
     
-    # licensee_id: params[placement][:licensee_id]
+    # licensee_id: params[:placement][:licensee_id]
     # service_id: params[:placement][:service_id],    
     
     def index
         if params[:search]
             search = "%#{params[:search]}%"
             @placements = Placement.where("name LIKE ? OR county LIKE ?" , search, search)
+            respond_to do |format|
+                format.xlsx {
+                    response.headers[
+                    'Content-Disposition'
+                    ] = "attachment; filename='items.xlsx'"
+                }
+                format.html { render :index }
+            end
         else
             @placements = Placement.all
         end
