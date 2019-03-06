@@ -25,3 +25,17 @@
         <%= link_to 'Edit', edit_placement_path(p.id) %>
     </div>
 <% end %>
+
+
+<div>
+  <%=
+  link_to 'Download as Excel',
+  placements_path(format: :xlsx)
+%>
+
+<%=
+  link_to 'Upload from Excel',
+  new_placements_import_path
+%>
+  
+</div>
