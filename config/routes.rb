@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :placements, :comments, :licensees
   resources :placements_imports, only: [:new, :create]
-  get '/' => 'placements#index'
+  root to: 'placements#index'
 end
 
