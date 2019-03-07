@@ -1,24 +1,38 @@
-<%= form_for @placement do |f| %>
-<div>
-    <%= f.hidden_field :id, :value => @placement.id %>
-    <%= f.text_field :name, placeholder: 'Name' %> 
-    <%= f.select :licensee_id, 
-        @licensees.collect { |l| [l.facility_name, l.id]}, 
-        :prompt => 'Licensee' %> 
-        <br>
-    <%= f.text_field :address, placeholder: 'Address' %>
-    <%= f.text_field :city, placeholder: 'City' %> 
-    <br>
-    <%= f.text_field :state, placeholder: 'State', :value => 'NC' %>
-    <%= f.text_field :zip, placeholder: 'Zip' %> 
-    <br>
-    <%= f.text_field :county, placeholder: 'County' %>
-    <%= f.telephone_field :phone, placeholder: 'Phone' %>
-    <br>
-    <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
-    <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other",  "Unknown"], :prompt => 'Gender' %>
-    <%= f.text_field :beds, placeholder: 'Beds' %>
-    <%= f.submit 'Save' %>
+
+<div class='border border-info col-5 rounded mb-0'>
+        <%= form_for @placement do |f| %>
+    <div>
+        <%= f.hidden_field :id, :value => @placement.id %>
+        <div class='form-group'>
+            <%= f.text_field :name, placeholder: 'Name' %> 
+        
+            <%= f.select :licensee_id, 
+            @licensees.collect { |l| [l.facility_name, l.id]}, 
+            :prompt => 'Licensee' %> 
+        </div>
+
+        <div class='form-group'>
+            <%= f.text_field :address, placeholder: 'Address' %>
+            <%= f.text_field :city, placeholder: 'City' %> 
+        </div>
+        
+        <div class='form-group'>
+            <%= f.text_field :state, placeholder: 'State', :value => 'NC' %>
+            <%= f.text_field :zip, placeholder: 'Zip' %> 
+        </div>
+        
+        <div class='form-group'>
+            <%= f.text_field :county, placeholder: 'County' %>
+            <%= f.telephone_field :phone, placeholder: 'Phone' %>
+        </div>
+        <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
+        <div class='form-group'>
+            <%= f.text_field :beds, placeholder: 'Beds' %>
+            <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
+        </div>
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+    <% end %> 
 </div>
-<% end %>  
+
     
