@@ -6,4 +6,3 @@ Rails.application.routes.draw do
   resources :placements_imports, only: [:new, :create]
   root to: 'placements#index'
 end
-

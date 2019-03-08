@@ -15,23 +15,25 @@
   <input type="text" name="search" placeholder="Search">
   <input type="submit" value="Go">
 </form>
+<%= link_to 'New Search', placements_path %>
 
 
-<% @placements.each do |p| %>
+<% if params[:search] %>
+  <% @placements.each do |p| %>
     <div class="box">
         <p><%= link_to p.name, placement_path(p.id) %></p>
         <%= p.address %>
         <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
         <%= link_to 'Edit', edit_placement_path(p.id) %>
     </div>
+  <% end %>
 <% end %>
 
 
 <div>
-  <%=
-  link_to 'Download as Excel',
-  placements_path(format: :xlsx)
-%>
+  <% if params[:search] %>
+  <%= link_to 'Download Search Results', placements_path(format: :xlsx) %>
+  <% end %>
 
 <%=
   link_to 'Upload from Excel',
