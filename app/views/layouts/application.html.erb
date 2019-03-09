@@ -19,9 +19,11 @@
         <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
         
         <% if current_user == nil %>
-          <%= link_to 'Log In', new_user_session_path %>
+          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-info' %>
         <% else %>
-          <%= current_user.email %>
+          <div class='btn btn-outline-info'>
+            <%= current_user.email %>
+          </div>
           <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-info'  %>
         <% end %>
     </div>
