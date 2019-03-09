@@ -1,4 +1,5 @@
-<div class='border border-info col-5 rounded mb-0'>
+<div class='card bg-light col-6 rounded mb-0'>
+    <div class='card-body'>
         <%= form_for @placement do |f| %>
     <div>
         <%= f.hidden_field :id, :value => @placement.id %>
@@ -32,6 +33,7 @@
         <%= f.submit 'Save', class: 'btn btn-primary' %>
     </div>
     <% end %> 
+    </div>
 </div>
 
     

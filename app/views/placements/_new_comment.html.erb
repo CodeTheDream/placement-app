@@ -1,8 +1,10 @@
 <%= form_for @comment do |f| %>
-<div>
-    <%= f.hidden_field :placement_id, :value => @placement.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.text_area :text, placeholder: 'Comment' %>
-    <%= f.submit 'Save' %>
+<div class='card bg-light col-6 rounded mb-0'>
+    <div class='card-body'>
+        <%= f.hidden_field :placement_id, :value => @placement.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.text_area :text, placeholder: 'Comment' %>
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+    </div>
 </div>
 <% end %>

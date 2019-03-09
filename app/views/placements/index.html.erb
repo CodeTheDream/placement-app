@@ -2,26 +2,26 @@
 <br>
 <h4>Click on a placement to view details</h4>
 
-<!--
-<div>
-<%#= form_tag(placements_path, method: :get) do %>
-  <%#= text_field_tag :search %>
-  <%#= submit_tag 'Search' %>
-<%# end %>
+<div class='card bg-light col-4 rounded mb-0'>
+      <div class='card-body'>
+        <%= form_tag(placements_path, method: :get) do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag 'Search' %>
+        <% end %>
+      </div>
 </div>
--->
 
-<form action="/" method="get">
-  <input type="text" name="search" placeholder="Search">
-  <input type="submit" value="Go">
-</form>
 
 
 <% @placements.each do |p| %>
-    <div class="box">
+    <div class='card bg-light col-6 rounded mb-0'>
+      <div class='card-body'>
         <p><%= link_to p.name, placement_path(p.id) %></p>
         <%= p.address %>
         <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
-        <%= link_to 'Edit', edit_placement_path(p.id) %>
+        <div class='btn btn-secondary'>
+          <%= link_to 'Edit', edit_placement_path(p.id) %>
+        </div>
+      </div>
     </div>
 <% end %>
