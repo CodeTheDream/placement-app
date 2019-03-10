@@ -3,6 +3,7 @@
 <h4>Click on a placement to view details</h4>
 
 
+
   <div class='card bg-light col-6 rounded mb-0'>
       <div class='card-body'>
         <form action="/" method="get">
@@ -16,13 +17,15 @@
   <%= link_to 'New Search', placements_path, class: 'btn btn-primary mt-2' %>
 
 
+
+
 <% if params[:search] %>
   <% @placements.each do |p| %>
     <div class="box">
         <p><%= link_to p.name, placement_path(p.id) %></p>
         <%= p.address %>
         <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
-        <%= link_to 'Edit', edit_placement_path(p.id) %>
+        <%= link_to 'Edit', edit_placement_path(p.id), class: 'btn btn-primary mt-2' %>
     </div>
   <% end %>
 <% end %>
@@ -34,4 +37,13 @@
   <% end %>
 
 
+
 </div>
+
+<%=
+  link_to 'Upload from Excel',
+  new_placements_import_path
+%>
+  
+</div>
+
