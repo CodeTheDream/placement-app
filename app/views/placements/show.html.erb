@@ -4,28 +4,34 @@
 <div class='card bg-light col-4 rounded mb-0'>
     <div class='card-body'>
         <h2><%= @placement.name %></h2>
-        <p><%= @placement.address %></p>
-        <p><%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %></p>
-        <p>County: <%= @placement.county %></p>
-        <p>Placement Phone: <%= @placement.phone %></p>
+        <ul class='list-group'>
+            <li class='list-group-item'><%= @placement.address %></li>
+            <li class='list-group-item'><%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %></li>
+            <li class='list-group-item'>County: <%= @placement.county %></li>
+            <li class='list-group-item'>Placement Phone: <%= @placement.phone %></li>
+        </ul>
     </div>
 </div>
 
 <div class='card bg-light col-4 rounded mb-0'>
     <div class='card-body'>
         <h5>To refer a potential resident, contact:</h5>
-        <p><%= @licensee.contact_name %></p>
-        <p>Phone: <%= @licensee.phone %></p>
-        <p>Fax: <%= @licensee.fax %></p>
-        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id) %>
+        <ul class='list-group'>
+            <li class='list-group-item'><%= @licensee.contact_name %></li>
+            <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
+            <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
+        </ul>
+        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id), class='btn btn-secondary' %>
     </div>
 </div>
 
 <div class='card bg-light col-4 rounded mb-0'>
     <div class='card-body'>
         <h4>Other</h4>
-        <p>Gender: <%= @placement.gender %></p>
-        <p>Beds: <%= @placement.beds %></p>
+        <ul class='list-group'>
+            <li class='list-group-item'>Gender: <%= @placement.gender %></li>
+            <li class='list-group-item'>Beds: <%= @placement.beds %></li>
+        </ul>
         <br>
         <%= link_to 'Edit', edit_placement_path(@placement.id), class='btn btn-secondary' %> 
         <br>
