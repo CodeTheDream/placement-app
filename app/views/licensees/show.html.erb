@@ -3,15 +3,16 @@
 <div class='card bg-light col-6 rounded mb-0'>
     <div class='card-body'>
         <h4><%= @licensee.facility_name %></h2>
-        <p>Contact: <%= @licensee.contact_name %></p>
-        <p>Phone: <%= @licensee.phone %></p>
-        <p>Fax: <%= @licensee.fax %></p>
-        <p><%= @licensee.address %></p>
-        <p><%= @licensee.city %>, <%= @licensee.state %> <%= @licensee.zip %></p>
-  
+        <ul class='list-group'>
+            <li class='list-group-item list-group-item-secondary'>Contact: <%= @licensee.contact_name %></li>
+            <li class='list-group-item list-group-item-secondary'>Phone: <%= @licensee.phone %></li>
+            <li class='list-group-item list-group-item-secondary'>Fax: <%= @licensee.fax %></li>
+            <li class='list-group-item list-group-item-secondary'><%= @licensee.address %></li>
+            <li class='list-group-item list-group-item-secondary'><%= @licensee.city %>, <%= @licensee.state %> <%= @licensee.zip %></li>
+        </ul>
 
         <br>
-        <div class='btn btn-secondary'>
+        <div class='btn btn-primary'>
             <%= link_to 'Edit', edit_licensee_path(params[:id]) %>
         </div>
         <div class='btn btn-danger'>

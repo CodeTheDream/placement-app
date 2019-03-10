@@ -2,26 +2,36 @@
 <br>
 <h4>Click on a placement to view details</h4>
 
-<div class='card bg-light col-4 rounded mb-0'>
+
+  <div class='card bg-light col-6 rounded mb-0'>
       <div class='card-body'>
-        <%= form_tag(placements_path, method: :get) do %>
-          <%= text_field_tag :search %>
-          <%= submit_tag 'Search', class: 'btn btn-primary' %>
-        <% end %>
+        <form action="/" method="get">
+          <div class='row form-group'>
+            <input type="text" name="search" placeholder="Search" class='form-control col-10 mr-2'>
+            <input type="submit" value="Go", class='btn btn-primary col-1'>
+          </div>
+        </form>
       </div>
-</div>
+    </div>
+  <%= link_to 'New Search', placements_path, class: 'btn btn-primary mt-2' %>
 
 
-
-<% @placements.each do |p| %>
-    <div class='card bg-light col-6 rounded mb-0'>
-      <div class='card-body'>
+<% if params[:search] %>
+  <% @placements.each do |p| %>
+    <div class="box">
         <p><%= link_to p.name, placement_path(p.id) %></p>
         <%= p.address %>
         <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
-        <div class='btn btn-secondary'>
-          <%= link_to 'Edit', edit_placement_path(p.id) %>
-        </div>
-      </div>
+        <%= link_to 'Edit', edit_placement_path(p.id) %>
     </div>
+  <% end %>
 <% end %>
+
+
+<div>
+  <% if params[:search] %>
+  <%= link_to 'Download Search Results', placements_path(format: :xlsx) %>
+  <% end %>
+
+
+</div>
