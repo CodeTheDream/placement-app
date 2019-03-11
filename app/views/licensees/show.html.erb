@@ -21,6 +21,20 @@
     </div>
 </div>
 
+
+
+<br>
+<% @licensee.comments.each do |c| %>
+    <div class="box">
+        <%= c.text %>
+        <br>
+        <p>By: <%= c.user.email %></p>
+        <p> At: <%= c.created_at %></p>
+        <%= link_to 'Delete', comment_path(c.id), method: :delete %>
+    </div>
+<% end %>
+
+
 <%# List contact info for licensee %>
 
 <%# h3: Associated Placements %>
