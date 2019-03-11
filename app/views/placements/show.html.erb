@@ -21,7 +21,10 @@
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
             <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
         </ul>
+ 
         <%= link_to 'View Licensee', licensee_path(@placement.licensee_id), class: 'btn btn-primary mt-2' %>
+                 
+ master
     </div>
 </div>
 
@@ -33,9 +36,11 @@
             <li class='list-group-item'>Beds: <%= @placement.beds %></li>
         </ul>
         <br>
+
         <%= link_to 'Edit', edit_placement_path(@placement.id), class: 'btn btn-primary mt-2' %> 
         <br>
         <%= link_to 'Delete', placement_path(@placement.id), method: :delete, class: 'btn btn-danger mt-2' %>
+
     </div>
 </div>
 
@@ -50,7 +55,10 @@
             <br>
             <p>By: <%= c.user.email %></p>
             <p> At: <%= c.created_at %></p>
+
             <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger' %>
+
+
         </div>
     </div>
 <% end %>
