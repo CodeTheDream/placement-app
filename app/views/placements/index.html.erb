@@ -2,20 +2,21 @@
 <br>
 <h4>Click on a placement to view details</h4>
 
-<!--
-<div>
-<%#= form_tag(placements_path, method: :get) do %>
-  <%#= text_field_tag :search %>
-  <%#= submit_tag 'Search' %>
-<%# end %>
-</div>
--->
 
-<form action="/" method="get">
-  <input type="text" name="search" placeholder="Search">
-  <input type="submit" value="Go">
-</form>
-<%= link_to 'New Search', placements_path %>
+
+  <div class='card bg-light col-6 rounded mb-0'>
+      <div class='card-body'>
+        <form action="/" method="get">
+          <div class='row form-group'>
+            <input type="text" name="search" placeholder="Search" class='form-control col-10 mr-2'>
+            <input type="submit" value="Go", class='btn btn-primary col-1'>
+          </div>
+        </form>
+      </div>
+    </div>
+  <%= link_to 'New Search', placements_path, class: 'btn btn-primary mt-2' %>
+
+
 
 
 <% if params[:search] %>
@@ -24,7 +25,7 @@
         <p><%= link_to p.name, placement_path(p.id) %></p>
         <%= p.address %>
         <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
-        <%= link_to 'Edit', edit_placement_path(p.id) %>
+        <%= link_to 'Edit', edit_placement_path(p.id), class: 'btn btn-primary mt-2' %>
     </div>
   <% end %>
 <% end %>
@@ -32,12 +33,17 @@
 
 <div>
   <% if params[:search] %>
-  <%= link_to 'Download Search Results', placements_path(format: :xlsx) %>
+  <%= link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
   <% end %>
+
+
+
+</div>
 
 <%=
   link_to 'Upload from Excel',
-  new_placements_import_path
+  new_placements_import_path, class: 'btn btn-primary mt-2'
 %>
   
 </div>
+
