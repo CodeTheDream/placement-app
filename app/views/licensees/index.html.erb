@@ -3,6 +3,15 @@
 <%= link_to 'New Licensee', new_licensee_path, class: 'btn btn-primary' %>
 <br><br>
 
+<%= search_form_for @q do |f| %>
+
+  # Search if the name field contains...
+  <%= f.label :city_cont %>
+  <%= f.search_field :city_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <% @licensees.each do |l| %>
 <div class='card bg-light col-3 rounded mb-0 text-center'>
     <div class='card-body'>

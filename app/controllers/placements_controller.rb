@@ -28,8 +28,12 @@ class PlacementsController < ApplicationController
     # service_id: params[:placement][:service_id],    
     
     def index
-        search = "%#{params[:search]}%"
-        @placements = Placement.where("name LIKE ? OR county LIKE ?" , search, search)
+        # search = "%#{params[:search]}%"
+        # @placements = Placement.where("name LIKE ? OR county LIKE ?" , search, search)
+
+        @q = Placement.ransack(params[:q])
+        @placements = @q.result(distinct: true)
+
         respond_to do |format|
             format.xlsx {
                 response.headers[

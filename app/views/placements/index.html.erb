@@ -6,12 +6,34 @@
 
   <div class='card bg-light col-6 rounded mb-0'>
       <div class='card-body'>
-        <form action="/" method="get">
+        <%= search_form_for @q do |f| %>
+
+
+        <%= f.label :name %>
+        <%= f.search_field :name_cont %>
+        <br>
+        <%= f.label :city %>
+        <%= f.search_field :city_cont %>
+        <br>
+        <%= f.label :county %>
+        <%= f.search_field :county_cont %>
+        <br>
+
+
+        <%= f.submit %>
+      <% end %>
+
+
+
+
+
+
+        <!-- <form action="/" method="get">
           <div class='row form-group'>
             <input type="text" name="search" placeholder="Search" class='form-control col-10 mr-2'>
             <input type="submit" value="Go", class='btn btn-primary col-1'>
           </div>
-        </form>
+        </form> -->
       </div>
     </div>
   <%= link_to 'New Search', placements_path, class: 'btn btn-primary mt-2' %>
@@ -19,7 +41,7 @@
 
 
 
-<% if params[:search] %>
+<%# if params[:search] %>
   <% @placements.each do |p| %>
     <div class="box">
         <p><%= link_to p.name, placement_path(p.id) %></p>
@@ -28,13 +50,13 @@
         <%= link_to 'Edit', edit_placement_path(p.id), class: 'btn btn-primary mt-2' %>
     </div>
   <% end %>
-<% end %>
+<%# end %>
 
 
 <div>
-  <% if params[:search] %>
-  <%= link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
-  <% end %>
+  <%# if params[:search] %>
+  <%# link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
+  <%# end %>
 
 
 

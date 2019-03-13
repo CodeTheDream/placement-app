@@ -20,7 +20,9 @@ class LicenseesController < ApplicationController
     end
 
     def index
-        @licensees = Licensee.all
+        # @licensees = Licensee.all
+        @q = Licensee.ransack(params[:q])
+        @licensees = @q.result(distinct: true)
     end
     
     def show
@@ -50,5 +52,10 @@ class LicenseesController < ApplicationController
          @licensee.destroy
          redirect_to licensees_path
     end
+
+#   def index
+#       @q = Licensee.ransack(params[:q])
+#       @licensees = @q.result(distinct: true)
+#   end
     
 end
