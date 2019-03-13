@@ -1,7 +1,7 @@
 <h3>Placement details</h3>
 <br>
 
-<div class='card bg-light col-4 rounded mb-0'>
+<div class='card bg-light col-4 rounded mb-2'>
     <div class='card-body'>
         <h2><%= @placement.name %></h2>
         <ul class='list-group'>
@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class='card bg-light col-4 rounded mb-0'>
+<div class='card bg-light col-4 rounded mb-2'>
     <div class='card-body'>
         <h5>To refer a potential resident, contact:</h5>
         <ul class='list-group'>
@@ -21,11 +21,14 @@
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
             <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
         </ul>
-        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id), class: 'btn btn-secondary' %>
+ 
+        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id), class: 'btn btn-primary mt-2' %>
+                 
+ master
     </div>
 </div>
 
-<div class='card bg-light col-4 rounded mb-0'>
+<div class='card bg-light col-4 rounded mb-2'>
     <div class='card-body'>
         <h4>Other</h4>
         <ul class='list-group'>
@@ -33,9 +36,11 @@
             <li class='list-group-item'>Beds: <%= @placement.beds %></li>
         </ul>
         <br>
-        <%= link_to 'Edit', edit_placement_path(@placement.id), class: 'btn btn-secondary' %> 
+
+        <%= link_to 'Edit', edit_placement_path(@placement.id), class: 'btn btn-primary mt-2' %> 
         <br>
-        <%= link_to 'Delete', placement_path(@placement.id), method: :delete, class:'btn btn-danger' %>
+        <%= link_to 'Delete', placement_path(@placement.id), method: :delete, class: 'btn btn-danger mt-2' %>
+
     </div>
 </div>
 
@@ -44,13 +49,16 @@
 <%= render 'new_comment' %>
 
 <% @comments.each do |c| %>
-    <div class='card bg-light col-6 rounded mb-0'>
+    <div class='card bg-light col-6 rounded mb-2'>
         <div class='card-body'>
             <%= c.text %>
             <br>
             <p>By: <%= c.user.email %></p>
             <p> At: <%= c.created_at %></p>
-            <%= link_to 'Delete', comment_path(c.id), method: :delete, class:'btn btn-danger' %>
+
+            <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger' %>
+
+
         </div>
     </div>
 <% end %>
