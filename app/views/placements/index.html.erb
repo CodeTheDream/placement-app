@@ -33,7 +33,7 @@
 
 <div>
   <% if params[:search] %>
-  <%= link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
+  <%= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
   <% end %>
 
 
