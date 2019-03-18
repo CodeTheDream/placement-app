@@ -41,16 +41,28 @@
 
 
 
+
 <%# if params[:search] %>
+
+<div class='card bg-light col-3 rounded mb-0'>
+      <div class='card-body'>
+<% if params[:search] %>
+
   <% @placements.each do |p| %>
-    <div class="box">
+    <div>
         <p><%= link_to p.name, placement_path(p.id) %></p>
         <%= p.address %>
         <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
         <%= link_to 'Edit', edit_placement_path(p.id), class: 'btn btn-primary mt-2' %>
     </div>
   <% end %>
+
 <%# end %>
+
+<% end %>
+  </div>
+</div>
+
 
 
 <div>
