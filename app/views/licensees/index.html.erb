@@ -5,8 +5,32 @@
 
 <%= search_form_for @q do |f| %>
 
-  <%= f.label :city_cont %>
-  <%= f.search_field :city_cont %>
+	
+   	<%= f.label :facility_name %>
+	<%= f.search_field :facility_name_cont %>
+    <br>
+    <%= f.label :contact_name %>
+	<%= f.search_field :contact_name_cont %>
+    <br>
+    <%= f.label :city %>
+	<%= f.search_field :city_cont %>
+    <br>
+    <%= f.label :address %>
+	<%= f.search_field :address_cont %> 
+    <br>
+    <%= f.label :state %>
+	<%= f.search_field :state_cont %> 
+    <br>
+    <%= f.label :zip %>
+	<%= f.search_field :zip_cont %>
+    <br> 
+    <%= f.label :phone %>
+	<%= f.search_field :phone_cont %>
+    <br> 
+    <%= f.label :fax %>
+	<%= f.search_field :fax_cont %>
+    <br>
+
 
   <%= f.submit %>
 <% end %>

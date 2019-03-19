@@ -436,10 +436,29 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/Alicia/Desktop/CTD/placements"
+		"/Users/Alicia/Desktop/CTD/placements",
+		"/Users/Alicia/Desktop/CTD/placements/app",
+		"/Users/Alicia/Desktop/CTD/placements/app/controllers",
+		"/Users/Alicia/Desktop/CTD/placements/app/models",
+		"/Users/Alicia/Desktop/CTD/placements/app/views",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/devise",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/placements",
+		"/Users/Alicia/Desktop/CTD/placements/config"
 	],
 	"file_history":
 	[
+		"/Users/Alicia/Desktop/CTD/placements/app/controllers/licensees_controller.rb",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/licensees/index.html.erb",
+		"/Users/Alicia/Desktop/CTD/placements/app/controllers/placements_controller.rb",
+		"/Users/Alicia/Desktop/CTD/placements/Gemfile",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/placements/search.html.erb",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/placements/show.html.erb",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/placements/_new_comment.html.erb",
+		"/Users/Alicia/Desktop/CTD/placements/app/models/comment.rb",
+		"/Users/Alicia/Desktop/CTD/placements/app/models/licensee.rb",
+		"/Users/Alicia/Desktop/CTD/placements/app/views/licensees/show.html.erb",
+		"/Users/Alicia/Desktop/CTD/placements/app/controllers/comments_controller.rb",
+		"/Users/Alicia/Desktop/CTD/placements/db/schema.rb",
 		"/Users/Alicia/Desktop/CTD/placements/placements",
 		"/Users/Alicia/Desktop/CTD/alik-bookshelf/app/assets/stylesheets/application.css",
 		"/Users/Alicia/Desktop/CTD/alik-bookshelf/app/views/books/index.html.erb",
@@ -555,19 +574,7 @@
 		"/Users/Alicia/Desktop/Ruby_Udemy/convert_time_object.rb",
 		"/Users/Alicia/Desktop/Ruby_Udemy/comparable_meth_ops.rb",
 		"/Users/Alicia/Desktop/Ruby_Udemy/add_subtract_time.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/instance_meth.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/pred_meth_time.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/methods_w_proc.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/intro_lambdas.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/intro_time_obj.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/array_practice.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/pass_ruby_meth.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/procs_2.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/custom_each_meth.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/yield_w_argument.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/block_given.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/procs_c.rb",
-		"/Users/Alicia/Desktop/Ruby_Udemy/procs_b.rb"
+		"/Users/Alicia/Desktop/Ruby_Udemy/instance_meth.rb"
 	],
 	"find":
 	{
@@ -688,7 +695,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 383.0,
+	"side_bar_width": 312.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

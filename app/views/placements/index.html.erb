@@ -12,21 +12,37 @@
         <%= f.label :name %>
         <%= f.search_field :name_cont %>
         <br>
+        <%= f.label :licensee_id %>
+        <%= f.search_field :licensee_id_cont %>
+        <br>
+        <%= f.label :address %>
+        <%= f.search_field :address_cont %>
+        <br>
         <%= f.label :city %>
         <%= f.search_field :city_cont %>
         <br>
+        <%= f.label :state %>
+        <%= f.search_field :state_cont %>
+        <br>
+        <%= f.label :zip %>
+        <%= f.search_field :zip_cont %>
+        <br>
         <%= f.label :county %>
         <%= f.search_field :county_cont %>
+        <br>
+        <%= f.label :phone %>
+        <%= f.search_field :phone_cont %>
+        <br>
+        <%= f.label :gender %>
+        <%= f.search_field :gender_cont %>
+        <br>
+        <%= f.label :beds %>
+        <%= f.search_field :beds %>
         <br>
 
 
         <%= f.submit %>
       <% end %>
-
-
-
-
-
 
         <!-- <form action="/" method="get">
           <div class='row form-group'>
@@ -42,7 +58,7 @@
 
 
 
-<%# if params[:search] %>
+<% if params[:search] %>
 
 <div class='card bg-light col-3 rounded mb-0'>
       <div class='card-body'>
@@ -57,7 +73,7 @@
     </div>
   <% end %>
 
-<%# end %>
+<% end %>
 
 <% end %>
   </div>
@@ -66,9 +82,9 @@
 
 
 <div>
-  <%# if params[:search] %>
-  <%# link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
-  <%# end %>
+  <% if params[:search] %>
+  <% link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
+  <% end %>
 
 
 
