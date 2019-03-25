@@ -18,20 +18,22 @@
 
 
 
-<div class='card bg-light col-3 rounded mb-0'>
-      <div class='card-body'>
+
 <% if params[:search] %>
-  <% @placements.each do |p| %>
-    <div>
-        <p><%= link_to p.name, placement_path(p.id) %></p>
-        <%= p.address %>
-        <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
-        <%= link_to 'Edit', edit_placement_path(p.id), class: 'btn btn-primary mt-2' %>
+  <div class='card bg-light col-3 rounded mt-2'>
+    <div class='card-body'>
+      <% @placements.each do |p| %>
+        <div>
+          <p><%= link_to p.name, placement_path(p.id) %></p>
+          <%= p.address %>
+          <p><%= p.city %>, <%= p.state %>, <%= p.zip %></p>
+          <%= link_to 'Edit', edit_placement_path(p.id), class: 'btn btn-primary mt-2' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-<% end %>
   </div>
-</div>
+  <% end %>
+  
 
 
 <div>
