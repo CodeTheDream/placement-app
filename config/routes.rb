@@ -5,4 +5,11 @@ Rails.application.routes.draw do
   resources :placements, :comments, :licensees
   resources :placements_imports, only: [:new, :create]
   root to: 'placements#index'
+  
+  resources :licensees do
+    collection do
+      post :import
+    end
+  end
+  
 end
