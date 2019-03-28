@@ -1,2 +1,28 @@
-<h1>PlacementsImports#new</h1>
-<p>Find me in app/views/placements_imports/new.html.erb</p>
+<h3>Import from Excel</h3>
+
+<p>
+Note: Only import spreadsheets that were previously downloaded from this
+  application.
+</p>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Here you could list the validations you have in place for your model</li>
+  <li>That way your user has a better chance of successful import</li>
+</ul>
+
+<h5>Select File</h5>
+<%= form_for @placements_import do |f| %>
+  <% if @placements_import.errors.any? %>
+    <%= pluralize(@placements_import.errors.count, "error") %> prevented us from
+    importing your spreadsheet. Please update your spreadsheet and try again.
+    <ul>
+      <% @placements_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.file_field :file %>
+  <%= f.submit "Import File" %>
+<% end %>

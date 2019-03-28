@@ -51,10 +51,10 @@ class LicenseesController < ApplicationController
          redirect_to licensees_path
     end
     
-    def self.import(file)
-        Licensee.import(params[:file])
+    #def self.import(file)
+     #   Licensee.import(params[:file])
         
-        redirect_to root_url, notice: 'Products imported.'
-    end
+      #  redirect_to root_url, notice: 'Products imported.'
+    #end
     
 end
