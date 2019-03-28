@@ -1,44 +1,35 @@
-<h3>Licensees</h3>
+<!-- <h3>Licensees</h3> -->
 
+<br>
 <%= link_to 'New Licensee', new_licensee_path, class: 'btn btn-primary' %>
 <br><br>
 
-<%= search_form_for @q do |f| %>
-
-	
-   	<%= f.label :facility_name %>
-	<%= f.search_field :facility_name_cont %>
-    <br>
-    <%= f.label :contact_name %>
-	<%= f.search_field :contact_name_cont %>
-    <br>
-    <%= f.label :city %>
-	<%= f.search_field :city_cont %>
-    <br>
-    <%= f.label :address %>
-	<%= f.search_field :address_cont %> 
-    <br>
-    <%= f.label :state %>
-	<%= f.search_field :state_cont %> 
-    <br>
-    <%= f.label :zip %>
-	<%= f.search_field :zip_cont %>
-    <br> 
-    <%= f.label :phone %>
-	<%= f.search_field :phone_cont %>
-    <br> 
-    <%= f.label :fax %>
-	<%= f.search_field :fax_cont %>
-    <br>
+<!-- <div class='card bg-light col-6 rounded mb-0'>
+  <div class='card-body'> -->
+    <%= search_form_for @q do |f| %>
 
 
-  <%= f.submit %>
-<% end %>
+    <%= f.search_field :facility_name_or_contact_name_or_city_or_address_or_state_or_zip_or_phone_or_fax_cont %>
+    
+    <%= f.submit %>
+    <br>
+    <br>
+    <% end %>
 
-<% @licensees.each do |l| %>
-<div class='card bg-light col-3 rounded mb-0 text-center'>
-    <div class='card-body'>
-        <%= link_to l.contact_name, licensee_path(l.id) %>
+    <%= link_to 'View All Licensees', licensees_path, class: 'btn btn-info mt-2' %>
+
+    <br>
+    <br>
+
+    <% @licensees.each do |l| %>
+    <div class='card bg-light col-3 rounded mb-0 text-center'>
+        <div class='card-body'>
+            <%= link_to l.contact_name, licensee_path(l.id) %> <br>
+            <%= l.address %> <br>
+            <%= l.city %>, <%= l.state %> <%= l.zip %>
+           
+
+        </div>
     </div>
-</div>
-<% end %>
+
+    <% end %>
