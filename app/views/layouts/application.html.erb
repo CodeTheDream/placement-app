@@ -17,7 +17,7 @@
         <% if current_user == nil %>
           <%= link_to 'Log In', new_user_session_path, class: 'btn btn-info' %>
         <% else %>
-          <div class='btn btn-outline-info'>
+          <div class='btn btn-outline-dark'>
             <%= current_user.email %>
           </div>
           <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  %>
@@ -26,8 +26,6 @@
         <% if current_user && current_user.admin? %>
           <%= link_to "Admin Tools", admins_path, class: 'btn btn-info' %>
         <% end %>
-        
-        <%= link_to 'New Placement', new_placement_path, class: 'btn btn-info' %>
       
         <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
     

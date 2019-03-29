@@ -1,5 +1,6 @@
 class LicenseesController < ApplicationController
     before_action :authenticate_user!
+    before_action :authorize_admin, only: [:new, :edit]
     
     def new
         @licensee = Licensee.new
