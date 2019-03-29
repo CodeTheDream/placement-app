@@ -13,6 +13,7 @@ class AdminsController < ApplicationController
     end
     
     def update 
+        #This gets the info from the edit form and updates the data. Not sure about how this will work for password yet.
         @user = User.find(params[:id])
         @user.email = params[:user][:email]
         @user.first_name = params[:user][:first_name]
