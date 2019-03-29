@@ -7,7 +7,11 @@
 <% @licensees.each do |l| %>
 <div class='card bg-light col-3 rounded mb-0 text-center'>
     <div class='card-body'>
-        <%= link_to l.contact_name, licensee_path(l.id) %>
+        <ul class='list-group'>
+            <li class='list-group-item'>
+                <%= link_to l.facility_name, licensee_path(l.id) %>
+            </li>
+        </ul>
     </div>
 </div>
 <% end %>
