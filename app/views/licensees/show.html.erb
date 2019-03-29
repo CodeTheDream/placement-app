@@ -25,12 +25,16 @@
 
 <br>
 <% @licensee.comments.each do |c| %>
-    <div class="box">
-        <%= c.text %>
+    <div class='shadow-sm card bg-light col-6 rounded mb-2'>
+        <div class='card-body'>
+            <ul class='list-group'>
+                <li class='list-group-item'><%= c.text %></li>
+            </ul>
         <br>
-        <p>By: <%= c.user.email %></p>
-        <p> At: <%= c.created_at %></p>
-        <%= link_to 'Delete', comment_path(c.id), method: :delete %>
+            By: <%= c.user.first_name %> <%= c.user.last_name %><br>
+            At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
+            <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+        </div>
     </div>
 <% end %>
 

@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Create New User</h2>
 
 <div class='card bg-light col-3 rounded mb-0'>
     <div class='card-body'>
@@ -35,12 +35,18 @@
     <%= f.label :phone %><br />
     <%= f.text_field :phone, class: 'form-control' %>
   </div>
+  </div>
+    <div class="field">
+    <%= f.label :admin, 'Administrator' %>
+    <%= f.check_box :admin, class: 'ml-2' %>
+    <%#= f.select :admin, [['Yes', true], ['No', false]], {}, {class: "form-control mb-2"} %> <!-- This was code that I used to create a select for making a user admin. I decided it was better to go with a checkbox instead. -->
+  </div>
 
   <div class="actions">
-    <%= f.submit "Sign up", class: 'btn btn-primary mt-2' %>
+    <%= f.submit "Create User", class: 'btn btn-primary mt-2 mb-2' %>
   </div>
 <% end %>
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

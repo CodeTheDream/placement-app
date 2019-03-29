@@ -1,0 +1,21 @@
+
+    <h3>Admin Tools</h3>
+
+<% if current_user && current_user.admin? %>
+    <%= link_to "Create New User", new_registration_path(resource_name), class: 'btn btn-primary mt-2 mb-2' %>
+<% end %>
+
+
+ <div class='shadow-sm card bg-light col-6 rounded mt-2'>
+    <div class='card-body'>
+        <h4>Users</h4>
+        <% @users.each do |user| %>
+            <ul class='list-group'>
+                <li class='list-group-item'>
+                    <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
+                    <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-primary btn-sm' %>
+                </li>
+            </ul>
+        <% end %>
+    </div>
+</div>

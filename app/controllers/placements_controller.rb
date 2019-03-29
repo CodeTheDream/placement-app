@@ -30,14 +30,17 @@ class PlacementsController < ApplicationController
     def index
         search = "%#{params[:search]}%"
         @placements = Placement.where("name LIKE ? OR county LIKE ?" , search, search)
-        respond_to do |format|
-            format.xlsx {
-                response.headers[
-                'Content-Disposition'
-                ] = "attachment; filename=placements.xlsx"
-            }
-            format.html { render :index }
-        end
+        #respond_to do |format|
+        #    format.xlsx {
+        #        response.headers[
+        #        'Content-Disposition'
+        #        ] = "attachment; filename=placements.xlsx"
+        #    }
+        #    format.html { render :index }
+        #end
+        @cart_placement = current_cart.cart_placements.new
+        @cart = current_cart
+        #@order_item = current_order.order_items.new
     end
     
     def show
