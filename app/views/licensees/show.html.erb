@@ -14,12 +14,13 @@
         </ul>
 
         <br>
-        <div class='btn btn-primary'>
-            <%= link_to 'Edit', edit_licensee_path(params[:id]) %>
-        </div>
-        <div class='btn btn-danger'>
-            <%= link_to 'Delete', licensee_path(params[:id]), method: :delete %>
-        </div>
+        <% if current_user && current_user.admin? %>
+            <div>
+                <%= link_to 'Edit', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
+    
+                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, class: 'btn btn-danger ml-2' %>
+            </div>
+        <% end %>
     </div>
 </div>
 
@@ -35,7 +36,9 @@
         <br>
             By: <%= c.user.first_name %> <%= c.user.last_name %><br>
             At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
-            <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+            <% if current_user && current_user.admin? %>
+                <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+            <% end %>
         </div>
     </div>
 <% end %>
