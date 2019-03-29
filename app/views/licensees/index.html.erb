@@ -5,11 +5,11 @@
 <br><br>
 
 <% @licensees.each do |l| %>
-<div class='card bg-light col-3 rounded mb-0 text-center'>
+<div class='card bg-light col-3 rounded mb-0'>
     <div class='card-body'>
         <ul class='list-group'>
             <li class='list-group-item'>
-                <%= link_to l.facility_name, licensee_path(l.id) %>
+                <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary' %>
             </li>
         </ul>
     </div>
