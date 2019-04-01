@@ -18,7 +18,7 @@
           <%= link_to 'Log In', new_user_session_path, class: 'btn btn-info' %>
         <% else %>
           <div class='btn btn-outline-dark'>
-            <%= current_user.email %>
+            Profile: <%= current_user.email %>
           </div>
           <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  %>
         <% end %>
@@ -27,21 +27,23 @@
           <%= link_to "Admin Tools", admins_path, class: 'btn btn-info' %>
         <% end %>
       
-        <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
+        <% if current_user != nil %>
+          <%= link_to 'Placements Search', placements_path, class: 'btn btn-info' %>
+        <% end %>
+        
+        <% if current_user != nil %>
+          <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
+        <% end %>
     
-        <%# if current_user != nil %>
-            <%#= link_to 'Cart', cart_path(@cart), class: 'btn btn-info' %>
-        <%# end %>
+        <% if current_user != nil %>
+            <%= link_to "Cart (#{@cart.cart_placements.length})", cart_path(current_user), class: 'btn btn-info' %>
+        <% end %>
     </div>
     <div class="center">
     <%= yield %>
     </div>
     
-    <% if current_user != nil %>
-      <div class='footer text-center'>
-        <%= link_to image_tag('logo.png'), placements_path %>
-      </div>
-    <% end %>
+   
     <div>
       <br>
     </div>

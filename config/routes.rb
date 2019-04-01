@@ -7,18 +7,20 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => {:registrations => "users/registrations"} 
   
-  #resources :users
-  #devise_scope :user do
-   # get 'login', to: 'devise/sessions#new'
-  #end
+  # resources :users
+  # devise_scope :user do
+  #   get 'login', to: 'devise/sessions#new'
+  # end
   resources :placements, :comments, :licensees
   resources :placements_imports, only: [:new, :create]
   resources :carts do
     member do
       get 'start'
-      post 'add'
       delete 'remove'
       put 'submit'
+    end
+    collection do
+      post 'add'
     end
   end
   root to: 'placements#index'

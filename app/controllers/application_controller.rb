@@ -8,13 +8,14 @@ class ApplicationController < ActionController::Base
         redirect_to root_path unless current_user.try(:admin?)
     end
     
-    #def current_cart
-        #if session[:cart_id]
-         #   Cart.find(session[:cart_id])
-        #else
-        #    Cart.new
-       # end
-    #end
+    
+    # @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
+    # if @cart.nil?
+    #     @cart = Cart.new
+    #     @cart.user_id = current_user.id
+    #     @cart.status = 'Pending'
+    #     @cart.save
+    # end
     
     
     protected
