@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'placements_imports/create'
   
   delete 'admins/:id' => 'admins#destroy', :as => :admin_destroy_user
-  get 'admins' => 'admins#show'
+  get 'admins' => 'admins#index'
   
   devise_for :users, :controllers => {:registrations => "users/registrations"} 
   
@@ -13,8 +13,14 @@ Rails.application.routes.draw do
   #end
   resources :placements, :comments, :licensees
   resources :placements_imports, only: [:new, :create]
-  resource :cart, only: [:show]
-  resources :cart_placements
+  resources :carts do
+    member do
+      get 'start'
+      post 'add'
+      delete 'remove'
+      put 'submit'
+    end
+  end
   root to: 'placements#index'
-  resources :admins, only: [:show, :edit, :update, :destroy]
+  resources :admins, only: [:index, :edit, :update, :destroy]
 end

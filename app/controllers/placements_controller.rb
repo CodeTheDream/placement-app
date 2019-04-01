@@ -40,9 +40,9 @@ class PlacementsController < ApplicationController
         #    }
         #    format.html { render :index }
         #end
-        @cart_placement = current_cart.cart_placements.new
-        @cart = current_cart
-        #@order_item = current_order.order_items.new
+        #@cart_placement = current_cart.cart_placements.new
+        @cart = Cart.new
+       
     end
     
     def show

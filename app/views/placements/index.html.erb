@@ -32,12 +32,12 @@
                 <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
               <% if current_user && current_user.admin? %><br>
                 <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
-                <%#= link_to 'Add Placement to Cart', add_cart_path(@cart, placement_id: placement.id), method: :post, class: 'btn btn-primary mt-2' %>
               <% end %>
-              <%= form_for @cart_placement do |f| %>
-                <%= f.hidden_field :placement_id, value: placement.id %>
-                <%= f.submit "Add Placement to Cart", class: 'btn btn-primary mt-2' %>
-              <% end %>
+              <%= link_to 'Add Placement to Cart', add_cart_path(@cart, placement_id: placement.id), method: :post, class: 'btn btn-primary mt-2' %>
+              <%#= form_for @cart_placement do |f| %>
+                <%#= f.hidden_field :placement_id, value: placement.id %>
+                <%#= f.submit "Add Placement to Cart", class: 'btn btn-primary mt-2' %>
+              <#% end %>
             </li>
           </div>
     <% end %>
@@ -74,21 +74,21 @@
 
 
   
-<!-- </div>
+
 
 <h2>Placement Cart</h2>
-<%# @cart.cart_placements.each do |cart_placement| %>
+<% @cart.cart_placements.each do |cart_placement| %>
 <div class='card bg-light col-5 rounded mb-0'>
   <div class='card-body'>
     <div>
-      <%#= cart_placement.placement.name %><br>
-      <%#= cart_placement.placement.address %><br>
-      <p><%#= cart_placement.placement.city %>, <%#= cart_placement.placement.state %>, <%#= cart_placement.placement.zip %></p>
-      <%#= link_to 'Remove Placement from Cart', remove_cart_placement_path(@cart, cart_placement_id: cart_placement.id), method: :delete, class: 'btn btn-danger mt-2' %>
+      <%= cart_placement.placement.name %><br>
+      <%= cart_placement.placement.address %><br>
+      <p><%= cart_placement.placement.city %>, <%= cart_placement.placement.state %>, <%= cart_placement.placement.zip %></p>
+      <%= link_to 'Remove Placement from Cart', remove_cart_path(@cart, cart_placement_id: cart_placement.id), method: :delete, class: 'btn btn-danger mt-2' %>
     </div>
   </div>
 </div>
-<%# end %>
+<% end %>
 
 </div>
--->
+

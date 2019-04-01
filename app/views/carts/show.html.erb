@@ -1,6 +1,6 @@
 <% if @cart_placements.any? %>
   <% @cart_placements.each do |placement| %>
-    <p><%= placement.placement.name %> | <%= link_to "Delete", cart_placement_path(placement), :method => "delete", :data => {:confirm => "You sure?"} %></p>
+    <p><%= placement.placement.name %> | <%= link_to "Delete", remove_cart_path(@cart, cart_placement_id: cart_placement.id), :method => "delete", :data => {:confirm => "You sure?"} %></p>
   <% end %>
 <% else %>
   <p>Your shopping cart is empty.</p>
