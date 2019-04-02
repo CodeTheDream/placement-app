@@ -20,9 +20,9 @@ class LicenseesController < ApplicationController
     end
 
     def index
-        # @licensees = Licensee.all
-        @q = Licensee.ransack(params[:q])
-        @licensees = @q.result(distinct: true)
+        @licensees = Licensee.all
+        # @q = Licensee.ransack(params[:q])
+        # @licensees = @q.result(distinct: true)
     end
     
     def show
