@@ -21,6 +21,14 @@ class LicenseesController < ApplicationController
 
     def index
         @licensees = Licensee.all
+        respond_to do |format|
+            format.xlsx {
+                response.headers[
+                    'Content-Disposition'
+                ] = "attachment; filename='licensees.xlsx'"
+            }
+            format.html { render :index }
+        end
     end
     
     def show
@@ -50,6 +58,7 @@ class LicenseesController < ApplicationController
          @licensee.destroy
          redirect_to licensees_path
     end
+    
     
     #def self.import(file)
      #   Licensee.import(params[:file])

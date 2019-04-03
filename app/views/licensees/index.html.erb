@@ -3,17 +3,30 @@
 <%= link_to 'New Licensee', new_licensee_path, class: 'btn btn-primary' %>
 <br><br>
 
+<!--
 <h4>Bulk Import Licensees</h4>
-<%= form_tag import_licensees_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
+-->
+
+<%#= form_tag import_licensees_path, multipart: true do %>
+  <%#= file_field_tag :file %>
+  <%#=  submit_tag "Import" %>
+<%# end %>
+
+<%=
+  link_to 'Download as Excel',
+  licensees_path(format: :xlsx)
+%>
+<br>
+<%=
+  link_to 'Upload from Excel',
+  new_licensees_import_path
+%>
 
 <% @licensees.each do |l| %>
-<div class='card bg-light col-3 rounded mb-0 text-center'>
-    <div class='card-body'>
-        <%= link_to l.contact_name, licensee_path(l.id) %>
+    <div class='card bg-light col-3 rounded mb-0 text-center'>
+        <div class='card-body'>
+            <%= link_to l.contact_name, licensee_path(l.id) %>
+        </div>
     </div>
-</div>
 <% end %>
 
