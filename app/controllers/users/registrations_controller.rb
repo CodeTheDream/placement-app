@@ -9,12 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
      super
-     #byebug
   end
 
   # POST /resource
   def create
-   # byebug
     super
   end
 

@@ -8,7 +8,6 @@ module AdminsHelper
     end
 
     def resource
-        #byebug
         @user ||= User.new
         @resource ||= @user
     end
