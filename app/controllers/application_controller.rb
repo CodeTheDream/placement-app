@@ -1,21 +1,12 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     protect_from_forgery with: :exception
-    #helper_method :current_cart
     helper_method :authorize_admin
     
     def authorize_admin
         redirect_to root_path unless current_user.try(:admin?)
     end
     
-    
-    # @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
-    # if @cart.nil?
-    #     @cart = Cart.new
-    #     @cart.user_id = current_user.id
-    #     @cart.status = 'Pending'
-    #     @cart.save
-    # end
     
     
     protected

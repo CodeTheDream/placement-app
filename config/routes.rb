@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'placements_imports/new'
   get 'placements_imports/create'
   
-  delete 'admins/:id' => 'admins#destroy', :as => :admin_destroy_user
+  delete 'admins/:id', to: 'admins#destroy', as: :admin_destroy_user
   get 'admins' => 'admins#index'
   
   devise_for :users, :controllers => {:registrations => "users/registrations"} 

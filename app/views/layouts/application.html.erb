@@ -29,15 +29,11 @@
       
         <% if current_user != nil %>
           <%= link_to 'Placements Search', placements_path, class: 'btn btn-info' %>
+          <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
+          <%= link_to "Cart", cart_path(current_user), class: 'btn btn-info' %>
+          
         <% end %>
         
-        <% if current_user != nil %>
-          <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
-        <% end %>
-    
-        <% if current_user != nil %>
-            <%= link_to "Cart (#{@cart.cart_placements.length})", cart_path(current_user), class: 'btn btn-info' %>
-        <% end %>
     </div>
     <div class="center">
     <%= yield %>

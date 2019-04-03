@@ -3,17 +3,18 @@
 </div>
 
 <% if @cart.cart_placements.any? %>
-  <% @cart.cart_placements.each do |placement| %>
-    <div class='card bg-light col-6 rounded mb-2' >
-      <div class='card-body'>
-        <ul class='list-group'>
+  
+  <div class='card bg-light col-6 rounded mb-2' >
+    <div class='card-body'>
+      <ul class='list-group'>
+        <% @cart.cart_placements.each do |placement| %>
           <li class='list-group-item'>
             <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %><%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "You sure?"}, class: 'btn btn-danger ml-2' %>
           </li>
-        </ul>
-      </div>
+        <% end %>
+      </ul>
     </div>
-  <% end %>
+  </div>
 <% else %>
   <p>Your shopping cart is empty.</p>
 <% end %>

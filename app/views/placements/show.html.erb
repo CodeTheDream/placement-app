@@ -1,9 +1,7 @@
-<div class='mt-4 mb-4'>
-    <h3>Placement details</h3>
-</div>
+<h3 class='mt-4 mb-4'>Placement details</h3>
 
 
-<div class=' shadow-sm card bg-light col-4 rounded mb-2'>
+<div class='shadow-sm card bg-light col-4 rounded mb-2'>
     <div class='card-body'>
         <h2><%= @placement.name %></h2>
         <ul class='list-group'>
@@ -37,9 +35,9 @@
         </ul>
         <br>
         <% if current_user && current_user.admin? %>
-            <%= link_to 'Edit', edit_placement_path(@placement.id), class: 'btn btn-primary' %> 
+            <%= link_to 'Edit', edit_placement_path(@placement), class: 'btn btn-primary' %> 
         
-            <%= link_to 'Delete Placement', placement_path(@placement.id), method: :delete, class: 'btn btn-danger ml-2' %>
+            <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, class: 'btn btn-danger ml-2' %>
         <% end %>
     </div>
 </div>

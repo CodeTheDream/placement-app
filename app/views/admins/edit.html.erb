@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h3 class='mt-4 mb-4'>Edit <%= resource_name.to_s.humanize %></h3>
 <div class='card bg-light col-3 rounded mb-0'>
     <div class='card-body'>
 <%= form_for(resource, as: resource_name, url: admin_path(@user), html: { method: :patch }) do |f| %>

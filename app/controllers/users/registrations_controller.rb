@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel]
   before_action :authorize_admin, except: [:index, :show]
   #before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  #before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
@@ -25,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   
   def after_sign_up_path_for(resource)
-    "/admins"
+    admins_path
   end
     
   # GET /resource/edit
