@@ -17,13 +17,16 @@ ActiveRecord::Schema.define(version: 2019_03_25_024512) do
     t.integer "placement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_placements_on_cart_id"
+    t.index ["placement_id"], name: "index_cart_placements_on_placement_id"
   end
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
