@@ -4,19 +4,15 @@ wb.styles do |style|
   project_heading = style.add_style(b: true, sz: 14)
   heading = style.add_style(b: true)
   
-wb.add_worksheet(name: "Licensees") do |sheet|
-  # Create the header row
-  sheet.add_row ["ID", "Facility Name", "Contact Name", "Address", "City", "State", "Zip", "Phone", "Fax"], style: heading
-   # Create the database reference row
+  wb.add_worksheet(name: "Licensees") do |sheet|
+    # Create the header row
+    sheet.add_row ["ID", "Facility Name", "Contact Name", "Address", "City", "State", "Zip", "Phone", "Fax"], style: heading
+    # Create the database reference row
     sheet.add_row ["ID", "facility_name", "contact_name", "address", "city", "state", "zip", "phone", "fax"], style: heading
-  # Create entries for each item
-  @licensees.each do |l|
-    sheet.add_row [l.id, l.facility_name, l.contact_name, 
-    l.address, l.city, l.state, l.zip, l.phone, l.fax]
+    # Create entries for each item
+    @licensees.each do |l|
+      sheet.add_row [l.id, l.facility_name, l.contact_name, 
+      l.address, l.city, l.state, l.zip, l.phone, l.fax]
+   end
   end
 end
-
-
-
-
-

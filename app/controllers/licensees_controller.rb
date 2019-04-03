@@ -25,7 +25,7 @@ class LicenseesController < ApplicationController
             format.xlsx {
                 response.headers[
                     'Content-Disposition'
-                ] = "attachment; filename='licensees.xlsx'"
+                ] = "attachment; filename=licensees.xlsx"
             }
             format.html { render :index }
         end
