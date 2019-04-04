@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-
   def show
     @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
   end
@@ -15,7 +14,8 @@ class CartsController < ApplicationController
       @cart.save
     end
 
-    cart_placement = CartPlacement.find_by(cart_id: @cart.id, placement_id: params[:placement_id])
+    cart_placement = CartPlacement.find_by(cart_id: @cart.id, placement_id:
+    params[:placement_id])
     if cart_placement.nil?
       cart_placement = CartPlacement.new
       cart_placement.placement_id = params[:placement_id]
