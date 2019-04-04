@@ -16,18 +16,18 @@ class AdminsController < ApplicationController
     end
     
     def index
-        @users = User.all
+      @users = User.all
     end
     
     def edit
         @user = User.find(params[:id])
     end
     
+    #This gets the info from the edit form and updates the data.
     def update 
-        #This gets the info from the edit form and updates the data. 
-        @user = User.find(params[:id])
-        @user.update_attributes(user_params)
-        redirect_to admins_path
+      @user = User.find(params[:id])
+      @user.update_attributes(user_params)
+      redirect_to admins_path
     end
     
     def destroy
