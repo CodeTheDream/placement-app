@@ -1,12 +1,15 @@
-<h3>Licensees</h3>
+<h3 class='mt-4'>Licensees</h3>
 
-<%= link_to 'New Licensee', new_licensee_path, class: 'btn btn-primary' %>
 <br><br>
 
 <% @licensees.each do |l| %>
-<div class='card bg-light col-3 rounded mb-0 text-center'>
+<div class='card bg-light col-3 rounded mt-2'>
     <div class='card-body'>
-        <%= link_to l.contact_name, licensee_path(l.id) %>
+        <ul class='list-group'>
+            <li class='list-group-item'>
+                <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary' %>
+            </li>
+        </ul>
     </div>
 </div>
 <% end %>
