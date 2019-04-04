@@ -7,12 +7,12 @@
 <%= link_to 'Create New Placement', new_placement_path, class: 'btn btn-primary mt-2 mb-2' %>
 
 
- <div class='shadow-sm card bg-light col-6 rounded mt-2'>
+ <div class='shadow-sm card bg-light col-6 rounded mt-3 shadow-sm'>
     <div class='card-body'>
         <h4>Users</h4>
         <% @users.each do |user| %>
             <ul class='list-group'>
-                <li class='list-group-item'>
+                <li class='list-group-item mb-1 shadow-sm'>
                     <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
                     <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-primary btn-sm ml-2' %>
                 </li>

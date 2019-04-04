@@ -1,28 +1,28 @@
 
-<div class='card bg-light col-6 rounded mb-0'>
+<div class='card bg-light col-6 rounded mb-0 shadow-sm'>
     <div class='card-body'>
     <%= form_for @licensee do |f| %>
     <div>
         
         <%= f.hidden_field :id, :value => @licensee.id %>
         <div class='row form-group'>
-            <%= f.text_field :facility_name, placeholder: 'Agency Name', class: 'form-control col-5 mr-2' %>
-            <%= f.text_field :contact_name, placeholder: 'Contact Name', class: 'form-control col-5' %>
+            <%= f.text_field :facility_name, placeholder: 'Agency Name', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.text_field :contact_name, placeholder: 'Contact Name', class: 'form-control col-5 shadow' %>
         </div>
         
         <div class='row form-group'>
-            <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2' %>
-            <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5' %>
+            <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5 shadow' %>
         </div>
             
         <div class='row form-group'>    
-            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2' %>
-            <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5' %>
+            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5 shadow' %>
         </div>    
         
         <div class='row form-group'>    
-            <%= f.text_field :phone, placeholder: 'Phone', class: 'form-control col-5 mr-2' %>
-            <%= f.text_field :fax, placeholder: 'Fax', class: 'form-control col-5' %>
+            <%= f.text_field :phone, placeholder: 'Phone', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.text_field :fax, placeholder: 'Fax', class: 'form-control col-5 shadow' %>
         </div>    
         
         <div class='row form-group'>    
