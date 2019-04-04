@@ -28,8 +28,21 @@ class PlacementsImport
     (6..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       placement = Placement.find_by_id(row["id"]) || Placement.new
-      placement.attributes = row.to_hash
+      placement.name = row["name"]
+      placement.address = row["address"]
+      placement.city = row["city"]
+      placement.state = row["state"]
+      placement.zip = row["zip"]
+      placement.county = row["county"]
+      placement.phone = row["phone"]
+      licensee = row["licensee.facility_name"]
+      placement.licensee_id = licensee.id
+      placement.gender = row["gender"]
+      placement.beds = row["beds"]
       placement
+      
+      #placement.attributes = row.to_hash
+      #placement
     end
   end
 

@@ -5,13 +5,13 @@ wb.styles do |style|
   heading = style.add_style(b: true)
 
   wb.add_worksheet(name: "Placements") do |sheet|
-    # Add a title row
+    # Title
     sheet.add_row ["Placements"], style: project_heading
-    # Add the date this was downloaded
+    # Date downloaded
     sheet.add_row ["Downloaded on", Time.now.strftime("%b %-d, %Y")]
-    # Add a blank row
+    # Blank row
     sheet.add_row []
-    # Create the header row
+    # Header row
     sheet.add_row ["ID", "Placement Name", "Address", "City", "State", "Zip", "County", "Phone", "Licensee", "Gender", "Beds"], style: heading
     # Create the database reference row
     sheet.add_row ["id", "name", "address", "city", "state", "zip", "county", "phone", "licensee.facility_name", "gender", "beds"], style: heading
