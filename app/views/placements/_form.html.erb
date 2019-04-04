@@ -1,11 +1,11 @@
 
-<div class='card bg-light col-6 rounded mb-0'>
+<div class='card bg-light col-6 rounded mb-0 shadow-sm'>
     <div class='card-body'>
         <%= form_for @placement do |f| %>
     <div>
         <%= f.hidden_field :id, :value => @placement.id %>
         <div class='row form-group'>
-            <%= f.text_field :name, placeholder: 'Name', class: 'form-control col-5 mr-2' %> 
+            <%= f.text_field :name, placeholder: 'Name', class: 'form-control col-5 mr-2 shadow' %> 
         
             <%= f.select :licensee_id, 
             @licensees.collect { |l| [l.facility_name, l.id]}, 
@@ -13,22 +13,22 @@
         </div>
 
         <div class='row form-group'>
-            <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2' %>
-            <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5' %> 
+            <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5 shadow' %> 
         </div>
         
         <div class='row form-group'>
-            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2' %>
-            <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5' %> 
+            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5 shadow' %> 
         </div>
         
         <div class='row form-group'>
-            <%= f.text_field :county, placeholder: 'County', class: 'form-control col-5 mr-2' %>
-            <%= f.telephone_field :phone, placeholder: 'Phone', class: 'form-control col-5' %>
+            <%= f.text_field :county, placeholder: 'County', class: 'form-control col-5 mr-2 shadow' %>
+            <%= f.telephone_field :phone, placeholder: 'Phone', class: 'form-control col-5 shadow' %>
         </div>
         <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
         <div class='row form-group'>
-            <%= f.text_field :beds, placeholder: 'Beds', class: 'form-control col-5 mr-2' %>
+            <%= f.text_field :beds, placeholder: 'Beds', class: 'form-control col-5 mr-2 shadow' %>
             <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
         </div>
         <div class='row form-group'>
