@@ -5,11 +5,11 @@
 
 
 
-  <div class='card bg-light col-6 rounded mb-0'>
+  <div class='card bg-light col-6 rounded mb-0 shadow-sm'>
     <div class='card-body'>
         <form action="/" method="get">
           <div class='row form-group'>
-            <input type="text" name="search" placeholder="Search" class='form-control col-10 mr-2'>
+            <input type="text" name="search" placeholder="Search" class='form-control col-10 mr-2 shadow'>
             <input type="submit" value="Go", class='btn btn-primary col-1'>
           </div>
         </form>
@@ -19,13 +19,13 @@
 
 
 <% if params[:search] %>
-  <div class='card bg-light col-4 rounded mt-2'>
+  <div class='card bg-light col-4 rounded mt-2 shadow-sm'>
     <div class='card-body'>
       <h2>Search Results</h2>
       <% @placements.each do |placement| %>
         <div>
           <ul class='list-group'>
-            <li class='list-group-item'>
+            <li class='list-group-item mt-2 shadow'>
               <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
               <%= placement.address %><br>
               <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
