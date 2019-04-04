@@ -28,7 +28,7 @@ class CartsController < ApplicationController
     @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
     cart_placement = CartPlacement.find(params[:placement_id])
     cart_placement.destroy
-    redirect_to root_path
+    redirect_to cart_path(current_user)
   end
 
   def submit

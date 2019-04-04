@@ -31,7 +31,7 @@
               <% if current_user && current_user.admin? %><br>
                 <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
               <% end %>
-              <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id), method: :post, class: 'btn btn-primary mt-2' %>
+              <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id), method: :post, :data => {:confirm => "Successfully Added To Cart"}, class: 'btn btn-primary mt-2' %>
               <%#= form_for @cart_placement do |f| %>
                 <%#= f.hidden_field :placement_id, value: placement.id %>
                 <%#= f.submit "Add Placement to Cart", class: 'btn btn-primary mt-2' %>
@@ -44,61 +44,53 @@
       
     
   <% end %>
-  
 
- <!-- <%# @products.each do |product| %>
-  <p><%#= product.name %> | <%#= number_to_currency product.price %>
-  <%#= form_for @order_item do |f| %>
-    <%#= f.hidden_field :product_id, value: product.id %>
-    <%#= f.number_field :quantity %>
-    <%#= f.submit "Add to cart" %>
-  <%# end %></p>
-<%# end %>
--->
 
 
 <div>
-  <% if params[:search] %>
-  <%= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
-  <% end %>
-
-
-
+  <%=
+    link_to 'Upload from Excel',
+    new_placements_import_path, class: 'btn btn-primary mt-2'
+  %>
 </div>
-
-<%=
-  link_to 'Upload from Excel',
-  new_placements_import_path, class: 'btn btn-primary mt-2'
-%>
   
 
 
   
 
 
-<% if @cart.cart_placements.any? %>
+<!--
+<%# if @cart.cart_placements.any? %>
   <h2>Placement Cart</h2>
-  <% @cart.cart_placements.each do |placement| %>
+  <%# @cart.cart_placements.each do |placement| %>
     <div class='card bg-light col-5 rounded mb-0'>
       <div class='card-body'>
         <div>
-          <%= placement.placement.name %><br>
-          <%= placement.placement.address %><br>
-          <p><%= placement.placement.city %>, <%= placement.placement.state %>, <%= placement.placement.zip %></p>
+          <%#= placement.placement.name %><br>
+          <%#= placement.placement.address %><br>
+          <p><%#= placement.placement.city %>, <%#= placement.placement.state %>, <%#= placement.placement.zip %></p>
           <%#= link_to 'Remove Placement from Cart', remove_cart_path(@cart, cart_placement_id: cart_placement.id), method: :delete, class: 'btn btn-danger mt-2' %>
         </div>
       </div>
     </div>
-  <% end %>
+  <%# end %>
+<%# end %>
+-->
+<% if @cart.cart_placements.any? %>
+  
+  <div class='card bg-light col-6 rounded mb-2' >
+    <div class='card-body'>
+      <ul class='list-group'>
+        <% @cart.cart_placements.each do |placement| %>
+          <li class='list-group-item'>
+            <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %><%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "You sure?"}, class: 'btn btn-danger ml-2' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <%= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
 <% end %>
 
-
-<!--<%# if @cart.cart_placements.any? %>
-  <%# @cart.cart_placements.each do |placement| %>
-    <p><%#= placement.placement.name %> | <%#= placement.placement.address %> <%#= placement.placement.city %><%#= link_to "Delete", remove_cart_path(@cart, cart_placement_id: cart_placement.id), :method => "delete", :data => {:confirm => "You sure?"} %></p>
-  <%# end %>
-<%# else %>
-  <p>Your shopping cart is empty.</p>
-<%# end %>-->
 
 

@@ -1,18 +1,18 @@
-<div class='mt-4 mb-4'>
-  <h3>Placement Cart (<%= @cart.cart_placements.length %>)</h3>
-</div>
+<h3 class='mt-4 mb-4'>Placement Cart</h3>
 
 <% if @cart.cart_placements.any? %>
   
   <div class='card bg-light col-6 rounded mb-2' >
     <div class='card-body'>
-      <ul class='list-group'>
-        <% @cart.cart_placements.each do |placement| %>
-          <li class='list-group-item'>
-            <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %><%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "You sure?"}, class: 'btn btn-danger ml-2' %>
-          </li>
-        <% end %>
+      <h2><%= @cart.cart_placements.length %> Items</h2>
+        <ul class='list-group'>
+          <% @cart.cart_placements.each do |placement| %>
+            <li class='list-group-item mb-2 shadow'>
+              <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %><%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "You sure?"}, class: 'btn btn-danger ml-2' %>
+            </li>
+          <% end %>
       </ul>
+      <%= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
     </div>
   </div>
 <% else %>
