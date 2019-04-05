@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h3 class='mt-4 mb-4'>Create New User</h3>
 
 <div class='card bg-light col-3 rounded mb-0'>
     <div class='card-body'>
@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow' %>
   </div>
 
   <div class="field">
@@ -15,32 +15,38 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control shadow' %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow' %>
   </div>
   
     <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, class: 'form-control' %>
+    <%= f.text_field :first_name, class: 'form-control shadow' %>
   </div>
     <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, class: 'form-control' %>
+    <%= f.text_field :last_name, class: 'form-control shadow' %>
   </div>
     <div class="field">
     <%= f.label :phone %><br />
-    <%= f.text_field :phone, class: 'form-control' %>
+    <%= f.text_field :phone, class: 'form-control shadow' %>
+  </div>
+  </div>
+    <div class="field">
+    <%= f.label :admin, 'Administrator' %>
+    <%= f.check_box :admin, class: 'ml-2 shadow' %>
+    <%#= f.select :admin, [['Yes', true], ['No', false]], {}, {class: "form-control mb-2"} %> <!-- This was code that I used to create a select for making a user admin. I decided it was better to go with a checkbox instead. -->
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up", class: 'btn btn-primary mt-2' %>
+    <%= f.submit "Create User", class: 'btn btn-primary mt-2 mb-2' %>
   </div>
 <% end %>
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

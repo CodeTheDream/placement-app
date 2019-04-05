@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 class LicenseesController < ApplicationController
-    before_action :authenticate_user!
+
+  before_action :authenticate_user!
+  before_action :authorize_admin, only: %i[new edit]
     
     def new
         @licensee = Licensee.new
@@ -58,12 +62,5 @@ class LicenseesController < ApplicationController
          @licensee.destroy
          redirect_to licensees_path
     end
-    
-    
-    #def self.import(file)
-     #   Licensee.import(params[:file])
-        
-      #  redirect_to root_url, notice: 'Products imported.'
-    #end
     
 end

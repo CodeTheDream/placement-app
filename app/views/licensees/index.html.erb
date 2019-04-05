@@ -1,7 +1,4 @@
-<h3>Licensees</h3>
-
-<%= link_to 'New Licensee', new_licensee_path, class: 'btn btn-primary' %>
-<br><br>
+<h3 class='mt-4 mb-2'>Licensees</h3>
 
 <!--
 <h4>Bulk Import Licensees</h4>
@@ -22,11 +19,15 @@
   new_licensees_import_path
 %>
 
-<% @licensees.each do |l| %>
-    <div class='card bg-light col-3 rounded mb-0 text-center'>
-        <div class='card-body'>
-            <%= link_to l.contact_name, licensee_path(l.id) %>
-        </div>
-    </div>
-<% end %>
+<div class='card bg-light col-3 rounded shadow-sm'>
+  <div class='card-body'>
+    <% @licensees.each do |l| %>
+      <ul class='list-group'>
+        <li class='list-group-item mt-2 shadow'>
+          <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary' %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
 
