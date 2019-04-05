@@ -1,4 +1,5 @@
 class LicenseesImportsController < ApplicationController
+  
   def new
     @licensees_import = LicenseesImport.new
   end

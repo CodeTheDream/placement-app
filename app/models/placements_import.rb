@@ -35,7 +35,8 @@ class PlacementsImport
       placement.zip = row["zip"]
       placement.county = row["county"]
       placement.phone = row["phone"]
-      placement.licensee_id = Licensee.find_by(facility_name: row["licensee.facility_name"])
+      licensee = Licensee.find_by(facility_name: row["licensee.facility_name"])
+      placement.licensee_id = licensee.id
       placement.gender = row["gender"]
       placement.beds = row["beds"]
       placement
