@@ -25,6 +25,8 @@
         
         <% if current_user && current_user.admin? %>
           <%= link_to "Admin Tools", admins_path, class: 'btn btn-info' %>
+          <%= link_to 'Download Licensees', licensees_path(format: :xlsx), class: 'btn btn-info' %>
+          <%= link_to 'Upload Licensees', new_licensees_import_path, class: 'btn btn-info' %>
         <% end %>
       
         <% if current_user != nil %>
