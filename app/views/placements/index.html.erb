@@ -1,4 +1,4 @@
-<h3 class='mt-4 mb-4'>Placement Index</h3>
+<h3 class='mt-4 mb-4'>Placement Search</h3>
 
 
 <h4>Click on a placement to view details</h4>
@@ -16,6 +16,8 @@
     </div>
   </div>
   <%= link_to 'New Search', placements_path, class: 'btn btn-primary mt-2' %>
+  
+  <%= link_to 'View all placements', placements_all_path, class: 'btn btn-primary mt-2' %>
 
 
 <% if params[:search] %>
@@ -39,20 +41,6 @@
     </div>
   </div>  
 <% end %>
-
-
-
-<div>
-  <%=
-    link_to 'Upload from Excel',
-    new_placements_import_path, class: 'btn btn-primary mt-2'
-  %>
-</div>
-  
-
-
-  
-
 
 
 <!-- <%# if @cart.cart_placements.any? %>

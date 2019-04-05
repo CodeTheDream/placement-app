@@ -25,7 +25,7 @@ class PlacementsController < ApplicationController
       gender: params[:placement][:gender],
       beds: params[:placement][:beds]
     )
-    redirect_to placements_path
+    redirect_to admins_path
   end
 
   # licensee_id: params[::placement][:licensee_id]
@@ -44,6 +44,10 @@ class PlacementsController < ApplicationController
     # end
     # @cart_placement = current_cart.cart_placements.new
     @cart = Cart.new
+  end
+  
+  def all
+    @placements_all = Placement.all
   end
 
   def show

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # devise_scope :user do
   #   get 'login', to: 'devise/sessions#new'
   # end
+  get 'placements/all' => 'placements#all'
   resources :placements, :comments, :licensees
+  
   resources :placements_imports, only: [:new, :create]
   resources :carts do
     member do
