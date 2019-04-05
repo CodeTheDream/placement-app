@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   resources :placements_imports, only: [:new, :create]
   resources :licensees_imports, only: [:new, :create]
   root to: 'placements#index'
-end
 
   resources :carts do
     member do
