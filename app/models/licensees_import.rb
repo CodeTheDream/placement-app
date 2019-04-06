@@ -29,13 +29,13 @@ class LicenseesImport
       row = Hash[[header, spreadsheet.row(i)].transpose]
       licensee = Licensee.find_by_id(row["id"]) || Licensee.new
       licensee.facility_name = row["facility_name"]
-      licensee.facility_name = row["contact_name"]
-      licensee.facility_name = row["address"]
-      licensee.facility_name = row["city"]
-      licensee.facility_name = row["state"]
-      licensee.facility_name = row["zip"]
-      licensee.facility_name = row["phone"]
-      licensee.facility_name = row["fax"]
+      licensee.contact_name = row["contact_name"]
+      licensee.address = row["address"]
+      licensee.city = row["city"]
+      licensee.state = row["state"]
+      licensee.zip = row["zip"]
+      licensee.phone = row["phone"]
+      licensee.fax = row["fax"]
       licensee
       
       #licensee.attributes = row.to_hash
