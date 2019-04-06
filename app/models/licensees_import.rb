@@ -28,8 +28,18 @@ class LicenseesImport
     (6..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       licensee = Licensee.find_by_id(row["id"]) || Licensee.new
-      licensee.attributes = row.to_hash
+      licensee.facility_name = row["facility_name"]
+      licensee.facility_name = row["contact_name"]
+      licensee.facility_name = row["address"]
+      licensee.facility_name = row["city"]
+      licensee.facility_name = row["state"]
+      licensee.facility_name = row["zip"]
+      licensee.facility_name = row["phone"]
+      licensee.facility_name = row["fax"]
       licensee
+      
+      #licensee.attributes = row.to_hash
+      #licensee
     end
   end
 
