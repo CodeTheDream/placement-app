@@ -1,5 +1,8 @@
 class PlacementsImportsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :authorize_admin
+
   def new
     @placements_import = PlacementsImport.new
   end
