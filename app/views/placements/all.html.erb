@@ -1,0 +1,22 @@
+<h3 class='mt-4 mb-4'>All Placements</h3>
+
+
+  
+<% @placements_all.each do |placement| %>
+    <div class='card bg-light col-4 rounded mt-2 shadow-sm'>
+        <div class='card-body'>
+            <ul class='list-group'>
+                <li class='list-group-item mt-2 shadow'>
+                    <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
+                    <%= placement.address %><br>
+                    <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+                    <% if current_user && current_user.admin? %><br>
+                        <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
+                    <% end %>
+                    <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id), method: :post, :data => {:confirm => "Successfully Added To Cart"}, class: 'btn btn-primary mt-2' %>
+                </li>
+            </ul>
+        </div>
+    </div> 
+<% end %>
+   

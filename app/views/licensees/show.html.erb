@@ -1,8 +1,8 @@
 <h3 class='mt-4 mb-4'>Licensee Details</h3>
 
-<div class='card bg-light col-6 rounded mb-0 shadow-sm'>
+<div class='card bg-light col-6 rounded mb-3 shadow-sm'>
     <div class='card-body'>
-        <h4><%= @licensee.facility_name %></h2>
+        <h4><%= @licensee.facility_name %></h4>
         <ul class='list-group shadow'>
             <li class='list-group-item'>Contact: <%= @licensee.contact_name %></li>
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
@@ -15,7 +15,6 @@
         <% if current_user && current_user.admin? %>
             <div>
                 <%= link_to 'Edit', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
-    
                 <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, class: 'btn btn-danger ml-2' %>
             </div>
         <% end %>
@@ -23,24 +22,44 @@
 </div>
 
 
-
-<br>
-<% @licensee.comments.each do |c| %>
-    <div class='shadow-sm card bg-light col-6 rounded mb-2'>
+<% @licensee.placements.each do |placement| %>
+    <div class='card bg-light col-4 rounded mb-2 shadow-sm'>
+        <div class='card-body'>
+          <h5>Licensee Placements</h5>
+            <div>
+                <ul class='list-group'>
+                    <li class='list-group-item mt-2 shadow'>
+                      <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
+                      <%= placement.address %><br>
+                      <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+                    </li>
+                </ul>
+                    <% if current_user && current_user.admin? %><br>
+                        <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary' %>
+                        <%= link_to 'Delete Placement', placement_path(placement.id), method: :delete, class: 'btn btn-danger ml-2' %>
+                    <% end %>
+                
+          </div>
+        </div>
+    </div> 
+<% end %>
+   
+<!-- <%# @licensee.comments.each do |c| %>
+    <div class='shadow-sm card bg-light col-6 rounded mt-2 mb-2'>
         <div class='card-body'>
             <ul class='list-group'>
-                <li class='list-group-item'><%= c.text %></li>
+                <li class='list-group-item shadow'><%#= c.text %></li>
             </ul>
         <br>
-            By: <%= c.user.first_name %> <%= c.user.last_name %><br>
-            At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
-            <% if current_user && current_user.admin? %>
-                <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
-            <% end %>
+            By: <%#= c.user.first_name %> <%#= c.user.last_name %><br>
+            At: <%#= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
+            <%# if current_user && current_user.admin? %>
+                <%#= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+            <%# end %>
         </div>
     </div>
-<% end %>
-
+<%# end %>
+-->
 
 <%# List contact info for licensee %>
 
