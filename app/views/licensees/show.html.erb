@@ -1,10 +1,14 @@
+
 <br>
 <p class='btn btn-primary'>Licensee Details</p>
 
-<div class='card bg-light col-6 rounded mb-0'>
+<h3 class='mt-4 mb-4'>Licensee Details</h3>
+
+
+<div class='card bg-light col-6 rounded mb-0 shadow-sm'>
     <div class='card-body'>
         <h4><%= @licensee.facility_name %></h2>
-        <ul class='list-group'>
+        <ul class='list-group shadow'>
             <li class='list-group-item'>Contact: <%= @licensee.contact_name %></li>
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
             <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
@@ -13,12 +17,13 @@
         </ul>
 
         <br>
-        <div class='btn btn-primary'>
-            <%= link_to 'Edit', edit_licensee_path(params[:id]) %>
-        </div>
-        <div class='btn btn-danger'>
-            <%= link_to 'Delete', licensee_path(params[:id]), method: :delete %>
-        </div>
+        <% if current_user && current_user.admin? %>
+            <div>
+                <%= link_to 'Edit', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
+    
+                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, class: 'btn btn-danger ml-2' %>
+            </div>
+        <% end %>
     </div>
 </div>
 
@@ -26,12 +31,18 @@
 
 <br>
 <% @licensee.comments.each do |c| %>
-    <div class="box">
-        <%= c.text %>
+    <div class='shadow-sm card bg-light col-6 rounded mb-2'>
+        <div class='card-body'>
+            <ul class='list-group'>
+                <li class='list-group-item'><%= c.text %></li>
+            </ul>
         <br>
-        <p>By: <%= c.user.email %></p>
-        <p> At: <%= c.created_at %></p>
-        <%= link_to 'Delete', comment_path(c.id), method: :delete %>
+            By: <%= c.user.first_name %> <%= c.user.last_name %><br>
+            At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
+            <% if current_user && current_user.admin? %>
+                <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+            <% end %>
+        </div>
     </div>
 <% end %>
 
