@@ -23,23 +23,14 @@ class LicenseesImport
   end
 
   def load_imported_licensees
+    #byebug
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(5)
     (6..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       licensee = Licensee.find_by_id(row["id"]) || Licensee.new
-      licensee.facility_name = row["facility_name"]
-      licensee.contact_name = row["contact_name"]
-      licensee.address = row["address"]
-      licensee.city = row["city"]
-      licensee.state = row["state"]
-      licensee.zip = row["zip"]
-      licensee.phone = row["phone"]
-      licensee.fax = row["fax"]
+      licensee.attributes = row.to_hash
       licensee
-      
-      #licensee.attributes = row.to_hash
-      #licensee
     end
   end
 
@@ -48,6 +39,7 @@ class LicenseesImport
   end
 
   def save
+    #byebug
     if imported_licensees.map(&:valid?).all?
       imported_licensees.each(&:save!)
       true

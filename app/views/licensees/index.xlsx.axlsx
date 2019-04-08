@@ -5,6 +5,12 @@ wb.styles do |style|
   heading = style.add_style(b: true)
   
   wb.add_worksheet(name: "Licensees") do |sheet|
+    # Title
+    sheet.add_row ["Licensees"], style: project_heading
+    # Date downloaded
+    sheet.add_row ["Downloaded on", Time.now.strftime("%b %-d, %Y")]
+    # Blank row
+    sheet.add_row []
     # Create the header row
     sheet.add_row ["ID", "Facility Name", "Contact Name", "Address", "City", "State", "Zip", "Phone", "Fax"], style: heading
     # Create the database reference row
@@ -13,6 +19,6 @@ wb.styles do |style|
     @licensees.each do |l|
       sheet.add_row [l.id, l.facility_name, l.contact_name, 
       l.address, l.city, l.state, l.zip, l.phone, l.fax]
-   end
+    end  
   end
 end
