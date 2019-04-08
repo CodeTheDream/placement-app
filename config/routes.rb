@@ -13,7 +13,15 @@ Rails.application.routes.draw do
   # devise_scope :user do
   #   get 'login', to: 'devise/sessions#new'
   # end
-  resources :placements, :comments, :licensees
+  
+  resources :comments, :licensees
+  resources :placements do
+    #If we decide to break out the search from the index view this collection will come in handy. Otherwise it's not doing anything
+    collection do
+      get 'search'
+    end
+  end
+  
   resources :placements_imports, only: [:new, :create]
   resources :licensees_imports, only: [:new, :create]
   root to: 'placements#index'

@@ -25,18 +25,18 @@ class PlacementsController < ApplicationController
       gender: params[:placement][:gender],
       beds: params[:placement][:beds]
     )
-    redirect_to placements_path
+    redirect_to admins_path
   end
 
   # licensee_id: params[::placement][:licensee_id]
   # service_id: params[:placement][:service_id],
 
   def index
+    @placements = Placement.all
     search = "%#{params[:search]}%"
-    @placements = Placement.where('name LIKE ? OR county LIKE ?', search, search)
-    @cart = Cart.new
+    @placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
   end
-
+  
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
