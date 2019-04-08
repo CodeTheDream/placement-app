@@ -1,3 +1,4 @@
+
 <h3 class='mt-4 mb-4'>Placement Search</h3>
 
 
@@ -32,7 +33,7 @@
               <% if current_user && current_user.admin? %><br>
                 <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
               <% end %>
-            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id), method: :post, :data => {:confirm => "Successfully Added To Cart"}, class: 'btn btn-primary mt-2' %>
+            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
             </li>
           </div>
       <% end %>
@@ -53,7 +54,7 @@
                     <% if current_user && current_user.admin? %><br>
                         <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
                     <% end %>
-                    <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id), method: :post, :data => {:confirm => "Successfully Added To Cart"}, class: 'btn btn-primary mt-2' %>
+                    <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
                 </li>
             </ul>
         </div>

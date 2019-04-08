@@ -26,6 +26,8 @@ class CartsController < ApplicationController
       cart_placement.placement_id = params[:placement_id]
       cart_placement.cart_id = @cart.id
       cart_placement.save
+      flash[:notice] = "Placement Added to Cart!"
+      redirect_to root_path(search: params[:search])
     end
   end
 

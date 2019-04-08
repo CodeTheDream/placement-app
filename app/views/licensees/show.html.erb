@@ -15,7 +15,7 @@
         <% if current_user && current_user.admin? %>
             <div>
                 <%= link_to 'Edit', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
-                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, class: 'btn btn-danger ml-2' %>
+                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
             </div>
         <% end %>
     </div>
@@ -25,7 +25,7 @@
 <% @licensee.placements.each do |placement| %>
     <div class='card bg-light col-4 rounded mb-2 shadow-sm'>
         <div class='card-body'>
-          <h5>Licensee Placements</h5>
+          <h5>Placement</h5>
             <div>
                 <ul class='list-group'>
                     <li class='list-group-item mt-2 shadow'>
@@ -36,34 +36,10 @@
                 </ul>
                     <% if current_user && current_user.admin? %><br>
                         <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary' %>
-                        <%= link_to 'Delete Placement', placement_path(placement.id), method: :delete, class: 'btn btn-danger ml-2' %>
+                        <%= link_to 'Delete Placement', placement_path(placement.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
                     <% end %>
                 
           </div>
         </div>
     </div> 
 <% end %>
-   
-<!-- <%# @licensee.comments.each do |c| %>
-    <div class='shadow-sm card bg-light col-6 rounded mt-2 mb-2'>
-        <div class='card-body'>
-            <ul class='list-group'>
-                <li class='list-group-item shadow'><%#= c.text %></li>
-            </ul>
-        <br>
-            By: <%#= c.user.first_name %> <%#= c.user.last_name %><br>
-            At: <%#= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
-            <%# if current_user && current_user.admin? %>
-                <%#= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
-            <%# end %>
-        </div>
-    </div>
-<%# end %>
--->
-
-<%# List contact info for licensee %>
-
-<%# h3: Associated Placements %>
-<%# h4: Call this licensee to refer to the following placements: %>
-
-<%# Show a list with each placement associated with the licensee %>
