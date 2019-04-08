@@ -16,14 +16,14 @@
 
  .btn {
     color: #fff;
-    background-color: #1469CD;
+    background-color: ##010F38;
     border-color: #fff;
     
  }
 
  .btn:hover {
     background-color: #010F38;
-    color: #97C4FA;
+    color: #fff;
     border-color: #fff;
 }
 
@@ -38,12 +38,12 @@
 }
 
 .header {
-    background-image: url('Alik images/smokeys.jpg');
-    background-size: 100% 200px;
+    background-image: url('row_houses_2.jpeg');
+    background-size: 100% 350px;
     margin: auto;
     text-align: center;
     width: 100%;
-    height: 200px;
+    height: 225px;
 }
 
 
