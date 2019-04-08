@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :create_new_cart
+  before_action :create_new_cart, only: [:show, :add]
   
   
   def create_new_cart

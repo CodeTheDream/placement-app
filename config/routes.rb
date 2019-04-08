@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   
   resources :comments, :licensees
   resources :placements do
+    #If we decide to break out the search from the index view this collection will come in handy. Otherwise it's not doing anything
     collection do
       get 'search'
     end
