@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
+  before_action :create_new_cart
   
-  def show
+  
+  def create_new_cart
     @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
     if @cart.nil?
       @cart = Cart.new
@@ -11,18 +13,13 @@ class CartsController < ApplicationController
       @cart.save
     end
   end
+  
+  def show
+  end
 
   def add
-    @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
     cart_placement = CartPlacement.find_by(cart_id: @cart.id, placement_id:
     params[:placement_id])
-    
-    if @cart.nil?
-      @cart = Cart.new
-      @cart.user_id = current_user.id
-      @cart.status = 'Pending'
-      @cart.save
-    end
     
     if cart_placement.nil?
       cart_placement = CartPlacement.new

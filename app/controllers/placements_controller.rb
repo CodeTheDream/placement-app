@@ -32,8 +32,15 @@ class PlacementsController < ApplicationController
   # service_id: params[:placement][:service_id],
 
   def index
+    @placements = Placement.all
     search = "%#{params[:search]}%"
-    @placements = Placement.where('name LIKE ? OR county LIKE ?', search, search)
+    @placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
+  end
+
+
+  #def search
+    #search = "%#{params[:search]}%"
+    #@placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
     # respond_to do |format|
     #    format.xlsx {
     #        response.headers[
@@ -43,13 +50,9 @@ class PlacementsController < ApplicationController
     #    format.html { render :index }
     # end
     # @cart_placement = current_cart.cart_placements.new
-    @cart = Cart.new
-  end
+    #@cart = Cart.new
+  #end
   
-  def all
-    @placements_all = Placement.all
-  end
-
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
