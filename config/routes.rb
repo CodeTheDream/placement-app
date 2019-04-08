@@ -28,7 +28,9 @@ Rails.application.routes.draw do
       post 'add'
     end
   end
+  
   root to: 'placements#index'
+  
   resources :admins, only: [:index, :edit, :update, :destroy]
 end
 
