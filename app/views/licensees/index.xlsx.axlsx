@@ -14,7 +14,7 @@ wb.styles do |style|
     # Create the header row
     sheet.add_row ["ID", "Facility Name", "Contact Name", "Address", "City", "State", "Zip", "Phone", "Fax"], style: heading
     # Create the database reference row
-    sheet.add_row ["ID", "facility_name", "contact_name", "address", "city", "state", "zip", "phone", "fax"], style: heading
+    sheet.add_row ["id", "facility_name", "contact_name", "address", "city", "state", "zip", "phone", "fax"], style: heading
     # Create entries for each item
     @licensees.each do |l|
       sheet.add_row [l.id, l.facility_name, l.contact_name, 
