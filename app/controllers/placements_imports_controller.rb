@@ -8,12 +8,18 @@ class PlacementsImportsController < ApplicationController
   end
 
   def create
-    @placements_import = PlacementsImport.new(params[:placements_import])
+    @placements_import = PlacementsImport.new(placements_import_params)
     if @placements_import.save
       redirect_to placements_path
     else
       render :new
     end
   end
+  
+  private
+  
+    def placements_import_params
+      params.require(:placements_import).permit(:file)
+    end
 
 end
