@@ -1,13 +1,19 @@
 <h3 class='mt-4 mb-4'>Admin Tools</h3>
 
-<%= link_to "Create New User", new_registration_path(resource_name), class: 'btn btn-primary mt-2 mb-2' %>
+<!-- Dropdown for forms -->
+<div>
+  <%= link_to "Create New User", new_registration_path(resource_name), class: 'btn btn-primary mt-2 mb-2' %>
+  <%= link_to 'Create New Licensee', new_licensee_path, class: 'btn btn-primary mt-2 mb-2' %>
+  <%= link_to 'Create New Placement', new_placement_path, class: 'btn btn-primary mt-2 mb-2' %>
+</div>
+<!-- Dropdown for spreadsheets -->
 
-<%= link_to 'Create New Licensee', new_licensee_path, class: 'btn btn-primary mt-2 mb-2' %>
-
-<%= link_to 'Create New Placement', new_placement_path, class: 'btn btn-primary mt-2 mb-2' %>
-
-<%= link_to 'Upload from Excel', new_placements_import_path, class: 'btn btn-primary mt-2 mb-2' %>
-
+<div>
+  <%= link_to 'Download Licensees', licensees_path(format: :xlsx), class: 'btn btn-info' %>
+  <%= link_to 'Upload Licensees', new_licensees_import_path, class: 'btn btn-info' %>
+  <%= link_to 'Download Placements', placements_path(format: :xlsx), class: 'btn btn-info' %>
+  <%= link_to 'Upload Placements', new_placements_import_path, class: 'btn btn-info' %>
+</div>
 
  <div class='shadow-sm card bg-light col-6 rounded mt-3 shadow-sm'>
     <div class='card-body'>
