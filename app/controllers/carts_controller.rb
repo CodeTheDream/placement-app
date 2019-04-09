@@ -27,8 +27,8 @@ class CartsController < ApplicationController
       cart_placement.cart_id = @cart.id
       cart_placement.save
       flash[:notice] = "Placement Added to Cart!"
-      redirect_to root_path(search: params[:search])
     end
+      redirect_to root_path(search: params[:search])
   end
 
   def remove
@@ -43,5 +43,17 @@ class CartsController < ApplicationController
     @cart.status = 'Submitted'
     @cart.save
     redirect_to root_path
+  end
+  
+  def index
+    @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
+    respond_to do |format|
+      format.xlsx {
+          response.headers[
+          'Content-Disposition'
+          ] = "attachment; filename=cart.xlsx"
+      }
+      format.html { render :index }
+    end    
   end
 end

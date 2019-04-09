@@ -13,18 +13,7 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    Placement.create(
-      name: params[:placement][:name],
-      licensee_id: params[:placement][:licensee_id],
-      address: params[:placement][:address],
-      city: params[:placement][:city],
-      state: params[:placement][:state],
-      zip: params[:placement][:zip],
-      county: params[:placement][:county],
-      phone: params[:placement][:phone],
-      gender: params[:placement][:gender],
-      beds: params[:placement][:beds]
-    )
+    Placement.create(placement_params)
     redirect_to admins_path
   end
 
@@ -36,22 +25,6 @@ class PlacementsController < ApplicationController
     search = "%#{params[:search]}%"
     @placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
   end
-
-
-  #def search
-    #search = "%#{params[:search]}%"
-    #@placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
-    # respond_to do |format|
-    #    format.xlsx {
-    #        response.headers[
-    #        'Content-Disposition'
-    #        ] = "attachment; filename=placements.xlsx"
-    #    }
-    #    format.html { render :index }
-    # end
-    # @cart_placement = current_cart.cart_placements.new
-    #@cart = Cart.new
-  #end
   
   def show
     @placement = Placement.find(params[:id])
@@ -67,18 +40,8 @@ class PlacementsController < ApplicationController
 
   def update
     @placement = Placement.find(params[:id])
-    @placement.name = params[:placement][:name]
-    @placement.licensee_id = params[:placement][:licensee_id]
-    @placement.address = params[:placement][:address]
-    @placement.city = params[:placement][:city]
-    @placement.state = params[:placement][:state]
-    @placement.zip = params[:placement][:zip]
-    @placement.county = params[:placement][:county]
-    @placement.phone = params[:placement][:phone]
-    @placement.gender = params[:placement][:gender]
-    @placement.beds = params[:placement][:beds]
-    @placement.save
-    redirect_to placement_path(params[:id])
+    @placement.update!(placement_params)
+    redirect_to placement_path(@placement)
   end
 
   def destroy
@@ -91,7 +54,10 @@ class PlacementsController < ApplicationController
     @comment = Comment.new
   end
 
-  def placement_params
-    params.require(:placement).permit(:name, county, :search)
-  end
+  private
+  
+    def placement_params
+      params.require(:placement).permit(:name, :address, :city, :state, :zip, 
+                    :county, :phone, :licensee_id, :gender, :beds, :search)
+    end
 end
