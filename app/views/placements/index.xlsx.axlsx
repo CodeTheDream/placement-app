@@ -1,11 +1,23 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Placements") do |sheet|
-  # Create the header row
-  sheet.add_row ["Name", "Address", "City", "State", "Zip", "County", " Home Phone", "Licensee", "Licensee Phone"]
-  # Create entries for each item
-  @placements.each do |placement|
-    sheet.add_row [placement.name, placement.address, placement.city, placement.state, placement.zip, placement.county, placement.phone, placement.licensee.contact_name, placement.licensee.phone]
-    sheet.add_row ["Notes: "]
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+
+  wb.add_worksheet(name: "Placements") do |sheet|
+    # Title
+    sheet.add_row ["Placements"], style: project_heading
+    # Date downloaded
+    sheet.add_row ["Downloaded on", Time.now.strftime("%b %-d, %Y")]
+    # Blank row
+    sheet.add_row []
+    # Header row
+    sheet.add_row ["ID", "Placement Name", "Address", "City", "State", "Zip", "County", "Phone", "Licensee", "Gender", "Beds"], style: heading
+    # Create the database reference row
+    sheet.add_row ["id", "name", "address", "city", "state", "zip", "county", "phone", "licensee.facility_name", "gender", "beds"], style: heading
+    # Create entries for each item
+    @placements.each do |p|
+      sheet.add_row [p.id, p.name, p.address, p.city, p.state, p.zip, p.county, p.phone, p.licensee.facility_name, p.gender, p.beds]
+    end
   end
 end
