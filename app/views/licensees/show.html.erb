@@ -2,7 +2,7 @@
 
 <div class='card bg-light col-8 rounded mb-3 shadow-sm mx-auto'>
     <div class='card-body'>
-        <h4><%= @licensee.facility_name %></h4>
+        <h3><%= @licensee.facility_name %></h3>
         <ul class='list-group shadow'>
             <li class='list-group-item'>Contact: <%= @licensee.contact_name %></li>
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
@@ -22,7 +22,7 @@
 </div>
 
 
-<div class='card bg-light col-6 rounded mb-2 shadow-sm mx-auto'>
+<div class='card bg-light col-8 rounded mb-2 shadow-sm mx-auto'>
         <div class='card-body'>
           <h5>Placements</h5>
             <% @licensee.placements.each do |placement| %>

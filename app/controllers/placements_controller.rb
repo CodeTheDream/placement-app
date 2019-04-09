@@ -34,9 +34,11 @@ class PlacementsController < ApplicationController
   def index
     @placements = Placement.all
     search = "%#{params[:search]}%"
-    @placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
+    @placements_search = Placement.where('name LIKE ? OR county LIKE ? OR 
+    address LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ? OR phone LIKE ? 
+    OR gender LIKE ?', search, search, search, search, search, search, search, 
+    search)
   end
-
 
   #def search
     #search = "%#{params[:search]}%"
@@ -63,6 +65,8 @@ class PlacementsController < ApplicationController
   def edit
     @placement = Placement.find(params[:id])
     @licensees = Licensee.all
+    session[:return_to] ||= request.referer #this and the redirect in the update
+    # action redirect you back to the previous page after you update a placement
   end
 
   def update
@@ -78,7 +82,7 @@ class PlacementsController < ApplicationController
     @placement.gender = params[:placement][:gender]
     @placement.beds = params[:placement][:beds]
     @placement.save
-    redirect_to placement_path(params[:id])
+    redirect_to session.delete(:return_to)
   end
 
   def destroy

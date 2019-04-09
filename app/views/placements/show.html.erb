@@ -1,7 +1,7 @@
 <h3 class='mt-4 mb-4 text-center'>Placement details</h3>
 
 
-<div class='shadow-sm card bg-light col-6 rounded mb-2 mx-auto'>
+<div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
     <div class='card-body'>
         <h2><%= @placement.name %></h2>
         <ul class='list-group shadow'>
@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class='shadow-sm card bg-light col-6 rounded mb-2 mx-auto'>
+<div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
     <div class='card-body'>
         <h5>To refer a potential resident, contact:</h5>
         <ul class='list-group shadow'>
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class='shadow-sm card bg-light col-6 rounded mb-5 mx-auto'>
+<div class='shadow-sm card bg-light col-8 rounded mb-5 mx-auto'>
     <div class='card-body'>
         <h4>Other</h4>
         <ul class='list-group shadow'>
@@ -43,8 +43,7 @@
 </div>
 
 <h2 class='text-center'>Comments</h2>
-<h4 class='text-center'>New Comment</h4>
-<%= render 'new_comment' %>
+<!--<h4 class='text-center'>New Comment</h4> -->
 
 <% @comments.reverse_each do |c| %>
     <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
@@ -62,6 +61,10 @@
         </div>
     </div>
 <% end %>
+
+<%= render 'new_comment' %>
+
+
 
 
 
