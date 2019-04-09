@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+  
+  wb.add_worksheet(name: "Downloaded Placements") do |sheet|
+    # Title
+    sheet.add_row ["Placement Search Results"], style: project_heading
+    # Date downloaded
+    sheet.add_row ["Downloaded on", Time.now.strftime("%b %-d, %Y")]
+    # Blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row ["Placement Name", "Address", "City", "State", "Zip", "County", "Phone", "Licensee", "Gender", "Beds"], style: heading
+    # Create entries for each item
+    @cart.cart_placements.each do |p|
+      sheet.add_row [p.placement.name, p.placement.address, p.placement.city, p.placement.state, p.placement.zip, p.placement.county, p.placement.phone, p.placement.licensee.facility_name, p.placement.gender, p.placement.beds]
+      sheet.add_row ["Notes:"]
+    end
+  end
+end
