@@ -1,8 +1,7 @@
 class LicenseesImportsController < ApplicationController
-  
   before_action :authenticate_user!
   before_action :authorize_admin
-  
+
   def new
     @licensees_import = LicenseesImport.new
   end
@@ -15,10 +14,10 @@ class LicenseesImportsController < ApplicationController
       render :new
     end
   end
-  
+
   private
-  
-    def licensees_import_params
-      params.require(:licensees_import).permit(:file)
-    end
+
+  def licensees_import_params
+    params.require(:licensees_import).permit(:file)
+  end
 end

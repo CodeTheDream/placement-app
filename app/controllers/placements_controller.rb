@@ -2,7 +2,7 @@
 
 class PlacementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin, only: %i[new edit]
+  before_action :authorize_admin, only: %i(new edit)
 
   require 'roo'
 
@@ -23,9 +23,10 @@ class PlacementsController < ApplicationController
   def index
     @placements = Placement.all
     search = "%#{params[:search]}%"
-    @placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
+    @placements_search = Placement.where('name LIKE ? OR county LIKE ?',
+                                         search, search)
   end
-  
+
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
@@ -55,9 +56,10 @@ class PlacementsController < ApplicationController
   end
 
   private
-  
-    def placement_params
-      params.require(:placement).permit(:name, :address, :city, :state, :zip, 
-                    :county, :phone, :licensee_id, :gender, :beds, :search)
-    end
+
+  def placement_params
+    params.require(:placement).permit(:name, :address, :city, :state, :zip,
+                                      :county, :phone, :licensee_id, :gender,
+                                      :beds, :search)
+  end
 end
