@@ -1,10 +1,10 @@
-<h3>Placement details</h3>
-<br>
+<h3 class='mt-4 mb-4'>Placement details</h3>
 
-<div class='card bg-light col-4 rounded mb-2'>
+
+<div class='shadow-sm card bg-light col-4 rounded mb-2'>
     <div class='card-body'>
         <h2><%= @placement.name %></h2>
-        <ul class='list-group'>
+        <ul class='list-group shadow'>
             <li class='list-group-item'><%= @placement.address %></li>
             <li class='list-group-item'><%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %></li>
             <li class='list-group-item'>County: <%= @placement.county %></li>
@@ -13,10 +13,10 @@
     </div>
 </div>
 
-<div class='card bg-light col-4 rounded mb-2'>
+<div class='shadow-sm card bg-light col-4 rounded mb-2'>
     <div class='card-body'>
         <h5>To refer a potential resident, contact:</h5>
-        <ul class='list-group'>
+        <ul class='list-group shadow'>
             <li class='list-group-item'><%= @licensee.contact_name %></li>
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
             <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
@@ -26,18 +26,19 @@
     </div>
 </div>
 
-<div class='card bg-light col-4 rounded mb-5'>
+<div class='shadow-sm card bg-light col-4 rounded mb-5'>
     <div class='card-body'>
         <h4>Other</h4>
-        <ul class='list-group'>
+        <ul class='list-group shadow'>
             <li class='list-group-item'>Gender: <%= @placement.gender %></li>
             <li class='list-group-item'>Beds: <%= @placement.beds %></li>
         </ul>
         <br>
-        <%= link_to 'Edit', edit_placement_path(@placement.id), class: 'btn btn-primary mt-2' %> 
-        <br>
-        <%= link_to 'Delete', placement_path(@placement.id), method: :delete, class: 'btn btn-danger mt-2' %>
-
+        <% if current_user && current_user.admin? %>
+            <%= link_to 'Edit', edit_placement_path(@placement), class: 'btn btn-primary' %> 
+        
+            <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
+        <% end %>
     </div>
 </div>
 
@@ -46,15 +47,17 @@
 <%= render 'new_comment' %>
 
 <% @comments.each do |c| %>
-    <div class='card bg-light col-6 rounded mb-2'>
+    <div class='shadow-sm card bg-light col-6 rounded mb-2'>
         <div class='card-body'>
-            <ul class='list-group'>
+            <ul class='list-group shadow'>
                 <li class='list-group-item'><%= c.text %></li>
             </ul>
             <br>
             By: <%= c.user.first_name %> <%= c.user.last_name %><br>
             At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
-            <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+            <% if current_user && current_user.admin? %>
+                <%= link_to 'Delete', comment_path(c.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2' %>
+            <% end %>
         </div>
     </div>
 <% end %>
