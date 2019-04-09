@@ -32,7 +32,7 @@
         <% end %>
       
         <% if current_user != nil %>
-          <%= link_to 'Placements Search', placements_path, class: 'btn btn-info' %>
+          <%= link_to 'Placements', placements_path, class: 'btn btn-info' %>
           <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
           <%= link_to "Cart", cart_path(current_user), class: 'btn btn-info' %>
           
@@ -40,6 +40,10 @@
         
     </div>
     <div class="center">
+    <% if flash[:notice] %>
+      <div class='alert alert-success mt-2 mb-2 col-4'><%= flash[:notice] %></div>
+    <% end %>
+    
     <%= yield %>
     </div>
     

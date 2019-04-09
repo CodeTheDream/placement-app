@@ -42,7 +42,7 @@
         <% if current_user && current_user.admin? %>
             <%= link_to 'Edit', edit_placement_path(@placement), class: 'btn btn-primary' %> 
         
-            <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, class: 'btn btn-danger ml-2' %>
+            <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
         <% end %>
     </div>
 </div>
@@ -61,7 +61,7 @@
             By: <%= c.user.first_name %> <%= c.user.last_name %><br>
             At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
             <% if current_user && current_user.admin? %>
-                <%= link_to 'Delete', comment_path(c.id), method: :delete, class: 'btn btn-danger mt-2' %>
+                <%= link_to 'Delete', comment_path(c.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2' %>
             <% end %>
         </div>
     </div>

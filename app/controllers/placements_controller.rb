@@ -78,19 +78,29 @@ class PlacementsController < ApplicationController
       gender: params[:placement][:gender],
       beds: params[:placement][:beds]
     )
-    redirect_to placements_path
+    redirect_to admins_path
   end
 
   # licensee_id: params[::placement][:licensee_id]
   # service_id: params[:placement][:service_id],
 
   def index
+
     # search = "%#{params[:search]}%"
     # @placements = Placement.where('name LIKE ? OR county LIKE ?', search, search)
       
     @q = Placement.ransack(params[:q])
     @placements = @q.result(distinct: true)
       
+
+    # @placements = Placement.all
+    # search = "%#{params[:search]}%"
+    # @placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
+  end
+
+  #def search
+    #search = "%#{params[:search]}%"
+    #@placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
     # respond_to do |format|
     #    format.xlsx {
     #        response.headers[
@@ -100,9 +110,9 @@ class PlacementsController < ApplicationController
     #    format.html { render :index }
     # end
     # @cart_placement = current_cart.cart_placements.new
-    @cart = Cart.new
-  end
-
+    #@cart = Cart.new
+  #end
+  
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)

@@ -1,11 +1,10 @@
 
-<!-- <h3>Placements</h3> -->
+
 <br>
 <%= link_to 'New Placement', new_placement_path, class: 'btn btn-primary' %>
 <br><br>
 
-<h3 class='mt-4 mb-4'>Placement Index</h3>
-
+<h3 class='mt-4 mb-4'>Placement Search</h3>
 
 <h4>Click on a placement to view details</h4>
 
@@ -42,24 +41,16 @@
       </div>
     </div> -->
 
-
     </div>
   </div>
-  <%= link_to 'New Search', placements_path, class: 'btn btn-primary mt-2' %>
-
+  <%= link_to 'Clear Search', placements_path, class: 'btn btn-primary mt-2' %>
 
     <%= link_to 'View All Placements', placements_path, class: 'btn btn-info mt-2' %></br>
    <%# Add another class for the color and into the css code %>
 
-
-
-
-   
-
     <div class='card bg-light col-3 rounded mb-0'>
       <div class='card-body'>
    
-
         <% @placements.each do |p| %>
         <div>
           <p><%= link_to p.name, placement_path(p.id) %></p>
@@ -72,14 +63,13 @@
        </div>
     </div>
 
-  
     <% link_to 'Download Search Results', placements_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
 
 <% if params[:search] %>
   <div class='card bg-light col-4 rounded mt-2 shadow-sm'>
     <div class='card-body'>
       <h2>Search Results</h2>
-      <% @placements.each do |placement| %>
+      <% @placements_search.each do |placement| %>
         <div>
           <ul class='list-group'>
             <li class='list-group-item mt-2 shadow'>
@@ -89,28 +79,34 @@
               <% if current_user && current_user.admin? %><br>
                 <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
               <% end %>
-            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id), method: :post, :data => {:confirm => "Successfully Added To Cart"}, class: 'btn btn-primary mt-2' %>
+            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
             </li>
           </div>
       <% end %>
     </div>
-  </div>  
+  </div> 
+<% else %>
+
+<h3 class='mt-4 mb-4'>All Placements</h3>
+  
+<% @placements.each do |placement| %>
+    <div class='card bg-light col-4 rounded mt-2 shadow-sm'>
+        <div class='card-body'>
+            <ul class='list-group'>
+                <li class='list-group-item mt-2 shadow'>
+                    <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
+                    <%= placement.address %><br>
+                    <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+                    <% if current_user && current_user.admin? %><br>
+                        <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
+                    <% end %>
+                    <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+                </li>
+            </ul>
+        </div>
+    </div> 
 <% end %>
-
-
-
-<div>
-  <%=
-    link_to 'Upload from Excel',
-    new_placements_import_path, class: 'btn btn-primary mt-2'
-  %>
-</div>
-  
-
-
-  
-
-
+<% end %>
 
 <!-- <%# if @cart.cart_placements.any? %>
   
@@ -128,9 +124,6 @@
   <%#= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
 <%# end %>
 -->
-
-
-
 
     <%=
     link_to 'Upload from Excel',
