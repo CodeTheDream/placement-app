@@ -27,8 +27,10 @@ class CartsController < ApplicationController
       cart_placement.cart_id = @cart.id
       cart_placement.save
       flash[:notice] = "Placement Added to Cart!"
-      redirect_to root_path(search: params[:search])
+    else
+      flash[:alert] = 'Item Not Added. Already in Cart.'
     end
+    redirect_to root_path(search: params[:search])
   end
 
   def remove
@@ -43,5 +45,11 @@ class CartsController < ApplicationController
     @cart.status = 'Submitted'
     @cart.save
     redirect_to root_path
+  end
+  
+  def destroy
+    @cart = Cart.find_by(user_id: current_user.id)
+    @cart.destroy
+    redirect_to cart_path(current_user)
   end
 end

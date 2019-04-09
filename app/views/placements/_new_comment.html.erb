@@ -1,5 +1,5 @@
 <%= form_for @comment do |f| %>
-<div class='card bg-light col-6 rounded mb-2 shadow-sm'>
+<div class='card bg-light col-8 rounded mb-2 shadow-sm mx-auto'>
     <div class='card-body'>
         <%= f.hidden_field :placement_id, :value => @placement.id %>
         <%= f.hidden_field :user_id, :value => current_user.id %>

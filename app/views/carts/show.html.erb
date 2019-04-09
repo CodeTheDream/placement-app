@@ -1,20 +1,27 @@
-<h3 class='mt-4 mb-4'>Placement Cart</h3>
+<h3 class='mt-4 mb-4 text-center'>Placement Cart</h3>
 
 <% if @cart.cart_placements.any? %>
   
-  <div class='card bg-light col-6 rounded mb-2' >
+  <div class='card bg-light col-8 rounded mb-2 mx-auto' >
     <div class='card-body'>
       <h2><%= @cart.cart_placements.length %> Items</h2>
         <ul class='list-group'>
           <% @cart.cart_placements.each do |placement| %>
             <li class='list-group-item mb-2 shadow'>
-              <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %><%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "You sure?"}, class: 'btn btn-danger ml-2' %>
+              <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %>
+              <div class='mt-1'>
+                <%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
+              </div>
             </li>
           <% end %>
       </ul>
       <%= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
     </div>
   </div>
+  <div class='text-center'>
+    <%= link_to 'Empty Cart', cart_path(@cart), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2 text-center' %>
+  </div>
 <% else %>
-  <p>Your shopping cart is empty.</p>
+  <p class='text-center'>Your cart is empty.</p>
 <% end %>
+

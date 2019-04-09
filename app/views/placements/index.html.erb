@@ -1,12 +1,12 @@
 
-<h3 class='mt-4 mb-4'>Placement Search</h3>
+<h3 class='mt-4 mb-4 text-center'>Placement Search</h3>
 
 
-<h4>Click on a placement to view details</h4>
+<h4 class='text-center'>Click on a placement to view details</h4>
 
 
 
-  <div class='card bg-light col-6 rounded mb-0 shadow-sm'>
+  <div class='card bg-light col-8 rounded mb-0 shadow-sm mx-auto'>
     <div class='card-body'>
         <form action="/" method="get">
           <div class='row form-group'>
@@ -16,11 +16,13 @@
         </form>
     </div>
   </div>
-  <%= link_to 'Clear Search', placements_path, class: 'btn btn-primary mt-2' %>
+  <div class='text-center'>
+    <%= link_to 'Clear Search', placements_path, class: 'btn btn-primary mt-2' %>
+  </div>
 
 
 <% if params[:search] %>
-  <div class='card bg-light col-4 rounded mt-2 shadow-sm'>
+  <div class='card bg-light col-6 rounded mt-2 shadow-sm mx-auto'>
     <div class='card-body'>
       <h2>Search Results</h2>
       <% @placements_search.each do |placement| %>
@@ -30,10 +32,12 @@
               <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
               <%= placement.address %><br>
               <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
-              <% if current_user && current_user.admin? %><br>
-                <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
-              <% end %>
-            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+              <div>
+                <% if current_user && current_user.admin? %><
+                  <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
+                <% end %>
+                <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+              </div>
             </li>
           </div>
       <% end %>
@@ -41,48 +45,26 @@
   </div> 
 <% else %>
 
-<h3 class='mt-4 mb-4'>All Placements</h3>
+
   
-<% @placements.each do |placement| %>
-    <div class='card bg-light col-4 rounded mt-2 shadow-sm'>
-        <div class='card-body'>
-            <ul class='list-group'>
-                <li class='list-group-item mt-2 shadow'>
-                    <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
-                    <%= placement.address %><br>
-                    <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
-                    <% if current_user && current_user.admin? %><br>
-                        <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
-                    <% end %>
-                    <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
-                </li>
-            </ul>
-        </div>
-    </div> 
-<% end %>
-<% end %>
-
-
-   
-
-
-
-<!-- <%# if @cart.cart_placements.any? %>
-  
-  <div class='card bg-light col-6 rounded mb-2' >
+  <div class='card bg-light col-6 rounded mt-2 shadow-sm mx-auto'>
     <div class='card-body'>
-      <ul class='list-group'>
-        <%# @cart.cart_placements.each do |placement| %>
-          <li class='list-group-item'>
-            <%#= placement.placement.name %> | <%#= placement.placement.address %> <%#= placement.placement.city %><%#= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "You sure?"}, class: 'btn btn-danger ml-2' %>
+      <h2>All Placements</h2>
+      <% @placements.each do |placement| %>
+        <ul class='list-group'>
+          <li class='list-group-item mt-2 shadow'>
+            <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
+            <%= placement.address %><br>
+            <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+            <div>
+              <% if current_user && current_user.admin? %>
+                <%= link_to 'Edit', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
+              <% end %>
+              <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+            </div>
           </li>
-        <%# end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
-  </div>
-  <%#= link_to 'Download Search Results', placements_path(search: params[:search], format: :xlsx), class: 'btn btn-primary mt-2' %>
-<%# end %>
--->
-
-
-
+  </div> 
+<% end %>
