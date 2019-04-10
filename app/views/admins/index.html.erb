@@ -1,7 +1,7 @@
 <h3 class='mt-4 mb-4 text-center'>Admin Tools</h3>
 
 
-<div>
+<div class='text-center'>
   
 <!-- Dropdown for forms -->
 
@@ -12,11 +12,11 @@
 
 <!-- Dropdown for spreadsheets -->
 
-<div>
-  <%= link_to 'Download Licensees', licensees_path(format: :xlsx), class: 'btn btn-info' %>
-  <%= link_to 'Upload Licensees', new_licensees_import_path, class: 'btn btn-info' %>
-  <%= link_to 'Download Placements', placements_path(format: :xlsx), class: 'btn btn-info' %>
-  <%= link_to 'Upload Placements', new_placements_import_path, class: 'btn btn-info' %>
+<div class='text-center mt-2'>
+  <%= link_to 'Download Licensees', licensees_path(format: :xlsx), class: 'btn btn-secondary' %>
+  <%= link_to 'Upload Licensees', new_licensees_import_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Download Placements', placements_path(format: :xlsx), class: 'btn btn-secondary' %>
+  <%= link_to 'Upload Placements', new_placements_import_path, class: 'btn btn-secondary' %>
   
 </div>
 

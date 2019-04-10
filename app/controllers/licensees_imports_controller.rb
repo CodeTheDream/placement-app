@@ -10,6 +10,7 @@ class LicenseesImportsController < ApplicationController
     @licensees_import = LicenseesImport.new(licensees_import_params)
     if @licensees_import.save
       redirect_to licensees_path
+      flash[:notice] = "Licensee Successfully uploaded!"
     else
       render :new
     end

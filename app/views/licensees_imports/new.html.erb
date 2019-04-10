@@ -1,31 +1,41 @@
-<h3>Import from Excel</h3>
+<h4 class='mt-4 text-center'>Import Licensees from Excel</h4>
 
-<p>
-Reminder: The application will read your spreadsheet and attempt to find the 
-object by its ID, then update the record (if the ID exists) or create a new 
-record (if the ID does not exist yet). 
-</p>
+<div class='card bg-light col-10 rounded mb-2 shadow mx-auto border-info'>
+  <div class='card-body'>
+    Reminder: The application will read your spreadsheet and attempt to find the 
+    object by its ID, then update the record (if the ID exists) or create a new 
+    record (if the ID does not exist yet). 
+  </div>
+</div>
 
-<h3>Requirements</h3>
-<ul>
-  <li>Do not change existing IDs. Add new IDs in chronological order.</li>
-  <li>Only import spreadsheets that were previously downloaded from this 
-  application; others cannot be read correctly.</li>
-  <li>Always import licensees before importing placements.</li>
-</ul>
-
-<h5>Select File</h5>
-<%= form_for @licensees_import do |f| %>
-  <% if @licensees_import.errors.any? %>
-    <%= pluralize(@licensees_import.errors.count, "error") %> prevented us from
-    importing your spreadsheet. Please update your spreadsheet and try again.
+<h4 class='text-center'>Requirements</h4>
+<div class='card bg-light col-10 rounded mb-2 shadow mx-auto border-info'>
+  <div class='card-body'>
     <ul>
-      <% @licensees_import.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+      <li>Do not change existing IDs. Add new IDs in chronological order.</li>
+      <li>Only import spreadsheets that were previously downloaded from this 
+          application; others cannot be read correctly.</li>
+      <li>Always import licensees before importing placements.</li>
     </ul>
-  <% end %>
+  </div>
+</div>
 
-  <%= f.file_field :file %>
-  <%= f.submit "Import File" %>
-<% end %>
+<h5 class='text-center'>Select File</h5>
+<div class='card bg-light col-10 rounded mb-2 shadow mx-auto border-info'>
+  <div class='card-body'>
+    <%= form_for @licensees_import do |f| %>
+      <% if @licensees_import.errors.any? %>
+        <%= pluralize(@licensees_import.errors.count, "error") %> prevented us from
+        importing your spreadsheet. Please update your spreadsheet and try again.
+        <ul>
+          <% @licensees_import.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= f.file_field :file %>
+      <%= f.submit "Import File" %>
+    <% end %>
+  </div>
+</div>
