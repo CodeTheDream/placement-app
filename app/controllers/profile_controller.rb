@@ -26,7 +26,7 @@ before_action :remove_password_params_if_blank, only: [:update]
   end
 end
   def user_params
-    params.require(:user).permit(:password,
+    params.require(:user).permit(:email, :password,
                                  :password_confirmation, :first_name,
                                  :last_name, :phone )
   end

@@ -1,12 +1,19 @@
-<h3 class='mt-4 mb-4'>Edit <%= resource_name.to_s.humanize %></h3>
-<div class='card bg-light col-3 rounded mb-2'>
+<h4 class='mt-4 mb-4 text-center'>Edit Your Profile: <%= current_user.first_name %> <%= current_user.last_name %></h4>
+<div class='card bg-light col-6 rounded mb-2 mx-auto'>
     <div class='card-body'>
-    <%= form_for(resource, as: resource_name, url: admin_path(@user), html: { method: :patch }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: profile_path(current_user), html: { method: :patch }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+  
+  <% if current_user && current_user.admin? %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow' %>
+    </div>
   <% end %>
 
   <div class="field">
@@ -21,11 +28,6 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control shadow' %>
   </div>
   
   <div class="field">
@@ -51,6 +53,8 @@
 </div>
 
 
+<div class='text-center'>
+  <p><%= button_to "Delete Account", admin_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger mb-2 mt-2' %></p>
 
-
-<%= link_to "Back", :back, class: 'btn btn-primary mb-2 mt-2' %>
+  <%= link_to "Back", :back, class: 'btn btn-primary mb-2 mt-2' %>
+</div>
