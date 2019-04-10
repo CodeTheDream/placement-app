@@ -25,7 +25,9 @@ class CartsController < ApplicationController
       cart_placement.placement_id = params[:placement_id]
       cart_placement.cart_id = @cart.id
       cart_placement.save
-      flash[:notice] = 'Placement Added to Cart!'
+      flash[:notice] = "Placement Added to Cart!"
+    else
+      flash[:alert] = 'Item Not Added. Already in Cart.'
     end
     redirect_to root_path(search: params[:search])
   end
@@ -43,6 +45,12 @@ class CartsController < ApplicationController
     @cart.save
     redirect_to root_path
   end
+  
+  def destroy
+    @cart = Cart.find_by(user_id: current_user.id)
+    @cart.destroy
+    redirect_to cart_path(current_user)
+  end
 
   def index
     @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
@@ -55,4 +63,5 @@ class CartsController < ApplicationController
       format.html { render :index }
     end
   end
+  
 end

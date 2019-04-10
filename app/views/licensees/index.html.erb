@@ -1,11 +1,12 @@
-<h3 class='mt-4 mb-2'>Licensees</h3>
+<h3 class='mt-4 mb-2 text-center'>Licensees</h3>
 
-<div class='card bg-light col-3 rounded shadow-sm'>
+
+<div class='card bg-light col-6 rounded shadow-sm mx-auto'>
   <div class='card-body'>
     <% @licensees.each do |l| %>
       <ul class='list-group'>
-        <li class='list-group-item mt-2 shadow'>
-          <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary' %>
+        <li class='list-group-item mt-2 shadow text-center'>
+          <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary font-weight-bold' %>
         </li>
       </ul>
     <% end %>

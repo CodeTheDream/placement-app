@@ -23,9 +23,26 @@ class PlacementsController < ApplicationController
   def index
     @placements = Placement.all
     search = "%#{params[:search]}%"
-    @placements_search = Placement.where('name LIKE ? OR county LIKE ?',
-                                         search, search)
+    @placements_search = Placement.where('name LIKE ? OR county LIKE ? OR 
+    address LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ? OR phone LIKE ? 
+    OR gender LIKE ?', search, search, search, search, search, search, search, 
+    search)
   end
+
+  #def search
+    #search = "%#{params[:search]}%"
+    #@placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
+    # respond_to do |format|
+    #    format.xlsx {
+    #        response.headers[
+    #        'Content-Disposition'
+    #        ] = "attachment; filename=placements.xlsx"
+    #    }
+    #    format.html { render :index }
+    # end
+    # @cart_placement = current_cart.cart_placements.new
+    #@cart = Cart.new
+  #end
 
   def show
     @placement = Placement.find(params[:id])
@@ -37,12 +54,15 @@ class PlacementsController < ApplicationController
   def edit
     @placement = Placement.find(params[:id])
     @licensees = Licensee.all
+    session[:return_to] ||= request.referer #this and the redirect in the update
+    # action redirect you back to the previous page after you update a placement
   end
 
   def update
     @placement = Placement.find(params[:id])
+
     @placement.update!(placement_params)
-    redirect_to placement_path(@placement)
+    redirect_to session.delete(:return_to)
   end
 
   def destroy
