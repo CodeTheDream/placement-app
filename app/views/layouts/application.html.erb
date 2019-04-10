@@ -13,7 +13,7 @@
     <div class="header">
     </div>
     <div class="center pt-3">
-      
+      <div class='text-center'>
         <% if current_user == nil %>
           <%= link_to 'Log In', new_user_session_path, class: 'btn btn-info' %>
         <% else %>
@@ -34,17 +34,18 @@
           <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-info' %>
           
         <% end %>
-        
+      </div>  
     </div>
-    <div class="center">
+    <div align='center'>
     <% if flash[:notice] %>
       <div class='alert alert-success mt-2 mb-2 col-6 text-center'><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:alert] %>
       <div class='alert alert-danger mt-2 mb-2 col-6 text-center'><%= flash[:alert] %></div>
     <% end %>
-    
-    <%= yield %>
+    </div>
+    <div class="center">
+      <%= yield %>
     </div>
     
    
