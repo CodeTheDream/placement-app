@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'placements_imports/new'
-  get 'placements_imports/create'
-  
+
+  root to: 'placements#index'
   delete 'admins/:id', to: 'admins#destroy', as: :admin_destroy_user
   get 'admins' => 'admins#index'
   
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
   end
   
   resources :placements_imports, only: [:new, :create]
+  resources :licensees_imports, only: [:new, :create]
+  root to: 'placements#index'
+
   resources :carts do
     member do
       get 'start'
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
       post 'add'
     end
   end
-  root to: 'placements#index'
+  
   resources :admins, only: [:index, :edit, :update, :destroy]
   resources :profile, only: [:edit, :update]
 end
