@@ -1,5 +1,4 @@
 class PlacementsImportsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :authorize_admin
 
@@ -15,11 +14,10 @@ class PlacementsImportsController < ApplicationController
       render :new
     end
   end
-  
-  private
-  
-    def placements_import_params
-      params.require(:placements_import).permit(:file)
-    end
 
+  private
+
+  def placements_import_params
+    params.require(:placements_import).permit(:file)
+  end
 end

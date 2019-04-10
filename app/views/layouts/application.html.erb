@@ -17,9 +17,9 @@
         <% if current_user == nil %>
           <%= link_to 'Log In', new_user_session_path, class: 'btn btn-info' %>
         <% else %>
-          <div class='btn btn-outline-dark'>
-            Profile: <%= current_user.email %>
-          </div>
+          <div>
+            
+            <%= link_to "Profile: #{current_user.email}", edit_profile_path(current_user), class: 'btn btn-outline-dark' %>
           <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  %>
         <% end %>
         
@@ -43,7 +43,10 @@
     </div>
     <div class="center">
     <% if flash[:notice] %>
-      <div class='alert alert-success mt-2 mb-2 col-4'><%= flash[:notice] %></div>
+      <div class='alert alert-success mt-2 mb-2 col-6 text-center'><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class='alert alert-danger mt-2 mb-2 col-6 text-center'><%= flash[:alert] %></div>
     <% end %>
     
     <%= yield %>

@@ -1,4 +1,4 @@
-<h3 class='mt-4 mb-4'>Admin Tools</h3>
+<h3 class='mt-4 mb-4 text-center'>Admin Tools</h3>
 
 
 <div>
@@ -19,16 +19,21 @@
 </div>
 
 
- <div class='shadow-sm card bg-light col-6 rounded mt-3 shadow-sm'>
+ <div class='shadow-sm card bg-light col-8 rounded mt-3 shadow-sm mx-auto'>
     <div class='card-body'>
         <h4>Users</h4>
         <% @users.each do |user| %>
-            <ul class='list-group'>
-                <li class='list-group-item mb-1 shadow-sm'>
-                    <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
-                    <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-primary btn-sm ml-2' %>
-                </li>
-            </ul>
+            <!--The current admin shouldn't be able to edit their own profile under users. 
+            They need to do it under they're own profile page. 
+            The if statement prevents them from seeing their own profile under all users-->
+            <% if user != current_user %>
+                <ul class='list-group'>
+                    <li class='list-group-item mb-1 shadow-sm'>
+                        <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
+                        <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-primary btn-sm ml-2' %>
+                    </li>
+                </ul>
+            <% end %>
         <% end %>
     </div>
 </div>
