@@ -35,5 +35,5 @@ Rails.application.routes.draw do
   end
   
   resources :admins, only: [:index, :edit, :update, :destroy]
+  resources :profile, only: [:edit, :update]
 end
-
