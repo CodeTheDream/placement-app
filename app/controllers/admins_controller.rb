@@ -2,6 +2,7 @@
 
 class AdminsController < ApplicationController
   # prepend_before_action :require_no_authentication, only: [:cancel]
+  before_action :authenticate_user!
   before_action :authorize_admin
   # skip_before_action :verify_signed_out_user
   before_action :remove_password_params_if_blank, only: [:update]
