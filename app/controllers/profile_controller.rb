@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
-before_action :remove_password_params_if_blank, only: [:update]
+  before_action :authenticate_user!
+  before_action :remove_password_params_if_blank, only: [:update]
 
   # This method removes the password and password_confirmation params from the
   # form if they're left blank when updating.
@@ -15,12 +16,12 @@ before_action :remove_password_params_if_blank, only: [:update]
 
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   # This gets the info from the edit form and updates the data.
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     @user.update_attributes(user_params)
     redirect_to root_path
   end
