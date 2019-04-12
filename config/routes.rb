@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #   get 'login', to: 'devise/sessions#new'
   # end
   
-  resources :comments, :licensees
+  resources :comments, :licensees, :announcements
   resources :placements do
     #If we decide to break out the search from the index view this collection will come in handy. Otherwise it's not doing anything
     collection do
