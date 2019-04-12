@@ -30,7 +30,8 @@ class CartsController < ApplicationController
     else
       flash[:alert] = 'Item Not Added. Already in Cart.'
     end
-    redirect_to root_path(search: params[:search])
+    session[:return_to] ||= request.referer
+    redirect_to session.delete(:return_to)
   end
 
   def remove
