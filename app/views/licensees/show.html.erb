@@ -15,7 +15,7 @@
         <% if current_user && current_user.admin? %>
             <div>
                 <%= link_to 'Edit', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
-                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
+                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, :data => {:confirm => "Are you sure? IMPORTANT: This will also delete all placements associated with this Licensee!"}, class: 'btn btn-danger ml-2' %>
             </div>
         <% end %>
     </div>
@@ -32,6 +32,9 @@
                             <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
                             <%= placement.address %><br>
                             <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+                            <div>
+                                <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+                            </div>
                         </li>
                     </ul>
                         <% if current_user && current_user.admin? %><br>

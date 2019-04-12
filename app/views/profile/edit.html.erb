@@ -55,7 +55,7 @@
 
 <div class='text-center'>
   <% if current_user && current_user.admin? %>
-    <%= button_to "Delete Account", admin_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger mt-2' %></p>
+    <%= button_to "Delete Account", admin_path(current_user), data: { confirm: "Are you sure? This cannot be undone." }, method: :delete, class: 'btn btn-danger mt-2' %></p>
   <% end %>
   
   <%= link_to "Back", :back, class: 'btn btn-primary mb-2' %>

@@ -4,19 +4,22 @@
 <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
     <div class='card-body'>
         <h2><%= @placement.name %></h2>
-        <ul class='list-group shadow'>
+        <ul class='list-group shadow mb-2'>
             <li class='list-group-item'><%= @placement.address %></li>
             <li class='list-group-item'><%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %></li>
             <li class='list-group-item'>County: <%= @placement.county %></li>
             <li class='list-group-item'>Placement Phone: <%= @placement.phone %></li>
         </ul>
+        <div>
+            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: @placement.id), method: :post, class: 'btn btn-primary mt-2' %>
+        </div>
     </div>
 </div>
 
 <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
     <div class='card-body'>
         <h5>To refer a potential resident, contact:</h5>
-        <ul class='list-group shadow'>
+        <ul class='list-group shadow mb-2'>
             <li class='list-group-item'><%= @licensee.contact_name %></li>
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
             <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
@@ -29,15 +32,14 @@
 <div class='shadow-sm card bg-light col-8 rounded mb-5 mx-auto'>
     <div class='card-body'>
         <h4>Other</h4>
-        <ul class='list-group shadow'>
+        <ul class='list-group shadow mb-2'>
             <li class='list-group-item'>Gender: <%= @placement.gender %></li>
             <li class='list-group-item'>Beds: <%= @placement.beds %></li>
         </ul>
-        <br>
         <% if current_user && current_user.admin? %>
-            <%= link_to 'Edit', edit_placement_path(@placement), class: 'btn btn-primary' %> 
+            <%= link_to 'Edit', edit_placement_path(@placement), class: 'btn btn-primary mt-2' %> 
         
-            <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
+            <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2 mt-2' %>
         <% end %>
     </div>
 </div>
