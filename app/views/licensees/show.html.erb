@@ -32,6 +32,9 @@
                             <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
                             <%= placement.address %><br>
                             <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+                            <div>
+                                <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+                            </div>
                         </li>
                     </ul>
                         <% if current_user && current_user.admin? %><br>
