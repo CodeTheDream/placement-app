@@ -15,7 +15,7 @@
         <% if current_user && current_user.admin? %>
             <div>
                 <%= link_to 'Edit', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
-                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, :data => {:confirm => "Are you sure? This will also delete all placements associated with this Licensee."}, class: 'btn btn-danger ml-2' %>
+                <%= link_to 'Delete', licensee_path(params[:id]), method: :delete, :data => {:confirm => "Are you sure? IMPORTANT: This will also delete all placements associated with this Licensee!"}, class: 'btn btn-danger ml-2' %>
             </div>
         <% end %>
     </div>
