@@ -17,9 +17,6 @@ class PlacementsController < ApplicationController
     redirect_to admins_path
   end
 
-  # licensee_id: params[::placement][:licensee_id]
-  # service_id: params[:placement][:service_id],
-
   def index
     @placements = Placement.all
     search = "%#{params[:search]}%"
@@ -28,21 +25,6 @@ class PlacementsController < ApplicationController
     OR gender LIKE ?', search, search, search, search, search, search, search, 
     search)
   end
-
-  #def search
-    #search = "%#{params[:search]}%"
-    #@placements_search = Placement.where('name LIKE ? OR county LIKE ?', search, search)
-    # respond_to do |format|
-    #    format.xlsx {
-    #        response.headers[
-    #        'Content-Disposition'
-    #        ] = "attachment; filename=placements.xlsx"
-    #    }
-    #    format.html { render :index }
-    # end
-    # @cart_placement = current_cart.cart_placements.new
-    #@cart = Cart.new
-  #end
 
   def show
     @placement = Placement.find(params[:id])
