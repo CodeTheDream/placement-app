@@ -5,11 +5,10 @@ class CartsController < ApplicationController
   before_action :create_new_cart, only: [:show, :add]
 
   def create_new_cart
-    @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
+    @cart = Cart.find_by(user_id: current_user.id)
     if @cart.nil?
       @cart = Cart.new
       @cart.user_id = current_user.id
-      @cart.status = 'Pending'
       @cart.save
     end
   end
@@ -35,15 +34,14 @@ class CartsController < ApplicationController
   end
 
   def remove
-    @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
+    @cart = Cart.find_by(user_id: current_user.id)
     cart_placement = CartPlacement.find(params[:placement_id])
     cart_placement.destroy
     redirect_to cart_path(current_user)
   end
 
   def submit
-    @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
-    @cart.status = 'Submitted'
+    @cart = Cart.find_by(user_id: current_user.id)
     @cart.save
     redirect_to root_path
   end
@@ -55,7 +53,7 @@ class CartsController < ApplicationController
   end
 
   def index
-    @cart = Cart.find_by(user_id: current_user.id, status: 'Pending')
+    @cart = Cart.find_by(user_id: current_user.id)
     respond_to do |format|
       format.xlsx do
         response.headers[
