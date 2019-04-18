@@ -1,0 +1,21 @@
+<div class='card bg-light col-10 rounded mt-4 shadow-sm mx-auto'>
+    <div class='card-body'>
+        <h4>Add Announcement</h4>
+        <%= form_for @announcement do |f| %>
+          <%= f.hidden_field :id, :value => @announcement.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.text_area :text, placeholder: 'Announcement body', class: 'form-control mb-2 shadow' %>
+          <%= f.select :placement_id, 
+            @placements.collect { |p| [p.name, p.id]}, 
+            :prompt => 'Placement (optional)', 
+            include_blank: 'None' %> 
+          <%= f.select :licensee_id, 
+            @licensees.collect { |l| [l.facility_name, l.id]}, 
+            :prompt => 'Licensee (optional)', 
+            include_blank: 'None' %> 
+          <%= f.label :bed_available, 'Bed Available?' %>
+          <%= f.check_box :bed_available, class: 'ml-2 shadow' %>
+          <%= f.submit 'Post', class: 'btn btn-primary' %>
+        <% end %>
+    </div>
+</div>
