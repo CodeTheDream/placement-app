@@ -8,7 +8,7 @@ class AnnouncementsController < ApplicationController
   end
   
   def create
-    byebug
+    #byebug
     Announcement.create(
       user_id: params[:announcement][:user_id],
       placement_id: params[:announcement][:placement_id],

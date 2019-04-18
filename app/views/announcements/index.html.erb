@@ -1,5 +1,8 @@
 <h3 class='mt-4 mb-4 text-center'>Announcements</h3>
 
+<%= render 'new' %>
+
+<h4 class='mt-4 mb-4 text-center'>All Announcements</h4>
 <% @announcements.reverse_each do |a| %>
   <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
         <div class='card-body'>
@@ -7,21 +10,21 @@
                 <li class='list-group-item'><%= a.text %></li>
                 <li class='list-group-item'>
                   Licensee: 
-                    <% if @announcement.licensee_id != nil %>
+                    <% if a.licensee_id != nil %>
                       <%= a.licensee.facility_name %>
                     <% else %>
                       None
                     <% end %>
                   <br>
                   Placement: 
-                    <% if @announcement.placement_id != nil %>
+                    <% if a.placement_id != nil %>
                       <%= a.placement.name %>
                     <% else %>
                       None
                     <% end %>
                   <br>
                   Bed available? 
-                    <% if @announcement.bed_available == 'true' %>
+                    <% if a.bed_available == true %>
                       Yes
                     <% else %>
                       No
@@ -39,4 +42,4 @@
     </div>
 <% end %>
 
-<%= render 'new' %>
+
