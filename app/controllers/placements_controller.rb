@@ -20,9 +20,9 @@ class PlacementsController < ApplicationController
   def index
     @placements = Placement.all
     search = "%#{params[:search]}%"
-    @placements_search = Placement.where('name LIKE ? OR county LIKE ? OR 
-    address LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ? OR phone LIKE ? 
-    OR gender LIKE ?', search, search, search, search, search, search, search, 
+    @placements_search = Placement.where('name LIKE ? OR county LIKE ? OR
+    address LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ? OR phone LIKE ?
+    OR gender LIKE ?', search, search, search, search, search, search, search,
     search)
   end
 
@@ -44,7 +44,9 @@ class PlacementsController < ApplicationController
     @placement = Placement.find(params[:id])
 
     @placement.update!(placement_params)
-    redirect_to session.delete(:return_to)
+    if session[:return_to] != nil
+      redirect_to session.delete(:return_to)
+    end
   end
 
   def destroy

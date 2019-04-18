@@ -12,9 +12,12 @@ def setup
   before :each do
     setup
   end
-  
+
   it 'should create user' do
     user = build(:user)
+
+    post :create
+
     expect(user.first_name).to eq("Bob")
   end
 
