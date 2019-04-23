@@ -8,14 +8,7 @@ class AnnouncementsController < ApplicationController
   end
   
   def create
-    #byebug
-    Announcement.create(
-      user_id: params[:announcement][:user_id],
-      placement_id: params[:announcement][:placement_id],
-      licensee_id: params[:announcement][:licensee_id],
-      bed_available: params[:announcement][:bed_available],
-      text: params[:announcement][:text]
-    )
+    Announcement.create(announcement_params)
     redirect_to announcements_path
   end
   

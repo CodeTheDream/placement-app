@@ -15,7 +15,7 @@
             
           <%= f.select :licensee_id, 
             @licensees.collect { |l| [l.facility_name, l.id]}, 
-            :prompt => 'Licensee (optional)'%> 
+            :prompt => 'Licensee (optional)' %> 
             
           <%= f.label :bed_available, 'Bed Available?' %>
           <%= f.check_box :bed_available, class: 'ml-2 shadow' %>
