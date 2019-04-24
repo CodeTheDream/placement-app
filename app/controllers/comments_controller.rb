@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
     redirect_to placement_path(params[:comment][:placement_id])
   end
 
-
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
