@@ -2,6 +2,7 @@
 
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+    before_action :authorize_admin, only: %i(index)
 
   def new
     @comment = Comment.new
