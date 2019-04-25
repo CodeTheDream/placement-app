@@ -50,7 +50,7 @@
   <div class='card bg-light col-8 rounded mt-2 shadow-sm mx-auto'>
     <div class='card-body'>
       <h2>All Placements</h2>
-      <% @placements.each do |placement| %>
+      <% @placements.order(:name).each do |placement| %>
         <ul class='list-group'>
           <li class='list-group-item mt-2 shadow'>
             <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>

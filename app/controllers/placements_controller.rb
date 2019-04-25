@@ -63,9 +63,9 @@ class PlacementsController < ApplicationController
 
   private
 
-  def placement_params
-    params.require(:placement).permit(:name, :address, :city, :state, :zip,
+    def placement_params
+     params.require(:placement).permit(:name, :address, :city, :state, :zip,
                                       :county, :phone, :licensee_id, :gender,
                                       :beds, :search)
-  end
+    end
 end
