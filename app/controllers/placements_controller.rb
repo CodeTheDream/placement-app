@@ -46,6 +46,8 @@ class PlacementsController < ApplicationController
     @placement.update!(placement_params)
     if session[:return_to] != nil
       redirect_to session.delete(:return_to)
+    else
+      redirect_to root_path
     end
   end
 

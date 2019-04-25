@@ -5,7 +5,8 @@ include Devise::Test::ControllerHelpers
 
 def setup
    @request.env["devise.mapping"] = Devise.mappings[:user]
-   #user = FactoryBot.create(:user)
+   @admin = FactoryBot.create(:user)
+   sign_in @admin
  end
 
 
@@ -14,11 +15,15 @@ def setup
   end
 
   it 'should create user' do
-    user = build(:user)
 
-    post :create
+    post :create, params: {user: {email: 'bob@example.com',
+          password: '111111',
+          password_confirmation: '111111', first_name: 'Bob', last_name: 'Smith',
+          phone: '111-111-1111', admin: false} }
 
-    expect(user.first_name).to eq("Bob")
+    user = User.last
+
+    expect(user.last_name).to eq("Smith")
   end
 
 end
