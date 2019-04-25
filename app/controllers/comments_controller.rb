@@ -2,18 +2,14 @@
 
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-    before_action :authorize_admin, only: %i(index)
+  before_action :authorize_admin, only: %i(index)
 
   def new
     @comment = Comment.new
   end
 
   def create
-    Comment.create(
-      user_id: params[:comment][:user_id],
-      placement_id: params[:comment][:placement_id],
-      text: params[:comment][:text]
-    )
+    Comment.create(comment_params)
     redirect_to placement_path(params[:comment][:placement_id])
   end
   
@@ -26,4 +22,10 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to placement_path(@comment.placement_id)
   end
+  
+  private
+  
+    def comment_params
+      params.require(:comment).permit(:user_id, :placement_id, :text)
+    end
 end
