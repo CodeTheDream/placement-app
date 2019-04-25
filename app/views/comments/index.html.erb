@@ -1,0 +1,18 @@
+<h3 class='mt-4 mb-4 text-center'>All Comments</h3>
+
+<% @comments.reverse_each do |c| %>
+    <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
+        <div class='card-body'>
+            <ul class='list-group shadow'>
+                <li class='list-group-item'><%= c.text %></li>
+            </ul>
+            <div class='mt-2'>
+                By: <%= c.user.first_name %> <%= c.user.last_name %><br>
+                At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
+                <% if current_user && current_user.admin? %>
+                    <%= link_to 'Delete', comment_path(c.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>

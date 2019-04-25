@@ -3,7 +3,7 @@
 
 <div class='card bg-light col-8 rounded shadow-sm mx-auto'>
   <div class='card-body'>
-    <% @licensees.each do |l| %>
+    <% @licensees.order(:facility_name).each do |l| %>
       <ul class='list-group'>
         <li class='list-group-item mt-2 shadow text-center'>
           <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary font-weight-bold' %>
