@@ -1,0 +1,29 @@
+ <div class='card bg-light col-10 rounded mb-2 shadow-sm mx-auto'>
+   <div class='card-body'>
+     <form action="/" method="get">
+       <div class='row form-group'>
+         <input type="text" name="query" id="query" placeholder="Search" class='form-control col-10 mr-2 shadow'>
+         <input type="submit" value="Go", class='btn btn-primary col-1'>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<% if params[:query] %>  
+  <% @placements.each do |placement| %>
+    <div>
+      <ul class='list-group'>
+        <li class='list-group-item mt-2 shadow'>
+          <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
+          <%= placement.address %><br>
+          <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+          <div>
+            <% if current_user && current_user.admin? %>
+              <%= link_to 'Edit Placement', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
+            <% end %>
+            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
+          </div>
+        </li>
+    </div>
+  <% end %>
+<% end %>
