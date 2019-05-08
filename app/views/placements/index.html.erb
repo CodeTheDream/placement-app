@@ -1,70 +1,34 @@
 
-<h3 class='mt-4 mb-4 text-center'>Placement Search</h3>
-
-
-<h4 class='text-center'>Click on a placement to view details</h4>
-
-
-
-  <div class='card bg-light col-10 rounded mb-2 shadow-sm mx-auto'>
-    <div class='card-body'>
-        <form action="/" method="get">
-          <div class='row form-group'>
-            <input type="text" name="query" id="query" placeholder="Search" class='form-control col-10 mr-2 shadow'>
-            <input type="submit" value="Go", class='btn btn-primary col-1'>
-          </div>
-        </form>
-    </div>
+<div class='card bg-light col-5 rounded mt-2 shadow-sm ml-3'>
+    
+  <h3 class='mt-2 text-center'>All Placements</h3>
+  <h4 class='mt-2 text-center'>Click on a placement or licensee to view details</h4>
+    
+  <div class='card-body'>
+    <% @licensees.order(:facility_name).each do |l| %>
+      <ul class='list-group'>
+        <li class='list-group-item-info mt-2 shadow'>
+          <%= link_to l.facility_name, licensee_path(l.id), 
+          class: 'border-bottom border-primary font-weight-bold' %>
+        </li>
+        <li class='list-group-item mt-2 shadow'>
+          <% l.placements.each do |p| %>
+            <%= link_to p.name, placement_path(p.id), class: 
+            'border-bottom border-primary font-weight-bold' %>
+            <br>
+            <%= p.address %>
+            <br>
+            <%= p.city %>, <%= p.state %> <%= p.zip %>
+            <br>
+            <%= link_to 'Add to Cart', add_carts_path(placement_id: 
+            p.id), method: :post, class: 'btn btn-primary mt-2' %>
+            <br>
+          <% end %>
+        </li>
+      </ul>     
+    <% end %>
   </div>
-  <div class='text-center'>
-    <%= link_to 'Clear Search', placements_path, class: 'btn btn-primary mt-2 mb-2' %>
-  </div>
+</div> 
 
-
-<% if params[:search] %>
-  <div class='card bg-light col-8 rounded mt-2 shadow-sm mx-auto'>
-    <div class='card-body'>
-      <h2>Search Results</h2>
-      <% @placements_search.each do |placement| %>
-        <div>
-          <ul class='list-group'>
-            <li class='list-group-item mt-2 shadow'>
-              <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
-              <%= placement.address %><br>
-              <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
-              <div>
-                <% if current_user && current_user.admin? %>
-                  <%= link_to 'Edit Placement', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
-                <% end %>
-                <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
-              </div>
-            </li>
-          </div>
-      <% end %>
-    </div>
-  </div> 
-<% else %>
-
-
+)
   
-  <div class='card bg-light col-8 rounded mt-2 shadow-sm mx-auto'>
-    <div class='card-body'>
-      <h2>All Placements</h2>
-      <% @placements.order(:name).each do |placement| %>
-        <ul class='list-group'>
-          <li class='list-group-item mt-2 shadow'>
-            <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
-            <%= placement.address %><br>
-            <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
-            <div>
-              <% if current_user && current_user.admin? %>
-                <%= link_to 'Edit Placement', edit_placement_path(placement.id), class: 'btn btn-primary mt-2' %>
-              <% end %>
-              <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
-            </div>
-          </li>
-        </ul>
-      <% end %>
-    </div>
-  </div> 
-<% end %>
