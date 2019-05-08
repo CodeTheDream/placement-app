@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'placements#index'
+  root to: 'search#index'
   delete 'admins/:id', to: 'admins#destroy', as: :admin_destroy_user
   get 'admins' => 'admins#index'
   
