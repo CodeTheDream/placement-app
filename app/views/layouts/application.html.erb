@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  
   <head>
     <title>Placements</title>
     <%= csrf_meta_tags %>
@@ -10,47 +11,109 @@
   </head>
 
   <body>
+    
     <div class="header">
+      <h1>The Home Page</h1>
     </div>
-    <div class="center pt-3">
-      <div class='text-center'>
+    
+      <div class="navbar">
+       
         <% if current_user == nil %>
-          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-info' %>
+          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-nav' %>
         <% else %>
-          <div>
-            
-            <%= link_to "Profile: #{current_user.email}", edit_profile_path(current_user), class: 'btn btn-outline-dark' %>
-          <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  %>
+          <%= link_to "Log out: #{current_user.email}", destroy_user_session_path, method: :delete, 
+          class: 'btn btn-nav'  %>
+          <%= link_to 'Profile', edit_profile_path(current_user), 
+          class: 'btn btn-nav' %>
+        <% end %>
+    
+        <% if current_user != nil %>
+          <%= link_to 'Placements', placements_path, class: 'btn btn-nav' %>
+          <%= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
+          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
+          <%= link_to 'Announcements', announcements_path, class: 'btn btn-nav' %>
+          <%= link_to 'Advanced Search', search_index_path, class: 'btn btn-nav' %>
         <% end %>
         
-        <% if current_user && current_user.admin? %>
-          <%= link_to "Admin Tools", admins_path, class: 'btn btn-info' %>
+        <div>
+          <form action="/" method="get" class="form-inline">
+            <input type="text" name="query" id="query" placeholder="Simple Search..." class="form-control mr-sm-2">
+            <input type="submit" value="Go", class='btn btn-search'>
+          </form>
+        </div>
 
-       <% end %>
-      
-        <% if current_user != nil %>
-          <%= link_to 'Placements', placements_path, class: 'btn btn-info' %>
-          <%= link_to 'Licensees', licensees_path, class: 'btn btn-info' %>
-          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-info' %>
-          <%= link_to 'Announcements', announcements_path, class: 'btn btn-info' %>
-        <% end %>
-      </div>  
     </div>
+
     <div align='center'>
-    <% if flash[:notice] %>
-      <div class='alert alert-success mt-2 mb-2 col-6 text-center'><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class='alert alert-danger mt-2 mb-2 col-6 text-center'><%= flash[:alert] %></div>
-    <% end %>
+      <% if flash[:notice] %>
+        <div class='alert alert-success mt-2 mb-2 col-6 text-center'><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class='alert alert-danger mt-2 mb-2 col-6 text-center'><%= flash[:alert] %></div>
+      <% end %>
     </div>
-    <div class="center">
+    
+    
+    <div class='content' align='center'>
       <%= yield %>
     </div>
     
-   
-    <div>
-      <br>
-    </div>
+
+    <footer class="page-footer font-small text-white pt-2">
+      <div class="container-fluid text-center text-md-left">
+        <div class="row">
+          
+          <div class="col-md-3 mt-md-0 mt-3">
+            <h6 class="text-uppercase">The Home Page</h6>
+            Find your way home. <br>
+            <p style="padding-bottom:3px">© 2019 <a href="mailto:homepageconnect@gmail.com"> Lauren Sheridan</a></p>
+            <% if current_user && current_user.admin? %>
+              <%= link_to "Admin Tools", admins_path %>
+            <% end %>
+          </div>
+
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="text-uppercase">Links</h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://www2.ncdhhs.gov/dhsr/mhlcs/facilities.html">DHSR Licensed Facility Listings</a>
+              </li>
+              <li>
+                <a href="https://www.ncdhhs.gov/divisions/social-services/local-dss-directory">DSS Office Directory</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="clear"> X </h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://secure.ssa.gov/ICON/main.jsp">SSA Office Directory</a>
+              </li>
+              <li>
+                <a href="https://www.ncdhhs.gov/providers/lme-mco-directory">MCO Directory</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="text-uppercase">Contributors</h6>
+            <ul class="list-unstyled">
+              <li>Michael Eley</li>
+              <li>Tilneil Gary</li>
+            </ul>
+          </div>
+          
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="clear"> X </h6>
+            <ul class="list-unstyled">
+              <li>Alik Lyle</li>
+              <li>Marcus Mitchell</li>
+            </ul>
+          </div>
+        
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

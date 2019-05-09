@@ -18,12 +18,8 @@ class PlacementsController < ApplicationController
   end
 
   def index
-    @placements = Placement.all
-    search = "%#{params[:search]}%"
-    @placements_search = Placement.where('name LIKE ? OR county LIKE ? OR
-    address LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ? OR phone LIKE ?
-    OR gender LIKE ?', search, search, search, search, search, search, search,
-    search)
+    #@placements = Placement.all
+    @licensees = Licensee.all
   end
 
   def show

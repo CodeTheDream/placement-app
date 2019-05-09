@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  root to: 'placements#index'
+  root to: 'search#index'
   delete 'admins/:id', to: 'admins#destroy', as: :admin_destroy_user
   get 'admins' => 'admins#index'
   
   devise_for :users, :controllers => {:registrations => "users/registrations"} 
   
+  resources :search, only: [:index]
   resources :comments, :licensees, :announcements, :placements
   resources :placements_imports, only: [:new, :create]
   resources :licensees_imports, only: [:new, :create]
