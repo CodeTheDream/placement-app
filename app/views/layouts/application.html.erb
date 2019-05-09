@@ -22,17 +22,17 @@
           <%= link_to 'Log In', new_user_session_path, class: 'btn btn-nav' %>
         <% else %>
           <%= link_to "Log out: #{current_user.email}", destroy_user_session_path, method: :delete, 
-          class: 'btn'  %>
+          class: 'btn btn-nav'  %>
           <%= link_to 'Profile', edit_profile_path(current_user), 
-          class: 'btn' %>
+          class: 'btn btn-nav' %>
         <% end %>
     
         <% if current_user != nil %>
-          <%= link_to 'Placements', placements_path, class: 'btn' %>
-          <%= link_to 'Licensees', licensees_path, class: 'btn' %>
-          <%= link_to 'Cart', cart_path(current_user), class: 'btn' %>
-          <%= link_to 'Announcements', announcements_path, class: 'btn' %>
-          <%= link_to 'Advanced Search', search_index_path, class: 'btn' %>
+          <%= link_to 'Placements', placements_path, class: 'btn btn-nav' %>
+          <%= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
+          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
+          <%= link_to 'Announcements', announcements_path, class: 'btn btn-nav' %>
+          <%= link_to 'Advanced Search', search_index_path, class: 'btn btn-nav' %>
         <% end %>
         
         <div>
@@ -54,7 +54,7 @@
     </div>
     
     
-    <div class='content'>
+    <div class='content' align='center'>
       <%= yield %>
     </div>
     
@@ -63,17 +63,17 @@
       <div class="container-fluid text-center text-md-left">
         <div class="row">
           
-          <div class="col-md-4 mt-md-0 mt-3">
-            <h5 class="text-uppercase">The Home Page</h5>
-            <p>Find your way home.</p>
-            <p>© 2019 <a href="mailto:homepageconnect@gmail.com"> Lauren Sheridan</a></p>
+          <div class="col-md-3 mt-md-0 mt-3">
+            <h6 class="text-uppercase">The Home Page</h6>
+            Find your way home. <br>
+            <p style="padding-bottom:3px">© 2019 <a href="mailto:homepageconnect@gmail.com"> Lauren Sheridan</a></p>
             <% if current_user && current_user.admin? %>
               <%= link_to "Admin Tools", admins_path %>
             <% end %>
           </div>
 
-          <div class="col-md-4 mb-md-0 mb-3">
-            <h5 class="text-uppercase">Links</h5>
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="text-uppercase">Links</h6>
             <ul class="list-unstyled">
               <li>
                 <a href="https://www2.ncdhhs.gov/dhsr/mhlcs/facilities.html">DHSR Licensed Facility Listings</a>
@@ -81,6 +81,12 @@
               <li>
                 <a href="https://www.ncdhhs.gov/divisions/social-services/local-dss-directory">DSS Office Directory</a>
               </li>
+            </ul>
+          </div>
+          
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="clear"> X </h6>
+            <ul class="list-unstyled">
               <li>
                 <a href="https://secure.ssa.gov/ICON/main.jsp">SSA Office Directory</a>
               </li>
@@ -90,11 +96,17 @@
             </ul>
           </div>
 
-          <div class="col-md-4 mb-md-0 mb-3">
-            <h5 class="text-uppercase">Contributors</h5>
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="text-uppercase">Contributors</h6>
             <ul class="list-unstyled">
               <li>Michael Eley</li>
               <li>Tilneil Gary</li>
+            </ul>
+          </div>
+          
+          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+            <h6 class="clear"> X </h6>
+            <ul class="list-unstyled">
               <li>Alik Lyle</li>
               <li>Marcus Mitchell</li>
             </ul>

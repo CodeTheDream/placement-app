@@ -1,11 +1,11 @@
-<div class='card bg-light col-10 rounded mt-4 shadow-sm mx-auto'>
+<div class='card col-6 rounded mt-4 shadow-sm mx-auto'>
     <div class='card-body'>
-        <h4>Add New Comment</h4>
+        <h2 class='title'>Add New Comment</h2>
         <%= form_for @comment do |f| %>
             <%= f.hidden_field :placement_id, :value => @placement.id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.text_area :text, placeholder: 'Comment', class: 'form-control mb-2 shadow' %>
-            <%= f.submit 'Save', class: 'btn btn-primary' %>
+            <%= f.submit 'Save', class: 'btn btn-standard' %>
         <% end %>
     </div>
 </div>

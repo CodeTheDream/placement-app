@@ -1,8 +1,9 @@
 
-<div class='card bg-light col-5 rounded mt-2 shadow-sm ml-3'>
+<h3 class='page-header'>All Homes</h3>
+
+<div class='card bg-light col-5 rounded shadow-sm'>
     
-  <h3 class='mt-2 text-center'>All Placements</h3>
-  <h4 class='mt-2 text-center'>Click on a placement or licensee to view details</h4>
+  <h4 class='mt-2 text-center'>Click on a home or licensee to view details</h4>
     
   <div class='card-body'>
     <% @licensees.order(:facility_name).each do |l| %>

@@ -1,37 +1,36 @@
-<h3 class='mt-4 mb-4 text-center'>Placement details</h3>
+<h3 class='page-header'>Placement Details</h3>
 
-
-<div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
+<div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
     <div class='card-body'>
-        <h2><%= @placement.name %></h2>
+        <h2 class='title'><%= @placement.name %></h2>
         <ul class='list-group shadow mb-2'>
-            <li class='list-group-item'><%= @placement.address %></li>
-            <li class='list-group-item'><%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %></li>
-            <li class='list-group-item'>County: <%= @placement.county %></li>
-            <li class='list-group-item'>Placement Phone: <%= @placement.phone %></li>
+            <li class='list-group-item'><%= @placement.address %>, <br>
+            <%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %> <br>
+            County: <%= @placement.county %><br>
+            Home Phone: <%= @placement.phone %>
         </ul>
         <div>
-            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: @placement.id), method: :post, class: 'btn btn-primary mt-2' %>
+            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: @placement.id), method: :post, class: 'btn btn-standard mt-2' %>
         </div>
     </div>
 </div>
 
-<div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
+<div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
     <div class='card-body'>
-        <h5>To refer a potential resident, contact:</h5>
+        <h2 class='title'>Referral Contact</h2>
         <ul class='list-group shadow mb-2'>
             <li class='list-group-item'><%= @licensee.contact_name %></li>
             <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
             <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
         </ul>
  
-        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id), class: 'btn btn-primary mt-2' %>
+        <%= link_to 'View Licensee', licensee_path(@placement.licensee_id), class: 'btn btn-standard mt-2' %>
     </div>
 </div>
 
-<div class='shadow-sm card bg-light col-8 rounded mb-5 mx-auto'>
+<div class='shadow-sm card col-6 rounded mb-5 mx-auto'>
     <div class='card-body'>
-        <h4>Other</h4>
+        <h2 class='title'>Other</h2>
         <ul class='list-group shadow mb-2'>
             <li class='list-group-item'>Gender: <%= @placement.gender %></li>
             <li class='list-group-item'>Beds: <%= @placement.beds %></li>
@@ -44,17 +43,19 @@
     </div>
 </div>
 
-<h2 class='text-center'>Comments</h2>
+<h3 class='page-header'>Comments</h3>
 
+<%= render 'new_comment' %>
+<br>
 <% @comments.reverse_each do |c| %>
-    <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
+    <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
         <div class='card-body'>
             <ul class='list-group shadow'>
                 <li class='list-group-item'><%= c.text %></li>
             </ul>
-            <div class='mt-2'>
-                By: <%= c.user.first_name %> <%= c.user.last_name %><br>
-                At: <%= c.created_at.strftime("%-I:%M %P %Z: %-m/%-d/%y") %><br>
+            <div class='mt-2 text-white'>
+                By <%= c.user.first_name %> <%= c.user.last_name %>
+                at <%= c.created_at.strftime("%-I:%M %P on %-m/%-d/%y") %><br>
                 <% if current_user && current_user.admin? %>
                     <%= link_to 'Delete', comment_path(c.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2' %>
                 <% end %>
@@ -63,4 +64,4 @@
     </div>
 <% end %>
 
-<%= render 'new_comment' %>
+
