@@ -63,7 +63,7 @@
       <div class="container-fluid text-center text-md-left">
         <div class="row">
           
-          <div class="col-md-3 mt-md-0 mt-3">
+          <div class="col-md-2 mt-md-0">
             <h6 class="text-uppercase">The Home Page</h6>
             Find your way home. <br>
             <p style="padding-bottom:3px">© 2019 <a href="mailto:homepageconnect@gmail.com"> Lauren Sheridan</a></p>
@@ -72,7 +72,7 @@
             <% end %>
           </div>
 
-          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+          <div class="col-md-2 mb-md-0 mb-3">
             <h6 class="text-uppercase">Links</h6>
             <ul class="list-unstyled">
               <li>
@@ -84,7 +84,7 @@
             </ul>
           </div>
           
-          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+          <div class="col-md-2 mb-md-0 mb-3">
             <h6 class="clear"> X </h6>
             <ul class="list-unstyled">
               <li>
@@ -96,7 +96,7 @@
             </ul>
           </div>
 
-          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+          <div class="col-md-2 mb-md-0 mb-3">
             <h6 class="text-uppercase">Contributors</h6>
             <ul class="list-unstyled">
               <li>Michael Eley</li>
@@ -104,14 +104,20 @@
             </ul>
           </div>
           
-          <div class="col-md-2.25 mb-md-0 mb-3 mr-5">
+          <div class="col-md-2 mb-md-0 mb-3">
             <h6 class="clear"> X </h6>
             <ul class="list-unstyled">
               <li>Alik Lyle</li>
               <li>Marcus Mitchell</li>
             </ul>
           </div>
-        
+          
+          <div class="col-md-2 mb-md-0 mb-3">
+            <% if current_user && current_user.admin? %>
+              <%= link_to "Admin Tools", admins_path %>
+            <% end %>
+          </div>
+          
         </div>
       </div>
     </footer>
