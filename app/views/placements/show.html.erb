@@ -56,8 +56,11 @@
             <div class='mt-2 text-white'>
                 By <%= c.user.first_name %> <%= c.user.last_name %>
                 at <%= c.created_at.strftime("%-I:%M %P on %-m/%-d/%y") %><br>
-                <% if current_user && current_user.admin? %>
+                <% if current_user && current_user.admin? || current_user == c.user %>
                     <%= link_to 'Delete', comment_path(c.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2' %>
+                <% end %>
+                <% if current_user && current_user == c.user %>
+                    <%= link_to 'Edit', edit_comment_path(c.id), class:'btn btn-standard' %>
                 <% end %>
             </div>
         </div>
