@@ -13,6 +13,20 @@ class CommentsController < ApplicationController
     redirect_to placement_path(params[:comment][:placement_id])
   end
   
+  def edit
+  #  byebug
+    @comment = current_user.comments.find(params[:id]) 
+    @placement = Placement.find(params[:id])
+    session[:return_to] ||= request.referer
+  end
+  
+  def update
+   # byebug
+    @comment = Comment.find(params[:id]) 
+    @comment.update!(comment_params)
+    redirect_to placement_path(@comment.placement_id)
+  end
+  
   def index
     @comments = Comment.all
   end

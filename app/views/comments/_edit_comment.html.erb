@@ -1,0 +1,10 @@
+<div class='card col-6 rounded mt-4 shadow-sm mx-auto'>
+    <div class='card-body'>
+        <%= form_for @comment do |f| %>
+            <%= f.hidden_field :placement_id, :value => @placement.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.text_area :text, placeholder: "#{@comment.text}", class: 'form-control mb-2 shadow' %>
+            <%= f.submit 'Save', class: 'btn btn-standard' %>
+        <% end %>
+    </div>
+</div>
