@@ -1,27 +1,29 @@
-<div class='card bg-light col-10 rounded mt-4 shadow-sm mx-auto'>
-    <div class='card-body'>
-        <h4>Make an announcement</h4>
-        <%= form_for @announcement do |f| %>
-        
-          <%= f.hidden_field :id, :value => @announcement.id %>
+<div class='card col-8 rounded mt-4 shadow-sm mx-auto'>
+  <div class='card-body container'>
+    <h4>Make an announcement</h4>
+    <%= form_for @announcement do |f| %>
+    
+    <div>
+      <%= f.hidden_field :id, :value => @announcement.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    
+      <div class='row'>
+        <%= f.text_area :text, placeholder: 'Announcement body', class: 'form-control mb-2 shadow' %>
+      </div>
+  
+      <div class='row'>
+        <%= f.text_field :placement_id, placeholder: 'Placement (optional)',class: 'form-control col-sm mb-2 mr-1 shadow' %>
+        <%= f.text_field :licensee_id, placeholder: 'Licensee (optional)',class: 'form-control col-sm mb-2 shadow' %>
           
-          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <div class ='col-sm mt-2'>
+          <%= f.label :bed_available, 'Bed Available?', class: 'text-white' %>
+          <%= f.check_box :bed_available, class: 'ml-2 shadow mr-3' %>
+          </div></div>
           
-          <%= f.text_area :text, placeholder: 'Announcement body', class: 'form-control mb-2 shadow' %>
-          
-          <%= f.select :placement_id, 
-            @placements.collect { |p| [p.name, p.id]}, 
-            :prompt => 'Placement (optional)' %> 
-            
-          <%= f.select :licensee_id, 
-            @licensees.collect { |l| [l.facility_name, l.id]}, 
-            :prompt => 'Licensee (optional)' %> 
-            
-          <%= f.label :bed_available, 'Bed Available?' %>
-          <%= f.check_box :bed_available, class: 'ml-2 shadow' %>
-          
-          <%= f.submit 'Post', class: 'btn btn-primary' %>
+          <%= f.submit 'Post', class: 'btn btn-standard my-2' %>
+        </div>
           
         <% end %>
     </div>
+  </div>
 </div>
