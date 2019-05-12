@@ -34,7 +34,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to placement_path(@comment.placement_id)
+    if current_user.admin?
+      redirect_to comments_path
+    elsif current_user == @comment.user
+      redirect_to placement_path(@comment.placement_id)
+    end
   end
   
   private
