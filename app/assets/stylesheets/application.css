@@ -61,11 +61,11 @@
 }
 
 .btn.btn-standard {
-    background: rgb(183,73,37);
+    background: rgb(163,83,47);
 }
 
 .btn.btn-standard:hover {
-    background: rgb(153,93,37);
+    background: rgb(203,103,47);
 }
 
 h1 {
@@ -85,6 +85,11 @@ h3 {
     font-size: 50px;
     padding: 0px;
     margin: 0px;
+    color: white;
+}
+
+h5 {
+    color: white;
 }
 
 .clear {
