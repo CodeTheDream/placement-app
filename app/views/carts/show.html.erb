@@ -1,27 +1,38 @@
-<h3 class='mt-4 mb-4 text-center'>Placement Cart</h3>
+<h3 class='page-header'>My Cart</h3>
 
 <% if @cart.cart_placements.any? %>
   
-  <div class='card bg-light col-8 rounded mb-2 mx-auto' >
+  <div class='card col-4 rounded'>
     <div class='card-body'>
-      <h4><%= @cart.cart_placements.length %> Items</h4>
+      <%= link_to 'Empty Cart', cart_path(@cart), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2 mr-3 mb-1' %> 
+      <%= link_to 'Download to Excel', carts_path(format: :xlsx), class: 'btn btn-standard mt-2 ml-3 mb-1' %>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class='card col-6 rounded mb-2 mx-auto' >
+    <div class='card-body'>
+      <h5><%= @cart.cart_placements.length %> Items</h5>
         <ul class='list-group'>
           <% @cart.cart_placements.each do |placement| %>
             <li class='list-group-item mb-2 shadow'>
-              <%= placement.placement.name %> | <%= placement.placement.address %> <%= placement.placement.city %>
+              <%= link_to "#{placement.placement.name}", placement_path(placement.id) %> <br>
+              <%= placement.placement.address %>, <%= placement.placement.city %>, <%= placement.placement.state %> <%= placement.placement.zip %>
               <div class='mt-1'>
-                <%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2' %>
+                <%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger' %>
               </div>
             </li>
           <% end %>
       </ul>
-      <%= link_to 'Download Cart to Excel', carts_path(format: :xlsx), class: 'btn btn-primary mt-2' %>
     </div>
   </div>
-  <div class='text-center'>
-    <%= link_to 'Empty Cart', cart_path(@cart), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger mt-2 text-center' %>
-  </div>
+
 <% else %>
-  <p class='text-center'>Your cart is empty.</p>
+  <div class='card col-8 rounded mb-2 mx-auto' >
+    <div class='card-body'>
+      <h5>Your cart is empty.</h5>
+    </div>
+  </div>
 <% end %>
 
