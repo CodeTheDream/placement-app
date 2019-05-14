@@ -18,7 +18,7 @@ class PlacementsController < ApplicationController
   end
 
   def index
-    #@placements = Placement.all
+    @placements = Placement.all
     @licensees = Licensee.all
   end
 
