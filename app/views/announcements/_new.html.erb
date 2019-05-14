@@ -11,30 +11,29 @@
       <div class='row'>
         <%= f.text_area :text, placeholder: 'Announcement body', class: 'form-control mb-2 shadow' %>
       </div>
-  
-      <div class='row'>
-        
-       
+      
+      <div class="row">
         <%= f.select :placement_id, 
-            @placements.collect { |p| [p.name, p.id]}, 
-            :prompt => 'Placement (optional)', 
-            class: 'shadow col-3' %> 
-     
-        
-          
+        options_for_select(@placements.collect { |p| [p.name, p.id]}), 
+        {:prompt => 'Placement (optional)'},
+        {:class => 'shadow form-control col mr-1'}%> 
+         
         <%= f.select :licensee_id, 
-            @licensees.collect { |l| [l.facility_name, l.id]}, 
-            :prompt => 'Licensee (optional)',
-            class: 'shadow col-3' %>
-       
-          <%= f.label :bed_available, 'Bed Available?', class: 'text-white' %>
-          <%= f.check_box :bed_available, class: 'shadow col' %>
+        options_for_select(@licensees.collect { |l| [l.facility_name, l.id]}), 
+        {:prompt => 'Licensee (optional)'},
+        {:class => 'shadow form-control col'} %>
       
-        
-          
-          <%= f.submit 'Post', class: 'btn btn-standard col' %>
+        <div class='col'>
+          <%= f.label :bed_available, 'Bed Available?', class: 'text-white mr-2 mt-1' %>
+          <%= f.check_box :bed_available, class: 'shadow mt-2' %>
+        </div>
+      </div>
       
-          
+      <br>
+      
+      <%= f.submit 'Post', class: 'btn btn-standard col-4' %>
+   
     <% end %>
+  
   </div>
-</div>
+</div

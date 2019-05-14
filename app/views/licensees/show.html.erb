@@ -1,20 +1,25 @@
 <h3 class='page-header'>Licensee Details</h3>
 
-<div class='card col-4 rounded mb-3 shadow-sm mx-auto'>
+<div class='card col-6 rounded mb-3 shadow-sm mx-auto'>
     <div class='card-body'>
         <h4><%= @licensee.facility_name %></h4>
         <ul class='list-group shadow'>
-            <li class='list-group-item'>Contact: <%= @licensee.contact_name %></li>
-            <li class='list-group-item'>Phone: <%= @licensee.phone %></li>
-            <li class='list-group-item'>Fax: <%= @licensee.fax %></li>
-            <li class='list-group-item'><%= @licensee.address %></li>
-            <li class='list-group-item'><%= @licensee.city %>, <%= @licensee.state %> <%= @licensee.zip %></li>
+            <li class='font-weight-bold'>Contact Person</li>
+            <li class='list-group-item'><%= @licensee.contact_name %></li>
+            <li class='font-weight-bold'> Phone</li>
+            <li class='list-group-item'><%= @licensee.phone %></li>
+            <li class='font-weight-bold'>Fax</li>
+            <li class='list-group-item'><%= @licensee.fax %></li>
+            <li class='font-weight-bold'>Mailing address</li>
+            <li class='list-group-item'><%= @licensee.address %>
+            <br>
+            <%= @licensee.city %>, <%= @licensee.state %> <%= @licensee.zip %></li>
         </ul>
 
         <br>
         <% if current_user && current_user.admin? %>
             <div>
-                <%= link_to 'Edit Licensee', edit_licensee_path(params[:id]), class: 'btn btn-primary' %>
+                <%= link_to 'Edit Licensee', edit_licensee_path(params[:id]), class: 'btn btn-standard' %>
                 <%= link_to 'Delete Licensee', licensee_path(params[:id]), method: :delete, :data => {:confirm => "Are you sure? IMPORTANT: This will also delete all placements associated with this Licensee!"}, class: 'btn btn-danger ml-2' %>
             </div>
         <% end %>
@@ -22,26 +27,23 @@
 </div>
 
 
-<div class='card col-4 rounded mb-2 shadow-sm mx-auto'>
-        <div class='card-body'>
-          <h4>Placements</h8>
-            <% @licensee.placements.each do |placement| %>
-                <div>
-                    <ul class='list-group'>
-                        <li class='list-group-item shadow mt-2'>
-                            <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
-                            <%= placement.address %><br>
-                            <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
-                            <div>
-                                <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-primary mt-2' %>
-                            </div>
-                        </li>
-                    </ul>
-                        <% if current_user && current_user.admin? %><br>
-                            <%= link_to 'Edit Placement', edit_placement_path(placement.id), class: 'btn btn-primary mb-2' %>
-                            <%= link_to 'Delete Placement', placement_path(placement.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger ml-2 mb-2' %>
-                        <% end %>
-                </div>
-            <% end %>
-        </div>
-    </div> 
+<div class='card col-6 rounded mb-2 shadow-sm mx-auto'>
+    <div class='card-body'>
+    <h4>Placements</h8>
+        <% @licensee.placements.each do |placement| %>
+            <div>
+                <ul class='list-group shadow'>
+                    <li class='font-weight-bold'>
+                        <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary' %>
+                    </li>
+                    <li class='list-group-item'>
+                        <%= placement.address %>, <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
+                    </li>
+                    <li>
+                        <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-standard my-2' %>
+                    </li>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+</div> 
