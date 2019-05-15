@@ -1,11 +1,24 @@
 
-<h3 class='page-header'>All Homes</h3>
+<h3 class='page-header'>Search for Homes</h3>
 
+<div class='card rounded mt-5 mb-2 shadow-sm mx-auto col-6'>
+  <div class='card-body'>
+    <form action="/" method="get">
+      <div class='row form-group'>
+        <input type="text" name="query" id="query" placeholder="Search by county, city, name..." class='form-control col-10 shadow'>
+        <input type="submit" value="Go", class='btn btn-search col-2'>
+      </div>
+    </form>
+  </div>
+</div>
+  
 <div class='card col-8 rounded shadow-sm'>
     
   <h4 class='mt-2 text-center'>Click on a home or licensee to view details</h4>
     
   <div class='card-body'>
+    
+    
     <% @licensees.order(:facility_name).each do |l| %>
       <ul class='list-group'>
         <li class='list-group-item mt-2 shadow'>

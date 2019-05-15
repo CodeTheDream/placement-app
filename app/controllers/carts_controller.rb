@@ -32,6 +32,37 @@ class CartsController < ApplicationController
     session[:return_to] ||= request.referer
     redirect_to session.delete(:return_to)
   end
+  
+  def add_all_to
+    
+    placement_ids = Placement.find([params[:placement_ids]])
+    
+    placement_ids.each do |p|
+      place = Placement.find_by(id: p)
+      #byebug
+      
+      @cart = Cart.find_by(user_id: current_user.id)
+      
+      if @cart.nil?
+        @cart = Cart.new
+        @cart.user_id = current_user.id
+        @cart.save
+      end
+    
+      cart_placement = CartPlacement.find_by(cart_id: @cart.id, placement_id: p)
+    
+      if cart_placement.nil?
+        cart_placement = CartPlacement.new
+        cart_placement.placement_id = place.id
+        cart_placement.cart_id = @cart.id
+        cart_placement.save
+        flash[:notice] = "Added placements not previously in cart."
+      end
+    end
+    
+    session[:return_to] ||= request.referer
+    redirect_to session.delete(:return_to)
+  end
 
   def remove
     @cart = Cart.find_by(user_id: current_user.id)

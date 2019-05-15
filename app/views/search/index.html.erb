@@ -11,7 +11,10 @@
 
 <div class='card col-8 rounded shadow-sm'>
 <div class='card-body'>
-<% if params[:query] %>  
+<% if params[:query] %> 
+
+  <%= link_to 'Add all search results to cart', add_all_to_carts_path(placement_ids: Placement.search_for(params[:query]).ids), method: :get, class: 'btn btn-standard mb-4 font-weight-bold p-2' %>
+  
   <% @placements.order(:name).each do |placement| %>
     
       <ul class='list-group'>
@@ -20,10 +23,7 @@
           <%= placement.address %><br>
           <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
           <div>
-            <% if current_user && current_user.admin? %>
-              <%= link_to 'Edit Placement', edit_placement_path(placement.id), class: 'btn btn-standard' %>
-            <% end %>
-            <%= link_to 'Add Placement to Cart', add_carts_path(placement_id: placement.id, search: params[:search]), method: :post, class: 'btn btn-standard' %>
+            <%= link_to 'Add to Cart', add_carts_path(placement_id: placement.id), method: :post, class: 'btn btn-standard' %>
           </div>
         </li>
     

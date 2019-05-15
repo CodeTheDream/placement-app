@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     end
     collection do
       post 'add'
+      #post 'add_all_to'
+      get 'add_all_to'
     end
   end
 end

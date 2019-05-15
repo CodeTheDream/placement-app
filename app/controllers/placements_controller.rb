@@ -18,8 +18,13 @@ class PlacementsController < ApplicationController
   end
 
   def index
-    @placements = Placement.all
-    @licensees = Licensee.all
+    if params[:query].present?
+      @licensees = Licensee.all
+      @placements = Placement.search_for(params[:query])
+    else
+      @licensees = Licensee.all
+      @placements = Placement.all
+    end
   end
 
   def show
