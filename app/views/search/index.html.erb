@@ -9,28 +9,36 @@
     </div>
   </div>
 
-<div class='card col-8 rounded shadow-sm'>
-<div class='card-body'>
 <% if params[:query] %> 
-
-  <%= link_to 'Add all search results to cart', add_all_to_carts_path(placement_ids: Placement.search_for(params[:query]).ids), method: :get, class: 'btn btn-standard mb-4 font-weight-bold p-2' %>
-  
-  <% @placements.order(:name).each do |placement| %>
+<div class='card col-8 rounded shadow-sm'>
+  <div class='card-body'>
+   
+   <%= link_to 'Add all search results to cart', add_all_to_carts_path(placement_ids: Placement.search_for(params[:query]).ids), method: :get, class: 'btn btn-standard mb-4 font-weight-bold p-2' %>
     
+    <% @licensees.order(:facility_name).each do |l| %>
       <ul class='list-group'>
         <li class='list-group-item mt-2 shadow'>
-          <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary font-weight-bold' %><br>
-          <%= placement.address %><br>
-          <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
-          <div>
-            <%= link_to 'Add to Cart', add_carts_path(placement_id: placement.id), method: :post, class: 'btn btn-standard' %>
-          </div>
+          <%= link_to l.facility_name, licensee_path(l.id), 
+          class: 'border-bottom border-primary font-weight-bold' %>
         </li>
-    
-  <% end %>
+        <li class='list-group-item mt-2 shadow'>
+          <% l.placements.each do |p| %>
+            <%= link_to p.name, placement_path(p.id), class: 
+            'font-weight-bold' %>
+            <br>
+            <%= p.address %>, <%= p.city %>, <%= p.state %> <%= p.zip %>
+            <br>
+            <%= link_to 'Add to Cart', add_carts_path(placement_id: 
+            p.id), method: :post, class: 'btn btn-standard' %>
+            <br>
+          <% end %>
+        </li>
+      </ul>     
+    <% end %>
+  </div>
+</div>
 <% end %>
-</div>
-</div>
+
 
 
 

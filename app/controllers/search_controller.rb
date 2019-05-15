@@ -4,6 +4,7 @@ class SearchController < ApplicationController
     
     def index
         if params[:query].present?
+            @licensees = Licensee.all
             @placements = Placement.search_for(params[:query])
         else
             @placements = Placement.all
