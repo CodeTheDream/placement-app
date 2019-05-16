@@ -114,6 +114,10 @@ ul {
   padding: 0;
 }
 
+.field {
+    color: white;
+}
+
 html {
   position: relative;
   min-height: 100%;

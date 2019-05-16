@@ -29,14 +29,14 @@
 
 <div class='card col-6 rounded mb-2 shadow-sm mx-auto'>
     <div class='card-body'>
-    <h4>Placements</h8>
+    <h4>Placements</h4>
         <% @licensee.placements.each do |placement| %>
             <div>
                 <ul class='list-group shadow'>
-                    <li class='font-weight-bold'>
+                    <li class='list-group-item mt-2 shadow font-weight-bold'>
                         <%= link_to placement.name, placement_path(placement.id), class: 'border-bottom border-primary' %>
                     </li>
-                    <li class='list-group-item'>
+                    <li class='list-group-item mt-2 shadow'>
                         <%= placement.address %>, <%= placement.city %>, <%= placement.state %> <%= placement.zip %>
                     </li>
                     <li>
