@@ -3,8 +3,8 @@ class AnnouncementsController < ApplicationController
   
   def new
     @announcement = Announcement.new
-    @licensees = Licensee.all
-    @placements = Placement.all
+    @licensees = Licensee.order(:facility_name).all
+    @placements = Placement.order(:name).all
   end
   
   def create
@@ -17,6 +17,17 @@ class AnnouncementsController < ApplicationController
     @announcement = Announcement.new
     @licensees = Licensee.all
     @placements = Placement.all
+  end
+  
+  def edit
+    @announcement = Announcement.find(params[:id])
+    @licensees = Licensee.order(:facility_name).all
+    @placements = Placement.order(:name).all
+  end
+  
+  def update
+    Announcement.update(announcement_params)
+    redirect_to announcements_path
   end
   
   def destroy
