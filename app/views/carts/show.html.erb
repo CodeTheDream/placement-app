@@ -17,7 +17,7 @@
         <ul class='list-group'>
           <% @cart.cart_placements.each do |placement| %>
             <li class='list-group-item mb-2 shadow'>
-              <%= link_to "#{placement.placement.name}", placement_path(placement.id) %> <br>
+              <%= link_to "#{placement.placement.name}", placement_path(placement.placement.id) %> <br>
               <%= placement.placement.address %>, <%= placement.placement.city %>, <%= placement.placement.state %> <%= placement.placement.zip %>
               <div class='mt-1'>
                 <%= link_to "Remove", remove_cart_path(@cart, placement_id: placement.id), :method => "delete", :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger' %>

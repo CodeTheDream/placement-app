@@ -39,7 +39,6 @@ class CartsController < ApplicationController
     
     placement_ids.each do |p|
       place = Placement.find_by(id: p)
-      #byebug
       
       @cart = Cart.find_by(user_id: current_user.id)
       
