@@ -30,7 +30,7 @@
 
 .header {
     background: rgba(0, 0, 0, 0.6);
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
     height: 110px;
     width: 100%;
@@ -42,8 +42,8 @@
     height: 75px;
     width: 100%;
     color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .navbar {
