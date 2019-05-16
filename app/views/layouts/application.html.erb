@@ -43,17 +43,17 @@
       </div>
     </div>
 
-    <div align='center'>
-      <% if flash[:notice] %>
-        <div class='alert alert-success mt-2 mb-2 col-6 text-center'><%= flash[:notice] %></div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class='alert alert-danger mt-2 mb-2 col-6 text-center'><%= flash[:alert] %></div>
-      <% end %>
-    </div>
-    
-    
     <div class='content' align='center'>
+      
+      <div align='center'>
+        <% if flash[:notice] %>
+          <div class='alert alert-success col-6 text-center'><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class='alert alert-danger mt-2 mb-2 col-6 text-center'><%= flash[:alert] %></div>
+        <% end %>
+      </div>
+      
       <%= yield %>
     </div>
     
