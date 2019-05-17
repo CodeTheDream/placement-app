@@ -37,7 +37,7 @@
     at <%= a.created_at.strftime("%-I:%M %P on %-m/%-d/%y") %>
     <br>
     <% if current_user && current_user == a.user || current_user && current_user.admin?  %>
-      <%= link_to 'Edit', edit_announcement_path(a.id), class:'btn btn-standard' %>
+      <%#= link_to 'Edit', edit_announcement_path(a.id), class:'btn btn-standard' %>
       <%= link_to 'Delete', announcement_path(a.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger' %>
     <% end %>
   </div>
