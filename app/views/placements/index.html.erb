@@ -31,6 +31,12 @@
             'font-weight-bold' %>
             <br>
             <%= p.address %>, <%= p.city %>, <%= p.state %> <%= p.zip %>
+            <!--Code to view latitude and longitude for placement-->
+            <br>
+            <%= p.latitude %>
+            <br>
+            <%= p.longitude %>
+            <!--Original code continues-->
             <br>
             <%= link_to 'Add to Cart', add_carts_path(placement_id: 
             p.id), method: :post, class: 'btn btn-standard' %>
