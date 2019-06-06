@@ -13,7 +13,7 @@ class AnnouncementsController < ApplicationController
   end
   
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.all.sort_by {|obj| obj.created_at }.reverse
     @announcement = Announcement.new
     @licensees = Licensee.all
     @placements = Placement.all
