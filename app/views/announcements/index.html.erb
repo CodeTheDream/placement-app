@@ -6,7 +6,7 @@
 
 <div class='shadow-sm card col-8 rounded mb-2 mx-auto'>
     <div class='card-body'>
-<% @announcements.reverse_each do |a| %>
+<% @announcements.each do |a| %>
       <ul class='list-group shadow'>
         <li class='list-group-item'><%= a.text %></li>
         <li class='list-group-item'>
