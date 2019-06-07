@@ -12,15 +12,16 @@
 
 <h3 class='page-header'>Placement Details</h3>
 
-<div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
-    <div class='card-body'>
-        <h2 class="title">Admin Options</h2>
-        <% if current_user && current_user.admin? %>
+<% if current_user && current_user.admin? %>
+    <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
+        <div class='card-body'>
+            <h2 class="title">Admin Options</h2>
             <%= link_to 'Edit Placement', edit_placement_path(@placement), class: 'btn btn-standard mt-2' %> 
             <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-standard ml-2 mt-2' %>
-        <% end %>
+        </div>
     </div>
-</div>
+<% end %>
+
 
 <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
     <div class='card-body'>
