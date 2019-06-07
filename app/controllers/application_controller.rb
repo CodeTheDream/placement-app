@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   def authorize_admin
     redirect_to root_path (flash[:alert] = 'You do not have access to that page.') unless current_user.try(:admin?)
   end
+  
+  def info
+    
+  end
 
   protected
 
