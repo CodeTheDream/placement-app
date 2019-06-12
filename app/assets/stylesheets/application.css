@@ -39,7 +39,19 @@
 .page-header {
     background: rgba(0, 0, 0, 0.6);
     text-align: center;
+    line-height: 75px;
     height: 75px;
+    width: 100%;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.subhead {
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
     width: 100%;
     color: white;
     margin-top: 10px;
