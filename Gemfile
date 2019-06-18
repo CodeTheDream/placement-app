@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.2'
 
+gem 'geocoder'
+gem 'gmaps4rails'
 gem 'pg', '~> 1.1.4'
 gem 'postgresql', '~> 1.0'
 gem 'rubocop', '~> 0.67.2'

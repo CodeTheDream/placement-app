@@ -13,7 +13,9 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    Placement.create(placement_params)
+
+    p = Placement.create(placement_params)
+    
     redirect_to admins_path
   end
 
@@ -24,15 +26,15 @@ class PlacementsController < ApplicationController
     else
       @licensees = Licensee.all
       @placements = Placement.all
-    end
+       end
   end
-
+  
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
     @comment = Comment.new(placement_id: @placement.id)
     @comments = @placement.comments.collect
-  end
+    end
 
   def edit
     @placement = Placement.find(params[:id])
