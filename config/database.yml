@@ -34,21 +34,18 @@
 
 development:
   adapter: postgresql
-  encoding: unicode
   database: placement_db_development
   pool: 5
   timeout: 5000
   
 test:
   adapter: postgresql
-  encoding: unicode
   database: placement_db_test
   pool: 5
   timeout: 5000
   
 production:
   adapter: postgresql
-  encoding: unicode
   database: placement_db_production
   pool: 5
   
