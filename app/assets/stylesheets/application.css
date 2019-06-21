@@ -88,11 +88,16 @@
     background: rgb(227, 232, 183);
 }
 
-.btn.btn-search {
+.btn.btn-nav-search {
     background: rgb(137,170,53);
     color: black;
     font-size: 12px;
     height: 30px;
+}
+
+.btn.btn-search {
+    background: rgb(137,170,53);
+    color: black;
 }
 
 .btn.btn-search:hover {
