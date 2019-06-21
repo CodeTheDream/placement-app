@@ -29,7 +29,7 @@
         <% end %>
     
         <% if current_user != nil %>
-          <%= link_to 'Placements', placements_path, class: 'btn btn-nav' %>
+          <%= link_to 'Home', search_index_path, class: 'btn btn-nav' %>
           <%#= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
           <%= link_to 'Announcements', announcements_path, class: 'btn btn-nav' %>
           <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
