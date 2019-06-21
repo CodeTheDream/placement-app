@@ -10,42 +10,40 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google_maps_api_key}'%>
     <%= yield(:head_tags) %>
-    
-
   </head>
 
   <body>
     
-    <div class="head-pos">
+    
       <h1 class="header">The Home Page</h1>
     
       <div class="navbar">
-       
+               
         <% if current_user == nil %>
           <%= link_to 'Log In', new_user_session_path, class: 'btn btn-nav' %>
         <% else %>
-          <%= link_to "Log out: #{current_user.email}", destroy_user_session_path, method: :delete, 
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, 
           class: 'btn btn-nav'  %>
-          <%= link_to 'Profile', edit_profile_path(current_user), 
+          <%= link_to "Edit #{current_user.email}", edit_profile_path(current_user), 
           class: 'btn btn-nav' %>
         <% end %>
     
         <% if current_user != nil %>
           <%= link_to 'Placements', placements_path, class: 'btn btn-nav' %>
-          <%= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
-          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
+          <%#= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
           <%= link_to 'Announcements', announcements_path, class: 'btn btn-nav' %>
+          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
           <%#= link_to 'Advanced Search', search_index_path, class: 'btn btn-nav' %>
         <% end %>
         
         <div>
           <form action="/" method="get" class="form-inline">
-            <input type="text" name="query" id="query" placeholder="New Search..." class="form-control mr-sm-2">
+            <input type="text" name="query" id="query" placeholder="Search..." class="form-control mr-2">
             <input type="submit" value="Go", class='btn btn-search'>
           </form>
         </div>
       </div>
-    </div>
+  
 
     <div class='content' align='center'>
       
@@ -70,9 +68,6 @@
             <h6 class="text-uppercase">The Home Page</h6>
             Find your way home. <br>
             <p style="padding-bottom:3px">© 2019 <a href="mailto:homepageconnect@gmail.com"> Lauren Sheridan</a></p>
-            <% if current_user && current_user.admin? %>
-              <%= link_to "Admin Tools", admins_path %>
-            <% end %>
           </div>
 
           <div class="col-md-2 mb-md-0 mb-3">
