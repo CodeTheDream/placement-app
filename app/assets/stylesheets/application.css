@@ -46,15 +46,14 @@
 .page-header {
     background: rgba(0, 0, 0, 0.6);
     text-align: center;
-    line-height: 75px;
-    height: 75px;
+    line-height: 50px;
+    height: 50px;
     width: 100%;
     color: white;
     margin-top: 10px;
     margin-bottom: 10px;
     font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 30px;
-    padding: 0px;
+    font-size: 25px;
     color: white;
 }
 
@@ -119,14 +118,6 @@
 }
 
 .title {
-    color: white;
-}
-
-h3 {
-    font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 30px;
-    padding: 0px;
-    margin: 0px;
     color: white;
 }
 
@@ -198,5 +189,9 @@ body {
   background: rgba(0, 0, 0, 0.6);
   padding-left: 30px;
   font-size: 12px;
+}
+
+.show-map {
+    margin-right: 20px;
 }
 
