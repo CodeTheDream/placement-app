@@ -73,7 +73,7 @@
 
 <%= render 'new_comment' %>
 <br>
-<% @comments.reverse_each do |c| %>
+<% @comments.each do |c| %>
     <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
         <div class='card-body'>
             <ul class='list-group shadow'>
