@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def info
-    
+    render "info"
   end
 
   protected

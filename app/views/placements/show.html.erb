@@ -3,9 +3,9 @@
 <script src="//maps.google.com/maps/api/js?key=#{Rails.application.credentials.google_maps_api_key}"></script>
 
 <% if current_user && current_user.admin? %>
-    <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
+    <div class='shadow-sm card col-4 rounded mb-2 mx-auto'>
         <div class='card-body'>
-            <h2 class="title">Admin Options</h2>
+            <h3 class="title">Admin Options</h3>
             <%= link_to 'Edit Placement', edit_placement_path(@placement), class: 'btn btn-standard mt-2' %> 
             <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-standard ml-2 mt-2' %>
         </div>
@@ -22,23 +22,12 @@
 <% end %>
 <!--Code for interactive maps ends-->
 
-<div class='row'>
-  <h3 class='page-header'>Placement Details</h3>
-    
-    <% if current_user && current_user.admin? %>
-        <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
-            <div class='card-body'>
-                <h2 class="title">Admin Options</h2>
-                <%= link_to 'Edit Placement', edit_placement_path(@placement), class: 'btn btn-standard mt-2' %> 
-                <%= link_to 'Delete Placement', placement_path(@placement), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-standard ml-2 mt-2' %>
-            </div>
-        </div>
-    <% end %>
-</div>
+<h3 class='page-header'>Placement Details</h3>
 
-<div class='row'>
+<div class='row ml-2 mr-2'>
+  
   <div class='col'>
-    <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
+    <div class='shadow-sm card rounded mb-2 mx-auto'>
       <div class='card-body'>
           <h2 class='title'><%= @placement.name %></h2>
           <div>
@@ -62,7 +51,7 @@
       </div>
   </div>
 
-  <div class='shadow-sm card col-6 rounded mb-2 mx-auto'>
+  <div class='shadow-sm card col rounded mb-2 mx-auto'>
       <div class='card-body'>
           <h2 class='title'>Referral Contact</h2>
           <ul class='list-group shadow mb-2'>
@@ -76,21 +65,8 @@
     </div>
   </div>
 
-  <div class='col-5'>
-    <div id="map"></div>
-   
-    <h3>Nearby Locations</h3>
-      <ul>
-        <% if @placement.nearbys(10) != nil %>
-            <% for placement_1 in @placement.nearbys(10) %>
-              <li><%= link_to placement_1.full_address_1 %> (<%= placement_1.distance.round(2) %> miles)</li>
-            <% end %>
-        <% else %>
-            <p> Near by locations not found.</p>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <div id="map" class='col'></div>
+  
 </div>
 
 <h3 class='page-header'>Comments</h3>
