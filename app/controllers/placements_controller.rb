@@ -33,7 +33,7 @@ class PlacementsController < ApplicationController
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
     @comment = Comment.new(placement_id: @placement.id)
-    @comments = @placement.comments.collect
+    @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
     end
 
   def edit
