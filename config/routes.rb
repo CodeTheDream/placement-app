@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users/registrations"} 
   
   resources :search, only: [:index]
-  resources :comments, :licensees, :announcements, :placements
+  resources :comments, :licensees, :announcements
+  # Plotting points on maps from scratch tutorial https://www.driftingruby.com/episodes/plotting-points-on-a-map-from-scratch
+  resources :placements
+  #   collection do
+  #   get :map
+  # end
+  get 'map' => 'placements#map'
   resources :placements_imports, only: [:new, :create]
   resources :licensees_imports, only: [:new, :create]
   resources :admins, only: [:index, :edit, :update, :destroy]
@@ -23,6 +29,7 @@ Rails.application.routes.draw do
       post 'add'
       #post 'add_all_to'
       get 'add_all_to'
+      # end
     end
   end
 end
