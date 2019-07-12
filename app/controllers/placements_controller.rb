@@ -2,7 +2,7 @@
 
 class PlacementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin, only: %i(new edit)
+  before_action :authorize_admin, only: %i(new edit destroy)
 
   require 'roo'
 
@@ -26,7 +26,7 @@ class PlacementsController < ApplicationController
     else
       @licensees = Licensee.all
       @placements = Placement.all
-       end
+    end
   end
   
   def show
@@ -34,7 +34,7 @@ class PlacementsController < ApplicationController
     @licensee = Licensee.find(@placement.licensee_id)
     @comment = Comment.new(placement_id: @placement.id)
     @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
-    end
+  end
 
   def edit
     @placement = Placement.find(params[:id])
