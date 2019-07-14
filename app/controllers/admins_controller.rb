@@ -21,6 +21,7 @@ class AdminsController < ApplicationController
 
   def index
     @users = User.all
+    @services = Service.all
   end
 
   def edit

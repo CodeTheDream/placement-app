@@ -1,3 +1,30 @@
-Form for adding and editing a service.
 
-<%= form_for service do %>
+<div class='card bg-dark col-8 rounded mb-2 shadow-sm mx-auto'>
+    <div class='card-body'>
+    
+    <%= form_for @service do |f| %>
+    
+    <div>
+        <%= f.hidden_field :id, :value => @service.id %>
+     
+    <div class='row form-group'>   
+        <%= f.text_field :name, placeholder: 'Name', class: 'form-control col-5 shadow' %>
+    </div>
+    
+    <div class='row form-group'>
+        <%= f.text_field :prog_code, placeholder: 'Program Code', class: 'form-control col-5 shadow' %>
+    </div>
+        
+    <div class='row form-group'>
+        <%= f. text_field :age_code, placeholder: 'Age', class: 'form-control col-5 shadow' %>
+    </div>
+
+    <div class='row form-group'>
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+        
+    </div>
+    <% end %>
+    
+    </div>
+</div>
