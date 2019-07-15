@@ -26,6 +26,7 @@ class PlacementsController < ApplicationController
     else
       @licensees = Licensee.all
       @placements = Placement.all
+      @services = Service.all
     end
   end
   
