@@ -39,6 +39,8 @@ class PlacementsImport
       placement.licensee_id = licensee.id
       placement.gender = row["gender"]
       placement.beds = row["beds"]
+      service = Service.find_by(prog_code: row["service.prog_code"])
+      placement.service_id = service.id
       placement
       
       #placement.attributes = row.to_hash

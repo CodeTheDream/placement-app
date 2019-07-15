@@ -6,6 +6,7 @@
   <%= link_to 'New User', new_registration_path(resource_name), class: 'btn btn-nav' %>
   <%= link_to 'New Licensee', new_licensee_path, class: 'btn btn-nav' %>
   <%= link_to 'New Placement', new_placement_path, class: 'btn btn-nav' %>
+  <%= link_to 'New Service' , new_service_path, class: 'btn btn-nav' %>
   <%= link_to 'Download Licensees', licensees_path(format: :xlsx), class: 'btn btn-nav' %>
   <%= link_to 'Upload Licensees', new_licensees_import_path, class: 'btn btn-nav' %>
   <%= link_to 'Download Placements', placements_path(format: :xlsx), class: 'btn btn-nav' %>
@@ -13,7 +14,9 @@
 </div>
 
 
- <div class='shadow-sm card bg-dark col-6 rounded mt-3 shadow-sm mx-auto'>
+<div class='row'>
+
+<div class='shadow-sm card bg-dark col-5 rounded mt-3 shadow-sm mx-auto'>
     <div class='card-body'>
         <h4>Users</h4>
         <% @users.order(:last_name).each do |user| %>
@@ -30,6 +33,24 @@
             <% end %>
         <% end %>
     </div>
+</div>
+
+<div class='shadow-sm card bg-dark col-5 rounded mt-3 shadow-sm mx-auto'>
+    <div class='card-body'>
+        <% @services.order(:name).each do |s| %>
+            <ul class='list-group'>
+                <li class='list-group-item mt-2 shadow'>
+                    <p> Name: <%= s.name %> </p>
+                    <p> Program Code: <%= s.prog_code %> </p>
+                    <p> Age: <%= s.age_code %> </p>
+                    <%= link_to "Edit", edit_service_path(s.id), class: 'btn btn-standard' %>
+                    <%= link_to "Delete", service_path(s.id), data: { confirm: "Are you sure? This cannot be undone." }, method: :delete, class: 'btn btn-danger' %></p>
+                </li>
+            </ul>
+        <% end %>
+    </div>
+</div>
+    
 </div>
 
 
