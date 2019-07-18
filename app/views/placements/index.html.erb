@@ -1,3 +1,14 @@
+<script src="//maps.google.com/maps/api/js?key=#{Rails.application.credentials.google_maps_api_key}"></script>
+
+<% provide :head_tags do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(){
+        initMap()
+      });
+    </script>
+<% end %>
+
 <div class='row'>
   <h3 class='page-header'>All Homes</h3>
 </div>
@@ -49,18 +60,17 @@
     </div> 
   </div>
 
-<!--Insert code to display map here
+
   <div class='col-5'>
     <div id="map">
-    </div>
+    <!--</div>-->
     <%#= image_tag ('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAApVBMVEX////uOED/4dbuNj7/6NzuLzjuMTruMzz/5tvtHSn/6d3tISztKDLtLTbtKzTtJS/tGCXxa3D2oqX96+zwWF7+9PT5qqT/+vrvQkr719jxY2jvTlT60dL0jZH3mpb3oZz3tLb84uPydHj0g4L1jYr3ra/8y8L5xcf1nJ/6u7P4u730gH/zg4fwXGL1lJfyc3fvSE/91Mv8ycD5wsT+2s/5sqz4qKMmS510AAAK20lEQVR4nNWdaXPiMBKGY+QDY9nmDAYDAULIECCQSTL//6eNDSHcibrVksxTtbsftirmHUl9qSXd3amn3ei911/7424zXSdWsk6b3XH/tf7ea7Q1fF0xjef6eB35MY9Cx/UYY5ZlZf/tuU4Y8diP0nH9uWH6R6IZDedWNY7cjazLMOZGcdVaDEemfyyY9nM/CbhzXduRTocHSf/5hqZs+2UVxKGYum+VYRyP329D5HMtjl2YvC+RbhyveqZ//m+06kmAkrcTGST1lmkRPzBa+BFe3pfIKFgU1e70ar4jKW+rMfRXHdNiLtBb+i6Fvg1utVs0jZ2u75Hp22j0a0Waq615lW78vjVWF4WxOXUekuvLcaK6aWkbemsuaz+vweLU/HJsL4gX4DGe3zcssMMihfpyIsuoxXmtqpqge5hvbjW2mly5vpy4aygi73F6F3EZxzVicOq++hm6g/lD/QLHgTZ9G4kLzfraSz1LcE9c0yqwkZBkESDCVGMQ1/BUevlruIm2qtwoNCEwC3CYJomdWJ8RPZEYaolvRsoCbQGJjoZRNCkwk+gql2jGyBxITBRb1HZiVmBmUVO1Cpf6/eApoVLXv1KdDYoQK0yK61pj0auoC8N7vmltW1igyC22jPqJQxhTkxI3dSW8v+MosTavuvOlnwie6AV2CrIIt6hYilZRFuEWj9zx94vgCQ+JiWuMxZqjOdTz1Hg4eo7bpBRYJ7Cjmz4hxwmz/+S9Q/J/MBjSCWzIZvXMjSIr7c4ng8HDYDCZd1MriiQ6GrZ/1KPz+3OZjIJ5UZzM76elim2Xt9h2pTS9nydx5MmojF6pBHaqEvrCqHv/VimXS6eUy5W3+24E7Cw6okqV8HfR4ZrH14MP+1zdt0r7Y7DmaCvmzGkEolMKL27OKtflfYmszJoxVqNP4zGWuO8zns5+GL7DgZylyLTFGVMIRA6hY91fWHzXNN5bOGNGMog1zCpkfF4S1bfRWJqjhtEh2JIaYYbQtWYVgL6cygwzjCyQLy5ifCHvggZwN4xdROQU/ZEV2Argkyee2GB9OfYkBn+LObIK6+CsicX/oDN0R+UfPDyMXyQVJtBPMv6JFZhJ/ATbG28pJ7AHrZCyeAZfgnvsGXgUq3IOYwy1M/xTRmBmbz6h5iaUir/b0KZm/Brcka1F2CdZIqPwHfi16FFWYCbxEWjcApl2ojEsnnG7ODdxTBmYy0hNU1g8wywCfTmwyiWz8AJ7sEkqZ0b3lGew70qE331Qd7Mzl1+EWyqwUDHCl/jXkNlCNkdzQPPU7WIFNkDLkN/TzNGc8j3EK7IIW3R7gXzGS6nmaE4lhRQWAux5sAVkNVCZmS3lGeRfF31qARJ1e00KV7jHbgIG0UVumLYgZVLZePQUUHzKApxCiDdkFu0QZoMIMac+rjT8BPhXdAa0Q5gN4gRgBeJnlEKIoeFvxAJLpTfAPzDS1ADWOrWdyYHYGlxluA3Y46OfpNk0HYjPIdyufgsQ0cRTcoGl0lTc0jELE9V0xEs0LKGfpNk0BfhjH1MYfhb/J3THShQC8m9Unv8kXkwIH+iXYbYQH8STN5S7eBX/+/yvEoV/xf0Fx9SF++KmzKH3hjlv4r8A5RDFVwGzVAxhNojigRuqGiXucL0mZWq4p5IKK0TtI4r/ebemwpRmxlR8c9bFBDXiRRp3rkZheS6uEJMhAhQi9wt/w54IK0TtQIlHFM5EkaURT6AYJjC9LYWY7RnxWVoEhWuEQoAtVbUOH8VdMmaWivtDd65oDMVtqYdpp+2Ke3ySTbVzbMhPQCgERG2k5e49gJgG5fHFC1GkezKHiMelqKgNsLUWKcotABkqJvIG9Apx0j2LHZC9C1T2BNh5UlFqgxXbUBkwpE6jJLkApBa4KsYIUGvzlIwhoJEfdYAGUi/lfxUIBJRpLFSbKajmrSAyhWzNIBtOAPsGLFWwbwHok0A2KEJaPhRMU8gkRbZ7Q5pn3Ufy/UPxxALdUQNwFxYLiQWWSpC2SOQOKahLPyIu7JcfIB2KyF1uUN8eS4gVQhpBsJ0KsONAlC1RmcB/kH4adNsXYG+GurQPKOhnhNhDF7AO4XBA5xPtAagrEmlo7u4aoEZ9FtJliW+w/vIAfdISdtjCXZL1ly5BfdCoUuIWUOteZmyIPEb5AXYiQeIA2xD2JRZNKSSWp8CDM6j0d0sDeMTZWxMILJXWwEOrVYkTetBTTxTHEWzowWqpS0BgrewWxZES8IESufMWwOMIGfFATmJlAP4kugc6pw2/DyB+kJFYeQALZJ6EQNQxZ5lRRIyg7Il1ULv+F/wRa27sR8Tn0CHbFkjB7ZsIc9B5c9QZcZERiyVvOEGdxneTKXwY7WmC+Zb0tQov8IVh5YeBwYuxMsDdHCE5STNrivsu4803yDDab03kh0JJgeBDlt940UR4NZZLkwh5vQnBtRHP2PsuWeg9CGkslx4Y+h4en+DGffxVdCxKfrx/ZyPP/hgk+Eei5I45fwGq1pz+AIevZqWrt7hk/8dsxWXuUSJ5iQZ1uckel1uPs5J9prJctkuzR0vyBQlsofQYyCmySzCXO93J5/TD3t72ZWf/+zH9nHQdLnuhGfbQ2gk4l3gs0nMi7ljpsraar2rL1HJ45EjdZLYlkHWGXxD8lJzN65w5X691EvxFCjuT86do917ukDjEfQzoqKVOqmTXCkrdKqiOkO5ib0mHoQp8qfsc/L2CCqG5ju6LotxVfoTk5UIngC4A0AP+roiLoDMMdUgVES9QuEGUvePrjMINok/+NnLBBpF4FeYUbBApcvtTZJMoUojSpmMK5ROJrtc9oUCBDWk4s6dA0SlN8eIc8CWKqohUvRYkffk8ESxU9vJqQZL9WMETLDtkSptkkFVnLvFSBLdPH68dgryfnRJnpVLg3ch4UYqhLmoBYPxFHeoXdM6AnDNRAf0rSGe8m41sVOQUp9RMRjaRjserTUY2lI/n/MCT/F4UFp9or+k3YD3KhIRqkqZzGr6Zecq4trfHDc1T/12XQEPPWSoO146BNoBTwLgWO7rDwDzVZUd3dHX7fS2+/hDdT+cqTXsvozk+1RGPnrLQmUcpz5kuovHlTod+H0aEkbbQhoXagpljnnTVpXQ7ij1jicZMAJzsNU44WpYi7bO4QEaIV9mgMMfQItzyot4rVg14wkOUe8XAiCc8RHEiFepMmS7TUrpb4+kPR8/pKHT8LFS02QtjqM7aqN1mEmdB8PL6RQKFW6EwmmrS4YjoUWoCWpaK2MYxGcucMlJQ6fdQb1Yo45m8+MZQ1+gp5InaoFYLYkb39Gnri35hzOieMWWEGkg/Rq0CQp/Bi+MnDmmT5cOhmcLT7zRkjxN+4arvRsBCk/J7ltGk/md6BHkGcwqRT1zjRdrzM9NVi9+Q9fysKAnTdf7IlYmrGneysUgFN/7Q9M8XYY6X6BsvrIkxxub8fiFjtUvUcCFqMYPRy2CuQ7ICVWcMlICQeFsCERJvTSBY4u0JvLtbQrZPb1FgJlF8FG9TIMBp+Aa3seWoibn+23H05wgFcLcSql2m/2umwapD0z9SjtdfJDKdjb9qqP+Y9bPilbbhDH+o3XhOwUsWYrxXr0l0w4LtvmDphJdLxWFa4LIhjAa71JLCi1rZxtBKz8ObQHfjtmJqJ+Vwdtt+/hJPvrPXyJzbKKrBaIz59iZI5nI+L3TlHk1ruEiZxdLFUKcN/Q/QI/4m6VH/KAAAAABJRU5ErkJggg==') %>
-    MAPS
-    <div style='width: 800px;'>
-      <div id="multi_markers" style='width: 800px; height: 400px;'>
-      </div>
+    <!--MAPS-->
+    <!--<div style='width: 800px;'>-->
+    <!--  <div id="multi_markers" style='width: 800px; height: 400px;'>-->
+    <!--  </div>-->
     </div>
   </div>
-  -->
 
 </div>
   
