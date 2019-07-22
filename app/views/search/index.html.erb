@@ -1,11 +1,19 @@
+
 <div class='card rounded mt-4 shadow-sm p-4 col-6'>
   <form action="/" method="get">
     <div class='row form-group'>
-      <input type="text" name="query" id="query" placeholder="Search by county, city, name..." class='form-control col-9 ml-3 shadow mt-1'>
+      <input type="text" name="query" id="query" placeholder=
+      "Search by county, city, name..." class='form-control col-9 ml-3 shadow mt-1'>
+      <select class='shadow form-control col' prompt="License Type" name="service" id="service">
+        <%= @services.each do |s| %>
+          <option><%= s.name %></option>
+        <% end %>
+      </select>
       <input type="submit" value="Go", class='btn btn-search col-2 ml-3 mt-1'>
     </div>
   </form>
 </div>
+
 
 <% if params[:query] %> 
 
@@ -19,22 +27,31 @@
   </div>
   
   <div class='card-body'>
-    <%= link_to 'Add all search results to cart', add_all_to_carts_path(placement_ids: Placement.search_for(params[:query]).ids), method: :get, class: 'btn btn-standard mb-4 font-weight-bold p-2' %>
+    <%= link_to 'Add all search results to cart', add_all_to_carts_path(
+    placement_ids: Placement.search_for(params[:query]).ids), method: :get, 
+    class: 'btn btn-standard mb-4 font-weight-bold p-2' %>
     
     <% @placements.each do |p| %>
       <ul class='list-group'>
         <li class='list-group-item mt-2 shadow'>
-          <%= link_to p.name, placement_path(p.id), class: 'border-bottom border-primary font-weight-bold' %>
+          <%= link_to p.name, placement_path(p.id), 
+          class: 'border-bottom border-primary font-weight-bold' %>
           <br>
           <%= p.address %>, <%= p.city %>, <%= p.state %> <%= p.zip %>
           <br>
-          <%= link_to 'Add to Cart', add_carts_path(placement_id: p.id), method: :post, class: 'btn btn-standard mt-2' %>
+          <%= link_to 'Add to Cart', add_carts_path(placement_id: p.id), 
+          method: :post, class: 'btn btn-standard mt-2' %>
         </li>
       </ul>
     <% end %>
-  
   </div>
   
 </div> 
+
+<% else %>
+<div>
+  
+</div>
+
 
 <% end %>

@@ -3,7 +3,21 @@
 class Placement < ApplicationRecord
   
   include PgSearch
-  pg_search_scope :search_for, against: [:name, :city, :county]
+  pg_search_scope :search_for, (lambda do |service, query |
+    return {
+    against: [
+      :name, 
+      :city, 
+      :county
+      ],
+      associated_against: :service,
+    using: {
+      tsearch: {dictionary: "english", prefix: "true", any_word: "true"}
+      }
+    }
+    end)
+  
+    
   
   belongs_to :licensee
   belongs_to :service

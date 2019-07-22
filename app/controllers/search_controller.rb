@@ -4,25 +4,13 @@ class SearchController < ApplicationController
     
     def index
         if params[:query].present?
-            @placements = Placement.search_for(params[:query])
-            
+            @placements = Placement.search_for(params[:query], params[:service]) 
             @licensees = Licensee.all
-          
-        # Attempts at grouping placements by licensee in search results
-          
-        # 1
-          
-            #@licensees = Licensee.where(id: @placements.pluck(:licensee_id))
-        
-        # 2
-        
-            #@placements.collect do |p|
-             #   @licensees << p.licensee.attributes
-            #end
-        
+            @services = Service.all
         else
             @placements = Placement.all
             @licensees = Licensee.all
+            @services = Service.all
         end
     end
  
