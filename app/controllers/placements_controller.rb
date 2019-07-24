@@ -26,7 +26,21 @@ class PlacementsController < ApplicationController
     else
       @licensees = Licensee.all
       @placements = Placement.all
-       end
+    end
+#       @locations =  [[35.8961813,-78.87255], [35.8966316,-78.8697565], [35.896636,-78.8675731]].to_json
+#       @coordinates = Placement.all.each do |p|
+#         puts [p.latitude, p.longitude].to_json
+#       end
+# #       @placements do |placement|
+#         placement.latitude
+#         placement.longitude
+#         placement.name
+#       end
+      
+#       @hash = Gmaps4rails.build_markers(@placements) do |placement, marker|
+#         marker.lat placement.latitude
+#         marker.lng placement.longitude
+# #         # marker.infowindow agency.name
   end
   
   def show
@@ -34,7 +48,7 @@ class PlacementsController < ApplicationController
     @licensee = Licensee.find(@placement.licensee_id)
     @comment = Comment.new(placement_id: @placement.id)
     @comments = @placement.comments.collect
-    end
+  end
 
   def edit
     @placement = Placement.find(params[:id])
