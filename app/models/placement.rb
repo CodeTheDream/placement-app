@@ -8,11 +8,17 @@ class Placement < ApplicationRecord
   end
   
   pg_search_scope :search_for,
-    against: [:name, :county, :city, :address, :zip],
-    using: {tsearch: {dictionary: "english", prefix: "true"}}
+    against: [:name, :city, :address, :zip],
+    associated_against: {
+      counties: [:name],
+      services: [:name]
+    },
+    using: {
+      tsearch: {dictionary: "english", prefix: "true"}
+    }
 
   pg_search_scope :filter_county,
-    against: [:county]
+    against: [:county_id]
     
   pg_search_scope :filter_service,
     against: [:service_id]
