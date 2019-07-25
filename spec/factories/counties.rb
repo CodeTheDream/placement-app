@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :county do
     name { "MyString" }
-    string { "MyString" }
     mco { "MyString" }
-    statehospital { "MyString" }
+    hospital { "MyString" }
   end
 end
