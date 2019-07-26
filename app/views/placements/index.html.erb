@@ -1,19 +1,7 @@
-<div class='row'>
-  <h3 class='page-header'>All Homes</h3>
-</div>
+<h3 class='page-header'>All Homes</h3>
 
-<div class='card rounded mt-4 shadow-sm p-4 col-6'>
-  <form action="/" method="get">
-    <div class='row form-group'>
-      <input type="text" name="query" id="query" placeholder="Search by county, city, name..." class='form-control col-9 ml-3 shadow mt-1'>
-      <input type="submit" value="Go", class='btn btn-search col-2 ml-3 mt-1'>
-    </div>
-  </form>
-</div>
 
-<div class='row'>
-  <div class='col-7'>
-    <div class='card col-8 rounded shadow-sm'>
+    <div class='card col-8 rounded shadow-sm mx-auto'>
       <h4 class='mt-2 text-center'>Click on a home or licensee to view details</h4>
         <div class='card-body'>
           <% @licensees.order(:facility_name).each do |l| %>
@@ -42,8 +30,6 @@
             </ul>     
           <% end %>
         </div>
-    </div> 
-  </div>
 
 <!--Insert code to display map here
   <div class='col-5'>

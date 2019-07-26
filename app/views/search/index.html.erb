@@ -35,14 +35,12 @@
     </div>
     
     <div class='row form-group'>
-      
-      <select class='shadow form-control col ml-5 mr-1' name="filtercounty" id="filtercounty">
-        <option value="">County</option>
-        <option>Alamance</option> 
-        <option>Johnston</option>
-        <option>Wake</option>
-        <option>Granville</option>
-      </select>
+        <select class='shadow custom-select col mr-1 ml-5' name="filtercounty" id="filtercounty">
+          <option value="">County</option>
+          <%= @counties.each do |c| %>
+          <option value="<%= c.id %>"><%= c.name %></option> 
+          <% end %>
+        </select>
       
       <select class='shadow form-control col mr-5 ml-1' name="filterservice" id="filterservice">
         <option value="">License Type</option>
@@ -78,8 +76,8 @@
     <% end %>
     </p>
     <p class='col'>County: 
-    <% if params[:filtercounty] != nil %>
-      <%= params[:filtercounty] %>
+    <% if @counties.find_by(id: params[:filtercounty]) != nil %>
+      <%= @counties.find_by(id: params[:filtercounty]).name %>
     <% else %>
       None
     <% end %>

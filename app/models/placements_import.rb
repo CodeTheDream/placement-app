@@ -33,7 +33,8 @@ class PlacementsImport
       placement.city = row["city"]
       placement.state = row["state"]
       placement.zip = row["zip"]
-      placement.county = row["county"]
+      county = County.find_by(name: row["county.name"])
+      placement.county_id = county.id
       placement.phone = row["phone"]
       licensee = Licensee.find_by(facility_name: row["licensee.facility_name"])
       placement.licensee_id = licensee.id

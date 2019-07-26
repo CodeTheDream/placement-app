@@ -15,19 +15,13 @@ class PlacementsController < ApplicationController
   def create
 
     p = Placement.create(placement_params)
-    
     redirect_to admins_path
   end
 
   def index
-    if params[:query].present?
-      @licensees = Licensee.all
-      @placements = Placement.search_for(params[:query])
-    else
       @licensees = Licensee.all
       @placements = Placement.all
       @services = Service.all
-    end
   end
   
   def show
