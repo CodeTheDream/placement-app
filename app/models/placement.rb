@@ -20,7 +20,17 @@ class Placement < ApplicationRecord
     
   pg_search_scope :filter_service,
     against: [:service_id]
-
+  
+  pg_search_scope :filter_mco,
+    associated_against: {
+      county: [:mco]
+    }
+    
+  pg_search_scope :filter_hospital,
+    associated_against: {
+      county: [:hospital]
+    }
+    
   belongs_to :licensee
   belongs_to :service
   belongs_to :county

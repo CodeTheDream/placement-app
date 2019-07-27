@@ -20,9 +20,10 @@
 
 <div class='card rounded mt-4 shadow-sm p-4 col-8'>
   <div class='card-body text-white font-weight-bold'>
-    <p class='mx-2'>Type a general query into the search bar and add optional filters, or use 
-    the filters alone to browse placements by county and/or license type.</p>
-    <p>For a list of all placements, leave each field blank and click "Go."</p>
+    <p class='mx-2'>Type a general query into the search bar and add optional 
+    filters, or use filters alone to browse placements by category.</p>
+    <p>Partial words can be found, misspellings cannot.</p>
+    <p>For a list of all placements, leave form blank and click "Go."</p>
   
   <form action="/" method="get">
     
@@ -41,13 +42,32 @@
           <% end %>
         </select>
       
-      <select class='shadow form-control col mr-5 ml-1' name="filterservice" id="filterservice">
+      <select class='shadow custom-select col mr-5 ml-1' name="filterservice" id="filterservice">
         <option value="">License Type</option>
         <%= @services.each do |s| %>
           <option value="<%= s.id %>"><%= s.name %></option>
         <% end %>
       </select>
+    </div>
     
+    <div class='row form-group'>
+      <select class='shadow custom-select col mr-1 ml-5' name='filtermco' id='filtermco'>
+        <option value="">MCO</option>    
+        <option value="Alliance">Alliance</option>
+        <option value="Cardinal">Cardinal</option>
+        <option value="Eastpointe">Eastpointe</option>
+        <option value="Partners">Partners</option>
+        <option value="Sandhills">Sandhills</option>
+        <option value="Trillium">Trillium</option>
+        <option value="Vaya">Vaya</option>
+      </select>
+      
+      <select class='shadow custom-select col mr-5 ml-1' name='filterhospital' id='filterhospital'>
+        <option value="">Hospital</option>    
+        <option value="Broughton">Broughton</option>
+        <option value="CRH">Central Regional</option>
+        <option value="Cherry">Cherry</option>
+      </select>
     </div>
     
     <div class='row form-group'>
@@ -58,7 +78,8 @@
   </div>
 </div>
 
-<% if (params[:filtercounty] || params[:filterservice] || params[:query]) && @placements != nil %> 
+<% if (params[:filtercounty] || params[:filterservice] || params[:query] || 
+params[:filtermco] || params[:filterhospital]) && @placements != nil %> 
 
 <h3 class='page-header'> <%= @placements.count %> Search Results</h3>
 
@@ -87,6 +108,20 @@
       Any
     <% end %>
     </p>
+    <p class='col'>MCO: 
+    <% if @counties.find_by(mco: params[:filtermco]) != nil %>
+      <%= @counties.find_by(mco: params[:filtermco]).mco %></p>
+    <% else %>
+      Any
+    <% end %>
+    </p>
+    <p class='col'>License Type: 
+    <% if @counties.find_by(hospital: params[:filterservice]) != nil %>
+      <%= @counties.find_by(hospital: params[:filterservice]).hospital %></p>
+    <% else %>
+      Any
+    <% end %>
+    </p>
     </div>
 
     <%= link_to 'Add all results to cart', add_all_to_carts_path(
@@ -105,7 +140,7 @@
           </div>
           <div class='col'>
           <%= link_to 'Add to Cart', add_carts_path(placement_id: p.id), 
-          method: :post, class: 'btn btn-standard mt-2' %>
+          method: :post, class: 'btn btn-search mt-3' %>
           </div>
           </div>
         </li>
