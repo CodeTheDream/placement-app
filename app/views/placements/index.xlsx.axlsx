@@ -15,12 +15,12 @@ wb.styles do |style|
     sheet.add_row ["ID", "Placement Name", "Address", "City", "State", "Zip", 
     "County", "Phone", "Licensee", "Gender", "Beds", "Service"], style: heading
     # Create the database reference row
-    sheet.add_row ["id", "name", "address", "city", "state", "zip", "county", 
+    sheet.add_row ["id", "name", "address", "city", "state", "zip", "county.name", 
     "phone", "licensee.facility_name", "gender", "beds", "service.prog_code"], 
     style: heading
     # Create entries for each item
     @placements.each do |p|
-      sheet.add_row [p.id, p.name, p.address, p.city, p.state, p.zip, p.county, 
+      sheet.add_row [p.id, p.name, p.address, p.city, p.state, p.zip, p.county.name, 
       p.phone, p.licensee.facility_name, p.gender, p.beds, p.service.prog_code]
     end
   end
