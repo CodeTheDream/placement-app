@@ -11,7 +11,8 @@ class Placement < ApplicationRecord
     against: [:name, :address, :city, :zip, :phone],
     associated_against: {
       county: [:name, :mco, :hospital],
-      licensee: :facility_name
+      licensee: :facility_name,
+      service: [:name, :prog_code]
     },
     using: {tsearch: {dictionary: "english", prefix: "true"}}
 

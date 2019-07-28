@@ -9,28 +9,26 @@
   <div class='card-body rounded my-2'>  
     
     <% @announcements.each do |a| %>
-      <ul class='list-group shadow rounded'>
+      <ul>
         <div class='row mx-2'>
           <li class='col-3 list-group-item rounded mx-auto my-2'>
             <p class='font-weight-bold m-0'>Placement</p>
-          <% if a.placement_id != nil %>
-            <%= link_to a.placement.name, placement_path(a.placement.id), class: 'btn btn-info'%>
-          <% else %>
-            None
-          <% end %>
-          <p>
-          Bed available? 
-          <% if a.bed_available == true %>
-            Yes
-          <% else %>
-            No
-          <% end %>
-          </p>
-        
+              <% if a.placement_id != nil %>
+                <%= link_to a.placement.name, placement_path(a.placement.id), class: 'btn btn-info'%>
+              <% else %>
+                None
+              <% end %>
+            <p class='font-weight-bold m-0'>Bed available?</p>
+              <% if a.bed_available == true %>
+                Yes
+              <% else %>
+                No
+              <% end %>
           </li>
         
-          <li class='col-8 list-group-item rounded mx-auto my-2'><%= a.text %></li>
-  
+          <li class='col-8 list-group-item rounded mx-auto my-2'>
+            <%= a.text %>
+          </li>
         </div>
       </ul>
         

@@ -25,7 +25,7 @@
         <% else %>
           <%= link_to 'Log out', destroy_user_session_path, method: :delete, 
           class: 'btn btn-nav'  %>
-          <%= link_to "Edit #{current_user.email}", edit_profile_path(current_user), 
+          <%= link_to "Edit Profile", edit_profile_path(current_user), 
           class: 'btn btn-nav' %>
         <% end %>
     
@@ -35,7 +35,7 @@
           <%= link_to 'Announcements', announcements_path, class: 'btn btn-nav' %>
           <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
           <%#= link_to 'Advanced Search', search_index_path, class: 'btn btn-nav' %>
-          <%= link_to 'About', "/info", class: 'btn btn-nav' %>
+          <%= link_to 'Info', "/info", class: 'btn btn-nav' %>
         <% end %>
         
         <div>
