@@ -17,5 +17,9 @@ class Placement < ApplicationRecord
   def full_address_1
     [address, city, state, zip].compact.join(', ')
   end  
+  
+  # def coordinates
+  #   [latitude, longitude]
+  # end
 end
 
