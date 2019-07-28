@@ -57,10 +57,10 @@
   <div id='tips' class='collapse'>
 
   <div class='card-body p-2 text-white'>
-    <p class='mb-0'>Type a general query into the search bar and add optional
+    <p class='mb-0'>Type a general query into the search bar and/or choose
     filters to browse by category. 
     <br>MCOs and hospitals are linked to a specific county, so adding conflicting 
-    filters may not eliit any results.
+    filters may not elicit any results.
     <br>Partial words can be found, misspellings cannot.
     <br>For a list of all placements, leave form blank and click "Go." 
     <br>Adding more than 100 placements to your cart at a time may cause an error.</p>
@@ -70,7 +70,7 @@
 </div>
 
 <% if (params[:filtercounty] || params[:filterservice] || params[:query] || 
-params[:filtermco] || params[:filterhospital]) && @placements != nil %> 
+params[:filtermco] || params[:filterhospital]) %> 
 
 <h3 class='page-header'> <%= @placements.count %> Results</h3>
 
