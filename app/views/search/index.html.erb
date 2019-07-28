@@ -52,18 +52,18 @@
   </div>
 </div>
 
-<div class='card rounded mt-4 shadow-sm p-4 col-8'>
+<div class='card rounded mt-4 shadow-sm p-4 col-7'>
   <button data-toggle="collapse" data-target="#tips" class='btn btn-info mb-1 col-4'>Search Tips</button>
   <div id='tips' class='collapse'>
 
-  <div class='card-body p-2 text-white'>
-    <p class='mb-0'>Type a general query into the search bar and/or choose
+  <div class='card-body p-2 text-secondary text-left'>
+    <p class='mb-0'>- Type a general query into the search bar and/or choose
     filters to browse by category. 
-    <br>MCOs and hospitals are linked to a specific county, so adding conflicting 
+    <br>- MCOs and hospitals are linked to a specific county, so adding conflicting 
     filters may not elicit any results.
-    <br>Partial words can be found, misspellings cannot.
-    <br>For a list of all placements, leave form blank and click "Go." 
-    <br>Adding more than 100 placements to your cart at a time may cause an error.</p>
+    <br>- Partial words can be found, misspellings cannot.
+    <br>- For a list of all placements, leave form blank and click "Go." 
+    <br>- Adding more than 100 placements to your cart at a time may cause an error.</p>
   </div>
   </div>
 
@@ -107,9 +107,9 @@ params[:filtermco] || params[:filterhospital]) %>
       Any
     <% end %>
     </p>
-    <p class='col'>License Type: 
-    <% if @counties.find_by(hospital: params[:filterservice]) != nil %>
-      <%= @counties.find_by(hospital: params[:filterservice]).hospital %></p>
+    <p class='col'>Hospital: 
+    <% if @counties.find_by(hospital: params[:filterhospital]) != nil %>
+      <%= @counties.find_by(hospital: params[:filterhospital]).hospital %></p>
     <% else %>
       Any
     <% end %>
