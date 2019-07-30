@@ -21,7 +21,10 @@
       <div class="navbar row">
         <div class='col'>       
         <% if current_user == nil %>
-          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-nav' %>
+        <div class='col text-white'>
+          Please log in to continue
+        </div>
+        
         <% else %>
           <%= link_to 'Log out', destroy_user_session_path, method: :delete, 
           class: 'btn btn-nav'  %>
@@ -46,15 +49,15 @@
         <div class='col'>   
           <%= link_to 'Info', "/info", class: 'btn btn-nav' %>
         </div>
-        <% end %>
-        
         <div> 
           <form action="/" method="get" class="form-inline">
             <input type="text" name="query" id="query" placeholder="Search..." class="form-control nav-search mr-2">
             <input type="submit" value="Go", class='btn btn-nav-search'>
           </form>
         </div>
+      <% end %>
       </div>
+      
   
 
     <div class='content' align='center'>
