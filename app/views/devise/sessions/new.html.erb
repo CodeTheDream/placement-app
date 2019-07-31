@@ -1,5 +1,5 @@
-<h3 class='page-header'>Log in</h3>
-<div class='card col-3 rounded mb-0 shadow-sm mx-auto'>
+
+<div class='card col-3 rounded mb-0 shadow-sm mx-auto mt-3'>
     
     <div class='card-body'>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -23,7 +23,6 @@
 
       <div class="actions">
          <%= f.submit "Log in", class: 'btn btn-standard text-center' %> 
-        <%= render "devise/shared/links" %>
       </div>
       
       <% end %>
