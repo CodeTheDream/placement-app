@@ -19,20 +19,39 @@
             <% if a.placement_id != nil %>
               <%= link_to a.placement.name, placement_path(a.placement.id), class: 'btn btn-info'%>
             <% else %>
-              No placement.
+              No placement noted.
             <% end %>
             </div>
         
             <div class='col'>
+              Bed available:
             <% if a.bed_available == true %>
-              Bed available.
+              Yes
             <% else %>
-              No bed availability indicated.
+              No
             <% end %>
             </div>
-            
-            <div class='col'>
-              <p class='col ml-4 my-2'><%= a.user.first_name %> <%= a.user.last_name %>
+          </div>
+        </li>
+        <div class='row'>
+          <div class='col ml-4 my-2'><%= a.user.first_name %> <%= a.user.last_name %>
+            | <%= a.created_at.strftime("%-I:%M %P | %-m/%-d/%y") %>
+          </div>
+          
+          <% if current_user && current_user == a.user || current_user && 
+          current_user.admin? %>
+            <div class='col mr-4 my-1'>
+            <%#= link_to 'Edit', edit_announcement_path(a.id), class:'btn btn-standard' %>
+              <%= link_to 'Delete', announcement_path(a.id), method: :delete, :data => 
+              {:confirm => "Are you sure?"}, class: ' btn btn-danger' %>
+            </div>
+          <% end %>
+        </div>
+      </ul>
+      
+      <!--  
+      <div class='row mt-1 mb-2 text-white'>
+        <p class='col ml-4 my-2'><%= a.user.first_name %> <%= a.user.last_name %>
         | <%= a.created_at.strftime("%-I:%M %P | %-m/%-d/%y") %></p>
           
           <% if current_user && current_user == a.user || current_user && 
@@ -43,12 +62,8 @@
               {:confirm => "Are you sure?"}, class: ' btn btn-danger' %>
             </p>
           <% end %>
-            </div>
-          </div>
-        </li>
-      </ul>
-        
-      
+        </div>
+      -->
         
     <% end %>
   </div>
