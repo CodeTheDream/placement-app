@@ -119,6 +119,10 @@
     background: rgb(250,105,55);
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .title {
     color: white;
 }

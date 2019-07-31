@@ -5,51 +5,33 @@
 <h3 class='page-header'>Most Recent</h3>
 
 <% if @announcements != [] %>
-<div class='card col-8 rounded my-2 mx-auto' >
-    <div class='card-body my-3 py-3'>  
+<div class='shadow-sm card col-8 rounded mb-2 mt-2 mx-auto'>
+  <div class='card-body rounded my-2'>  
     
     <% @announcements.each do |a| %>
-      <ul class='list-group col-11 mx-auto'>
-        <li class='list-group-item shadow rounded my-1 mx-2'>
-          <%= a.text %>
-        </li>
-        <li class='list-group-item shadow rounded my-1 mx-2'>
-          <div class='row'>
-            <div class='col'>
-            <% if a.placement_id != nil %>
-              <%= link_to a.placement.name, placement_path(a.placement.id), class: 'btn btn-info'%>
-            <% else %>
-              No placement noted.
-            <% end %>
-            </div>
+      <ul>
+        <div class='row mx-2'>
+          <li class='col-3 list-group-item rounded mx-auto my-2'>
+            <p class='font-weight-bold m-0'>Placement</p>
+              <% if a.placement_id != nil %>
+                <%= link_to a.placement.name, placement_path(a.placement.id), class: 'btn btn-info'%>
+              <% else %>
+                None
+              <% end %>
+            <p class='font-weight-bold m-0'>Bed available?</p>
+              <% if a.bed_available == true %>
+                <p class='m-0 btn-success disabled'>Yes</p>
+              <% else %>
+                <p class='m-0 btn-danger disabled'>No</p>
+              <% end %>
+          </li>
         
-            <div class='col'>
-              Bed available:
-            <% if a.bed_available == true %>
-              Yes
-            <% else %>
-              No
-            <% end %>
-            </div>
-          </div>
-        </li>
-        <div class='row'>
-          <div class='col ml-4 my-2'><%= a.user.first_name %> <%= a.user.last_name %>
-            | <%= a.created_at.strftime("%-I:%M %P | %-m/%-d/%y") %>
-          </div>
-          
-          <% if current_user && current_user == a.user || current_user && 
-          current_user.admin? %>
-            <div class='col mr-4 my-1'>
-            <%#= link_to 'Edit', edit_announcement_path(a.id), class:'btn btn-standard' %>
-              <%= link_to 'Delete', announcement_path(a.id), method: :delete, :data => 
-              {:confirm => "Are you sure?"}, class: ' btn btn-danger' %>
-            </div>
-          <% end %>
+          <li class='col-8 list-group-item rounded mx-auto my-2'>
+            <%= a.text %>
+          </li>
         </div>
       </ul>
-      
-      <!--  
+        
       <div class='row mt-1 mb-2 text-white'>
         <p class='col ml-4 my-2'><%= a.user.first_name %> <%= a.user.last_name %>
         | <%= a.created_at.strftime("%-I:%M %P | %-m/%-d/%y") %></p>
@@ -63,7 +45,6 @@
             </p>
           <% end %>
         </div>
-      -->
         
     <% end %>
   </div>
