@@ -23,7 +23,6 @@ class LicenseesImport
   end
 
   def load_imported_licensees
-    #byebug
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(5)
     (6..spreadsheet.last_row).map do |i|
@@ -39,7 +38,6 @@ class LicenseesImport
   end
 
   def save
-    #byebug
     if imported_licensees.map(&:valid?).all?
       imported_licensees.each(&:save!)
       true

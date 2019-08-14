@@ -14,7 +14,7 @@ class LicenseesController < ApplicationController
   end
 
   def index
-    @licensees = Licensee.all
+    @licensees = Licensee.all.order(:id)
     respond_to do |format|
       format.xlsx do
         response.headers[
