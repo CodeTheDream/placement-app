@@ -20,8 +20,16 @@ class PlacementsController < ApplicationController
 
   def index
       @licensees = Licensee.all
-      @placements = Placement.all
+      @placements = Placement.all.order(:id)
       @services = Service.all
+      respond_to do |format|
+      format.xlsx do
+        response.headers[
+          'Content-Disposition'
+        ] = 'attachment; filename=placements.xlsx'
+      end
+      format.html { render :index }
+    end
   end
   
   def show
