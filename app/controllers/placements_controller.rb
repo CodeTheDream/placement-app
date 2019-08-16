@@ -2,7 +2,7 @@
 
 class PlacementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin, only: %i(new edit)
+  before_action :authorize_admin, only: %i(new edit destroy)
 
   require 'roo'
 
@@ -13,19 +13,21 @@ class PlacementsController < ApplicationController
   end
 
   def create
-
     p = Placement.create(placement_params)
-    
     redirect_to admins_path
   end
 
   def index
-    if params[:query].present?
-      @licensees = Licensee.all
-      @placements = Placement.search_for(params[:query])
-    else
-      @licensees = Licensee.all
-      @placements = Placement.all
+    @licensees = Licensee.all
+    @placements = Placement.all.order(:id)
+    @services = Service.all
+    respond_to do |format|
+    format.xlsx do
+      response.headers[
+        'Content-Disposition'
+      ] = 'attachment; filename=placements.xlsx'
+    end
+    format.html { render :index }
     end
     @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
   end
@@ -33,30 +35,18 @@ class PlacementsController < ApplicationController
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
+    @service = Service.find(@placement.service_id)
     @comment = Comment.new(placement_id: @placement.id)
-    @comments = @placement.comments.collect
-        
-    # This may consume too much memory if the table is big.
-    # Placement.all.each do |c|
-    #   @locations = [[c.latitude, c.longitude].to_json
-    # end
+    @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
   end
   
-  def map
-    @licensees = Licensee.all
-    @placements = Placement.all
-    @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
-
-    # @locations = Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }
-        # @locations =  [[35.8961813,-78.87255], [35.8966316,-78.8697565], [35.896636,-78.8675731]].to_json
-    
-    # works  
-    # Placement.all.each do |c|
-    
-    #   @locations = [[c.latitude, c.longitude]].to_json
-    #   puts @locations
-    # end
-  end
+  #Used this code to place a map on a seperate page. May not need this anymore. 
+  #Just keeping in the merge to show you. 
+  # def map
+  #   @licensees = Licensee.all
+  #   @placements = Placement.all
+  #   @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
+  # end
 
   def edit
     @placement = Placement.find(params[:id])

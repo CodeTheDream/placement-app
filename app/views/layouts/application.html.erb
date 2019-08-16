@@ -7,46 +7,57 @@
     <%= csp_meta_tag %>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google_maps_api_key}'%>
     <%= yield(:head_tags) %>
-    
-
-
   </head>
 
   <body>
     
-    <div class="head-pos">
+    
       <h1 class="header">The Home Page</h1>
     
-      <div class="navbar">
-       
+      <div class="navbar row">
+        <div class='col'>       
         <% if current_user == nil %>
-          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-nav' %>
+        <div class='col text-white'>
+          Please log in to continue
+        </div>
+        
         <% else %>
-          <%= link_to "Log out: #{current_user.email}", destroy_user_session_path, method: :delete, 
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, 
           class: 'btn btn-nav'  %>
-          <%= link_to 'Profile', edit_profile_path(current_user), 
+        </div>
+        <div class='col'> 
+          <%= link_to "Edit Profile", edit_profile_path(current_user), 
           class: 'btn btn-nav' %>
         <% end %>
-    
+        </div>
         <% if current_user != nil %>
-          <%= link_to 'Placements', placements_path, class: 'btn btn-nav' %>
-          <%= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
-          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
+        <div class='col'> 
+          <%= link_to 'Home', search_index_path, class: 'btn btn-nav' %>
+        </div>  
+          <%#= link_to 'Licensees', licensees_path, class: 'btn btn-nav' %>
+        <div class='col'>   
           <%= link_to 'Announcements', announcements_path, class: 'btn btn-nav' %>
+        </div>
+        <div class='col'>   
+          <%= link_to 'Cart', cart_path(current_user), class: 'btn btn-nav' %>
+        </div>  
           <%#= link_to 'Advanced Search', search_index_path, class: 'btn btn-nav' %>
-        <% end %>
-        
-        <div>
+        <div class='col'>   
+          <%= link_to 'Info', "/info", class: 'btn btn-nav' %>
+        </div>
+        <div> 
           <form action="/" method="get" class="form-inline">
-            <input type="text" name="query" id="query" placeholder="New Search..." class="form-control mr-sm-2">
-            <input type="submit" value="Go", class='btn btn-search'>
+            <input type="text" name="query" id="query" placeholder="Search..." class="form-control nav-search mr-2">
+            <input type="submit" value="Go", class='btn btn-nav-search'>
           </form>
         </div>
+      <% end %>
       </div>
-    </div>
+      
+  
 
     <div class='content' align='center'>
       
@@ -69,53 +80,12 @@
           
           <div class="col-md-2 mt-md-0">
             <h6 class="text-uppercase">The Home Page</h6>
-            Find your way home. <br>
+          </div>
+          
+          <div class="col-md-2 mt-md-0">
             <p style="padding-bottom:3px">© 2019 <a href="mailto:homepageconnect@gmail.com"> Lauren Sheridan</a></p>
-            <% if current_user && current_user.admin? %>
-              <%= link_to "Admin Tools", admins_path %>
-            <% end %>
           </div>
 
-          <div class="col-md-2 mb-md-0 mb-3">
-            <h6 class="text-uppercase">Links</h6>
-            <ul class="list-unstyled">
-              <li>
-                <a href="https://www2.ncdhhs.gov/dhsr/mhlcs/facilities.html">DHSR Licensed Facility Listings</a>
-              </li>
-              <li>
-                <a href="https://www.ncdhhs.gov/divisions/social-services/local-dss-directory">DSS Office Directory</a>
-              </li>
-            </ul>
-          </div>
-          
-          <div class="col-md-2 mb-md-0 mb-3">
-            <h6 class="clear"> X </h6>
-            <ul class="list-unstyled">
-              <li>
-                <a href="https://secure.ssa.gov/ICON/main.jsp">SSA Office Directory</a>
-              </li>
-              <li>
-                <a href="https://www.ncdhhs.gov/providers/lme-mco-directory">MCO Directory</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-md-2 mb-md-0 mb-3">
-            <h6 class="text-uppercase">Contributors</h6>
-            <ul class="list-unstyled">
-              <li>Michael Eley</li>
-              <li>Tilneil Gary</li>
-            </ul>
-          </div>
-          
-          <div class="col-md-2 mb-md-0 mb-3">
-            <h6 class="clear"> X </h6>
-            <ul class="list-unstyled">
-              <li>Alik Lyle</li>
-              <li>Marcus Mitchell</li>
-            </ul>
-          </div>
-          
           <div class="col-md-2 mb-md-0 mb-3">
             <% if current_user && current_user.admin? %>
               <%= link_to "Admin Tools", admins_path %>
@@ -125,5 +95,10 @@
         </div>
       </div>
     </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
   </body>
 </html>

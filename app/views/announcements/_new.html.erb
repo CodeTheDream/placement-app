@@ -1,37 +1,44 @@
-<div class='card col-8 rounded mt-4 shadow-sm mx-auto'>
-  <div class='card-body container'>
+<div class='card col-8 rounded mt-4 shadow mx-auto'>
+  <div class='card-body my-2'>
     
-    <h4>Make an announcement</h4>
-    <br>
+    <h4 class='title'>Make an announcement</h4>
     
     <%= form_for @announcement do |f| %>
       <%= f.hidden_field :id, :value => @announcement.id %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
-    
-      <div class='row'>
-        <%= f.text_area :text, placeholder: 'Announcement body', class: 'form-control mb-2 shadow' %>
-      </div>
+      <%= f.text_area :text, placeholder: 'Announcement body', class: 'form-control mx-auto mb-2 shadow' %>
+
       
-      <div class="row">
+      <div class='row'>
+        
+        <div class='col'>
         <%= f.select :placement_id, 
         options_for_select(@placements.collect { |p| [p.name, p.id]}), 
         {:prompt => 'Placement (optional)'},
-        {:class => 'shadow form-control col mr-1'}%> 
-         
-        <%= f.select :licensee_id, 
+        {:class => 'shadow form-control'}%> 
+        </div>
+        
+        <!--
+        <div class-'col'>
+        <%#= f.select :licensee_id, 
         options_for_select(@licensees.collect { |l| [l.facility_name, l.id]}), 
         {:prompt => 'Licensee (optional)'},
         {:class => 'shadow form-control col'} %>
-      
+        </div>
+        -->
+        
         <div class='col'>
-          <%= f.label :bed_available, 'Bed Available?', class: 'text-white mr-2 mt-1' %>
+          <%= f.label :bed_available, 'Bed Available?', class: 'text-white mr-2 ml-5 mt-2' %>
           <%= f.check_box :bed_available, class: 'shadow mt-2' %>
         </div>
+        
+        <div class='col'>
+        <%= f.submit 'Post', class: 'btn btn-info px-5' %>
+        </div>
+        
       </div>
       
-      <br>
-      
-      <%= f.submit 'Post', class: 'btn btn-standard col-4' %>
+
    
     <% end %>
   
