@@ -3,29 +3,16 @@ class SearchController < ApplicationController
     before_action :authenticate_user!
     
     def index
-        if params[:query].present?
-            @placements = Placement.search_for(params[:query])
-            
-            @licensees = Licensee.all
-          
-        # Attempts at grouping placements by licensee in search results
-          
-        # 1
-          
-            #@licensees = Licensee.where(id: @placements.pluck(:licensee_id))
-        
-        # 2
-        
-            #@placements.collect do |p|
-             #   @licensees << p.licensee.attributes
-            #end
-        
-        else
+        @licensees = Licensee.all
+        @services = Service.all
+        @counties = County.all.order(:name)
+        if params[:filtercounty] || params[:filterservice] || params[:query]
             @placements = Placement.all
-            @licensees = Licensee.all
+            @placements = @placements.filter_county(params[:filtercounty]) if params[:filtercounty].present?
+            @placements = @placements.filter_service(params[:filterservice]) if params[:filterservice].present?
+            @placements = @placements.filter_mco(params[:filtermco]) if params[:filtermco].present?
+            @placements = @placements.filter_hospital(params[:filterhospital]) if params[:filterhospital].present?
+            @placements = @placements.search_for(params[:query]) if params[:query].present?
         end
     end
- 
 end
-
-

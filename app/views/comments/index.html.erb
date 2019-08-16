@@ -1,7 +1,7 @@
 <h3 class='page-header'>All Comments</h3>
 
-<% @comments.reverse_each do |c| %>
-    <div class='shadow-sm card bg-light col-8 rounded mb-2 mx-auto'>
+<% @comments.each do |c| %>
+    <div class='shadow-sm card col-8 rounded mb-2 mx-auto text-white'>
         <div class='card-body'>
             Placement: <%= link_to "#{c.placement.name}", placement_path(c.placement.id) %> <br>
             <ul class='list-group shadow'>
@@ -17,3 +17,4 @@
         </div>
     </div>
 <% end %>
+

@@ -2,7 +2,7 @@
 
 class PlacementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin, only: %i(new edit)
+  before_action :authorize_admin, only: %i(new edit destroy)
 
   require 'roo'
 
@@ -15,26 +15,30 @@ class PlacementsController < ApplicationController
   def create
 
     p = Placement.create(placement_params)
-    
     redirect_to admins_path
   end
 
   def index
-    if params[:query].present?
       @licensees = Licensee.all
-      @placements = Placement.search_for(params[:query])
-    else
-      @licensees = Licensee.all
-      @placements = Placement.all
-       end
+      @placements = Placement.all.order(:id)
+      @services = Service.all
+      respond_to do |format|
+      format.xlsx do
+        response.headers[
+          'Content-Disposition'
+        ] = 'attachment; filename=placements.xlsx'
+      end
+      format.html { render :index }
+    end
   end
   
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
+    @service = Service.find(@placement.service_id)
     @comment = Comment.new(placement_id: @placement.id)
-    @comments = @placement.comments.collect
-    end
+    @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
+  end
 
   def edit
     @placement = Placement.find(params[:id])

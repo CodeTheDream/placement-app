@@ -33,12 +33,15 @@ class PlacementsImport
       placement.city = row["city"]
       placement.state = row["state"]
       placement.zip = row["zip"]
-      placement.county = row["county"]
+      county = County.find_by(name: row["county.name"])
+      placement.county_id = county.id
       placement.phone = row["phone"]
       licensee = Licensee.find_by(facility_name: row["licensee.facility_name"])
       placement.licensee_id = licensee.id
       placement.gender = row["gender"]
       placement.beds = row["beds"]
+      service = Service.find_by(prog_code: row["service.prog_code"])
+      placement.service_id = service.id
       placement
       
       #placement.attributes = row.to_hash
