@@ -77,13 +77,21 @@ params[:filtermco] || params[:filterhospital]) %>
 <h3 class='page-header'> <%= @placements.count %> Results</h3>
 
 <!--Javascript code to display map of all placements on search index page. -->
-<div class='col-4'>
-      <div id='map'></div>
-</div>
+<div class='container-fluid'>
   
 <div class='row'>
+  <div class='card col-8 mx-auto rounded shadow'>
+    <div class='card-body p-2 rounded'>
+      <div id='map' class='mb-3'></div>
+    </div>
+  </div>
+</div>
+  
+  <br>
+  
+<div class='row'>
+  
     <div class='card col-8 mx-auto rounded shadow text-white'>
-      <div class='col-8'
       <p class='my-3 font-weight-bold'>Click on a placement name to view details like referral contact and map</p>
       <div class='card-body p-2 rounded'>
         <div class='row mx-2'>
@@ -148,9 +156,9 @@ params[:filtermco] || params[:filterhospital]) %>
           </ul>
         <% end %>
       </div>
-    </div>
+  </div>
 </div>
-
+</div>
 <% end %>
 
 <!--Javascript code to operate map for placements-->
@@ -174,4 +182,6 @@ params[:filtermco] || params[:filterhospital]) %>
 <script async defer
        src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_maps_api_key%>&callback=initMap">
 </script>
+
+
 
