@@ -16,17 +16,16 @@
 
 // Chucks test app code, shows austrailia    
 function initMap() {
-  var myLatLng = {lat: -25.363, lng: 131.044};
-
+  var myLatLng = {lat: 35.782169, lng: -80.793457};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 6,
     center: myLatLng
   });
 
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: 'Hello World!'
+    title: 'North Carolina'
   });
 }    
 

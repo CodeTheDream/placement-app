@@ -13,14 +13,7 @@
                 <% l.placements.each do |p| %>
                   <%= link_to p.name, placement_path(p.id), class:'font-weight-bold' %>
                   <br>
-                  <!--<= p.address %>, < p.city %>, <= p.state %> <= p.zip %>-->
-                  <!--Code to view latitude and longitude for placement-->
-                  <!--<br>-->
                   <%= p.full_address_1 %>
-                  <!--Latitude <= p.latitude %>-->
-                  <!--<br>-->
-                  <!--Longitude <= p.longitude %>-->
-                  <!--Original code continues-->
                   <br>
                   <%= link_to 'Add to Cart', add_carts_path(placement_id: p.id), method: :post, class: 'btn btn-standard' %>
                   <br>
@@ -32,35 +25,4 @@
         </div>
     </div> 
   </div>
-  <div class='col-5'>
-      <div id='map'></div>
-  </div>
-<div>
-
-<script>
-  // Initialize and add the map
-  function initMap() {
-    //@locations is defined in the controller.  It is an array of arrays of lat,lng values.  ex [[35.6, -78.5], [35.4, -78.3], ...[lat,lng]]
-    var locations = <%=@locations%>;
-    var map = new google.maps.Map(
-      //centers the map on the first location in the array locations
-      document.getElementById('map'), {zoom: 12, center: {lat: locations[0][0], lng: locations[0][1]}});
-    //pass each location into addMarker one at a time with a map parameter
-    locations.forEach(loc => addMarker(map, loc))
-    //add each lat,lng to the specified map
-    function addMarker(map, loc) {
-       var marker = new google.maps.Marker({position: {lat: loc[0], lng: loc[1]}, map: map});
-    };
-  };
-  
-  </script>
-  <!--Load the API from the specified URL
-  * The async attribute allows the browser to render the page while the API loads
-  * The key parameter will contain your own API key (which is not needed for this tutorial)
-  * The callback parameter executes the initMap() function
-  -->
-  <!-- make sure to put your google maps key in place of Rails.application.secrets.google_maps_api_key or store it in the config.secrets.yml file -->
-
-<script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.secrets.google_maps_api_key%>&callback=initMap">
-  </script>
+ 

@@ -8,5 +8,6 @@ function initMap(lat, lng) {
     var marker = new google.maps.Marker({
         position: myCoords,
         map: map
+    
     });
 }

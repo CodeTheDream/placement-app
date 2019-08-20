@@ -29,7 +29,6 @@ class PlacementsController < ApplicationController
     end
     format.html { render :index }
     end
-    @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
   end
   
   def show
