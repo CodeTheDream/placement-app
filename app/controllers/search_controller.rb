@@ -13,6 +13,7 @@ class SearchController < ApplicationController
             @placements = @placements.filter_mco(params[:filtermco]) if params[:filtermco].present?
             @placements = @placements.filter_hospital(params[:filterhospital]) if params[:filterhospital].present?
             @placements = @placements.search_for(params[:query]) if params[:query].present?
+            @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
         end
     end
 end

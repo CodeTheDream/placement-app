@@ -13,22 +13,21 @@ class PlacementsController < ApplicationController
   end
 
   def create
-
     p = Placement.create(placement_params)
     redirect_to admins_path
   end
 
   def index
-      @licensees = Licensee.all
-      @placements = Placement.all.order(:id)
-      @services = Service.all
-      respond_to do |format|
-      format.xlsx do
-        response.headers[
-          'Content-Disposition'
-        ] = 'attachment; filename=placements.xlsx'
-      end
-      format.html { render :index }
+    @licensees = Licensee.all
+    @placements = Placement.all.order(:id)
+    @services = Service.all
+    respond_to do |format|
+    format.xlsx do
+      response.headers[
+        'Content-Disposition'
+      ] = 'attachment; filename=placements.xlsx'
+    end
+    format.html { render :index }
     end
   end
   
@@ -39,6 +38,14 @@ class PlacementsController < ApplicationController
     @comment = Comment.new(placement_id: @placement.id)
     @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
   end
+  
+  #Used this code to place a map on a seperate page. May not need this anymore. 
+  #Just keeping in the merge to show you. 
+  # def map
+  #   @licensees = Licensee.all
+  #   @placements = Placement.all
+  #   @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
+  # end
 
   def edit
     @placement = Placement.find(params[:id])

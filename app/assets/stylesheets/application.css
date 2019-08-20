@@ -197,3 +197,8 @@ body {
   padding-left: 30px;
   font-size: 12px;
 }
+
+#map {
+    width: 600px;
+    height: 400px;
+}
