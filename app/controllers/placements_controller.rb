@@ -39,13 +39,17 @@ class PlacementsController < ApplicationController
     @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
   end
   
-  #Used this code to place a map on a seperate page. May not need this anymore. 
-  #Just keeping in the merge to show you. 
-  # def map
-  #   @licensees = Licensee.all
-  #   @placements = Placement.all
-  #   @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
-  # end
+#   Used this code to place a map on a seperate page. May not need this anymore. 
+#   Just keeping in the merge to show you. 
+   def map
+     @licensees = Licensee.all
+     @placements = Placement.all
+     @locations = (Placement.all.map { |a| [a.latitude.to_f,
+     a.longitude.to_f,
+    #  a.name.to_s
+     ]}).to_json
+    # @json = Placement.all.to_gmaps4rails
+   end
 
   def edit
     @placement = Placement.find(params[:id])
