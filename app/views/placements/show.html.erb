@@ -1,15 +1,6 @@
-<!--Update to remove API Key and replace with Rails Credentials-->
-<!--Code to load interactive maps begin-->
-
-<% provide :head_tags do %>
-  <meta name='turbolinks-visit-control' content='reload'>
-    <script>
-      document.addEventListener("DOMContentLoaded", function(){
-        initMap(<%=@placement.latitude%>, <%=@placement.longitude%>)
-      });
-    </script>
-<% end %>
-<!--Code for interactive maps ends-->
+<!--Javascript key and resources in layouts/application.html.erb at top of body.-->
+<!--This would go here at the top of this page. Put it there to clean up duplication-->
+<!--since it's required on both search/index and here, placements/show.-->
 
 <h3 class='page-header'>Placement Details</h3>
 
@@ -25,11 +16,6 @@
           <ul class='list-group shadow mb-2 my-2'>
               <li class='list-group-item'><%= @placement.address %>, <br>
               <%= @placement.city %>, <%= @placement.state %> <%= @placement.zip %> <br>
-              <!--<li class='list-group-item'>-->
-              <!--    Latitude: < @placement.latitude %> <br>-->
-              <!--    Longitude: <= @placement.longitude %> <br>-->
-              <!--    Full Address: <=@placement.full_address_1 %>-->
-              <!--</li>-->
               County: <%= @placement.county.name %><br>
               Home Phone: <%= @placement.phone %></li>
               <li class='list-group-item'>
@@ -60,6 +46,7 @@
     <div class='shadow-sm card col rounded my-2 mx-auto'>
       <div class='card-body my-2'>
         <h4 class="title">Map</h4>
+        <!--Code to show map-->
         <div id="map" class='shadow-sm rounded mx-auto'></div>
       </div>
     </div>
@@ -97,11 +84,6 @@
             <%= link_to 'Delete', comment_path(c.id), method: :delete, :data => {:confirm => "Are you sure?"}, class: 'btn btn-danger' %>
           </p>
         <% end %>
-        
-        <%# if current_user && current_user == c.user %>
-            <%#= link_to 'Edit', edit_comment_path(c.id), class:'btn btn-standard ml-4' %>
-        <%# end %>
-        
       </div>
 
   <% end %>
@@ -109,3 +91,14 @@
 </div>
 <% end %>
 
+<!--Javascript code to show map, one marker. Pulls hash from placements show in
+controller.-->
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  handler.map.serviceObject.setZoom(15);
+});
+</script>

@@ -44,10 +44,7 @@ class Placement < ApplicationRecord
   after_validation :geocode, if: ->(obj) { obj.full_address_1.present? && obj.address_changed? }
   def full_address_1
     [address, city, state, zip].compact.join(', ')
-  end  
+  end 
   
-  # def coordinates
-  #   [latitude, longitude]
-  # end
 end
 
