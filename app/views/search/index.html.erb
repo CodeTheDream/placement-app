@@ -1,3 +1,7 @@
+<!--Javascript key and resources in layouts/application.html.erb at top of body.-->
+<!--This would go here at the top of this page. Put it there to clean up duplication-->
+<!--since it's required on both placements/show, and here.-->
+
 <div class='card rounded mt-4 shadow-sm p-4 col-8'>
   <div class='card-body text-white'>
   
@@ -76,6 +80,7 @@ params[:filtermco] || params[:filterhospital]) %>
 
 <h3 class='page-header'> <%= @placements.count %> Results</h3>
 
+<<<<<<< HEAD
 <!--Javascript code to display map of all placements on search index page. -->
 <div class='container-fluid'>
   
@@ -85,7 +90,13 @@ params[:filtermco] || params[:filterhospital]) %>
       <div id='map' class='mb-3'></div>
     </div>
   </div>
+=======
+<!--Code to show map-->
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+>>>>>>> 151ade116858841343f6698fcd465bc2a04ea5ad
 </div>
+
   
   <br>
   
@@ -161,27 +172,18 @@ params[:filtermco] || params[:filterhospital]) %>
 </div>
 <% end %>
 
-<!--Javascript code to operate map for placements-->
-<script>
-  // Initialize and add the map
-  function initMap() {
-    //@locations is defined in the controller.  It is an array of arrays of lat,lng values.  ex [[35.6, -78.5], [35.4, -78.3], ...[lat,lng]]
-    var locations = <%=@locations%>;
-    var map = new google.maps.Map(
-      //centers the map on the first location in the array locations
-      document.getElementById('map'), {zoom: 12, center: {lat: locations[0][0], lng: locations[0][1]}});
-    //pass each location into addMarker one at a time with a map parameter
-    locations.forEach(loc => addMarker(map, loc))
-    //add each lat,lng to the specified map
-    function addMarker(map, loc) {
-       var marker = new google.maps.Marker({position: {lat: loc[0], lng: loc[1]}, map: map});
-    };
-  };
+
+<<<<<<< HEAD
+
+
+=======
+<!--Code for map with multiple markers. Pulls from search index in controller.-->
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
 </script>
-  
-<script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_maps_api_key%>&callback=initMap">
-</script>
-
-
-
+>>>>>>> 151ade116858841343f6698fcd465bc2a04ea5ad

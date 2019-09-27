@@ -13,7 +13,17 @@ class SearchController < ApplicationController
             @placements = @placements.filter_mco(params[:filtermco]) if params[:filtermco].present?
             @placements = @placements.filter_hospital(params[:filterhospital]) if params[:filterhospital].present?
             @placements = @placements.search_for(params[:query]) if params[:query].present?
+<<<<<<< HEAD
             @locations = (@placements.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
+=======
+            # Hash to build map with multiple markers on index page. 
+            @hash = Gmaps4rails.build_markers(@placements) do |placement, marker|
+                placement_path = view_context.link_to placement.name, placement_path(placement)  #or is it placement.id?
+                marker.lat placement.latitude
+                marker.lng placement.longitude  
+                marker.infowindow "<b>#{placement_path}</b>"
+            end
+>>>>>>> 151ade116858841343f6698fcd465bc2a04ea5ad
         end
     end
 end

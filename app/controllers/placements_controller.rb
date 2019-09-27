@@ -37,16 +37,14 @@ class PlacementsController < ApplicationController
     @service = Service.find(@placement.service_id)
     @comment = Comment.new(placement_id: @placement.id)
     @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
+    # Hash to build map with one marker on show page. 
+    @hash = Gmaps4rails.build_markers(@placement) do |placement, marker|
+      marker.lat placement.latitude
+      marker.lng placement.longitude  
+      marker.infowindow placement.name
+    end
   end
   
-  #Used this code to place a map on a seperate page. May not need this anymore. 
-  #Just keeping in the merge to show you. 
-  # def map
-  #   @licensees = Licensee.all
-  #   @placements = Placement.all
-  #   @locations = (Placement.all.map { |a| [a.latitude.to_f, a.longitude.to_f] }).to_json
-  # end
-
   def edit
     @placement = Placement.find(params[:id])
     @licensees = Licensee.all
