@@ -8,10 +8,16 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google_maps_api_key}" %>
-    <script data-ad-client="ca-pub-3261298043859393" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= {Rails.application.credentials.google_maps_api_key} %>&callback=initMap"
+  type="text/javascript"></script>
     <%= yield(:head_tags) %>
   </head>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+  type="text/javascript"></script>
+
+
 
   <body>
     <!--Javascript key and resources to load map on search/index and placements/show pages. -->
@@ -25,10 +31,7 @@
         <div class='col'>       
         <% if current_user == nil %>
         <div class='col text-white'>
-          Please log in to continue, or email <a href='mailt:admin@homepageconnect.org' class='text-dark font-weight-bold font-italic'>Lauren Sheridan</a> to get an account.
-        </div>
-        <div class='col'>   
-          <%= link_to 'Info', "/info", class: 'btn btn-nav' %>
+          Please log in to continue, or email <a href='mailt:admin@homepageconnect.org' class='text-dark font-weight-bold font-italic'>Admin@HomePageCarolina.org</a> to request an account.
         </div>
         
         <% else %>
