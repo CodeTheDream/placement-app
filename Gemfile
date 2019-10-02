@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'pg', '~> 1.1.4'
+gem 'pg', '~> 1.1', '>= 1.1.4'
 gem 'postgresql', '~> 1.0'
 gem 'rubocop', '~> 0.67.2'
 gem "roo", "~> 2.8.0"
