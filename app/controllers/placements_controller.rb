@@ -10,6 +10,7 @@ class PlacementsController < ApplicationController
     @placement = Placement.new
     @licensees = Licensee.all
     @services = Service.all
+    @counties = County.all
   end
 
   def create
@@ -21,6 +22,7 @@ class PlacementsController < ApplicationController
     @licensees = Licensee.all
     @placements = Placement.all.order(:id)
     @services = Service.all
+    @counties = County.all
     respond_to do |format|
     format.xlsx do
       response.headers[

@@ -3,47 +3,53 @@
 <%= render 'admins/navbar' %>
 </div>
 
-<!--Form to add new placement to database. Should only be accessible to admins.-->
+<!--Form to add new placement to database. Should only be accessible to admins. Will update styling-->
 <div class='card bg-dark col-8 rounded mb-2 shadow-sm mx-auto'>
     <div class='card-body'>
         <%= form_for @placement do |f| %>
-    <div>
-        <%= f.hidden_field :id, :value => @placement.id %>
-        <div class='row form-group'>
-            <%= f.text_field :name, placeholder: 'Name', class: 'form-control col-5 mr-2 shadow' %> 
-        
-            <%= f.select :licensee_id, 
-            @licensees.collect { |l| [l.facility_name, l.id]}, 
-            :prompt => 'Licensee' %> 
+        <div>
+            <%= f.hidden_field :id, :value => @placement.id %>
+            <div class='row form-group'>
+                <%= f.text_field :name, placeholder: 'Name', class: 'form-control col-5 mr-2 shadow' %> 
+                <%= f.select :licensee_id, @licensees.collect { |l| [l.facility_name, l.id]}, :prompt => 'Licensee' %> 
+            </div>
+            
+            <div class='row form-group'>
+                <%= f.select :service_id, @services.collect { |s| [s.name]}, :prompt => 'Service'%>
+            </div>
+            
+            <div class='row form-group'>
+                <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2 shadow' %>
+                <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5 shadow' %> 
+            </div>
+            
+            <div class='row form-group'>
+                <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2 shadow' %>
+                <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5 shadow' %> 
+            </div>
+            
+            <div class='row form-group'>
+                <%= f.select :county_id, @counties.collect { |c| [c.name]}, :prompt => 'County'%>
+            </div>
+            
+            <div class='row form-group'>
+                <%#= f.text_field :county, placeholder: 'County', class: 'form-control col-5 mr-2 shadow' %>
+                <%= f.telephone_field :phone, placeholder: 'Phone', class: 'form-control col-5 shadow' %>
+            </div>
+            
+            <div class='row form-group'>
+                <%= f.text_field :beds, placeholder: 'Beds', class: 'form-control col-5 mr-2 shadow' %>
+                <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
+            </div>
+            
+            <div class='row form-group'>
+                <!--<= f.text_field :latitude, placeholder: 'Latitude', class: 'form-control col-5 mr-2 shadow' %>-->
+                <!--<= f.text_field :longitude, placeholder: 'Longitude', class: 'form-control col-5 mr-2 shadow' %>-->
+            </div>
+            <div class='row form-group'>
+                <%= f.submit 'Save', class: 'btn btn-primary' %>
+            </div>
         </div>
-
-        <div class='row form-group'>
-            <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5 shadow' %> 
-        </div>
-        
-        <div class='row form-group'>
-            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5 shadow' %> 
-        </div>
-        
-        <div class='row form-group'>
-            <%= f.text_field :county, placeholder: 'County', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.telephone_field :phone, placeholder: 'Phone', class: 'form-control col-5 shadow' %>
-        </div>
-        <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
-        <div class='row form-group'>
-            <%= f.text_field :beds, placeholder: 'Beds', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
-        </div>
-        <div class='row form-group'>
-            <!--<= f.text_field :latitude, placeholder: 'Latitude', class: 'form-control col-5 mr-2 shadow' %>-->
-            <!--<= f.text_field :longitude, placeholder: 'Longitude', class: 'form-control col-5 mr-2 shadow' %>-->
-        </div>
-        <div class='row form-group'>
-            <%= f.submit 'Save', class: 'btn btn-primary' %>
-        </div>
-    </div>
     <% end %> 
     </div>
 </div>
