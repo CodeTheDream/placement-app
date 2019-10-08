@@ -43,10 +43,20 @@
   </div>
 
   </div>
-    <div class="field">
-    <%= f.label :admin, 'Administrator' %>
-    <%= f.check_box :admin, class: 'ml-2 shadow' %>
-    </div>
+  <!--I've got to figure out how to keep both license_holder and admin from being true at the same time. -->
+    <% if @user.license_holder == false%>
+      <div class="field">
+      <%= f.label :admin, 'Administrator' %>
+      <%= f.check_box :admin, class: 'ml-2 shadow' %>
+      </div>
+    <% end %>
+
+    <% if @user.admin == false %>
+      <div class="field">
+      <%= f.label :license_holder, 'License Holder' %>
+      <%= f.check_box :license_holder, class: 'ml-2 shadow' %>
+      </div>
+    <% end %>
 
   <div class="actions">
     <%= f.submit "Update", class: 'btn btn-standard m-2' %>
