@@ -22,6 +22,10 @@ class AdminsController < ApplicationController
   def index
     @users = User.all
     @services = Service.all
+    @placements = Placement.all.order(:id)
+    @licensees = Licensee.all
+    @services = Service.all
+    @counties = County.all.order(:name)
   end
 
   def edit
@@ -34,6 +38,13 @@ class AdminsController < ApplicationController
     @user.update_attributes(user_params)
     redirect_to admins_path
   end
+  
+  # def placements_index
+  #   @placements = Placement.all
+  #   @licensees = Licensee.all
+  #   @services = Service.all
+  #   @counties = County.all.order(:name)
+  # end
 
   def destroy
     @user = User.find(params[:id])

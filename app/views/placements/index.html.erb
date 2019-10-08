@@ -1,28 +1,30 @@
-<h3 class='page-header'>All Homes</h3>
+<!--Code to show index of all placements on admin page.-->
 
+<!--Code to display partial for admins/navbar-->
+<div>
+<%= render 'admins/navbar' %>
+</div>
 
-    <div class='card col-8 rounded shadow-sm mx-auto'>
-      <h4 class='mt-2 text-center'>Click on a home or licensee to view details</h4>
-        <div class='card-body'>
-          <% @licensees.order(:facility_name).each do |l| %>
-            <ul class='list-group'>
-              <li class='list-group-item mt-2 shadow'>
-                <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary font-weight-bold' %>
-              </li>
-              <li class='list-group-item mt-2 shadow'>
-                <% l.placements.each do |p| %>
-                  <%= link_to p.name, placement_path(p.id), class:'font-weight-bold' %>
-                  <br>
-                  <%= p.full_address_1 %>
-                  <br>
-                  <%= link_to 'Add to Cart', add_carts_path(placement_id: p.id), method: :post, class: 'btn btn-standard' %>
-                  <br>
-                  <br>
-                <% end %>
-              </li>
-            </ul>     
-          <% end %>
-        </div>
-    </div> 
-  </div>
- 
+<div class='card col-8 rounded shadow-sm mx-auto'>
+  <h4 class='mt-2 text-center'>Click on a home or licensee to view details</h4>
+    <div class='card-body'>
+      <% @licensees.order(:facility_name).each do |l| %>
+        <ul class='list-group'>
+          <li class='list-group-item mt-2 shadow'>
+            <%= link_to l.facility_name, licensee_path(l.id), class: 'border-bottom border-primary font-weight-bold' %>
+          </li>
+          <li class='list-group-item mt-2 shadow'>
+            <% l.placements.each do |p| %>
+              <%= link_to p.name, placement_path(p.id), class:'font-weight-bold' %>
+              <br>
+              <%= p.full_address_1 %>
+              <br>
+              <%= link_to 'Add to Cart', add_carts_path(placement_id: p.id), method: :post, class: 'btn btn-standard' %>
+              <br>
+              <br>
+            <% end %>
+          </li>
+        </ul>     
+      <% end %>
+    </div>
+</div> 
