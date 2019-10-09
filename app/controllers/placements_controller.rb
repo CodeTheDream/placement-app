@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PlacementsController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :authorize_admin, only: %i(new edit destroy)
+  before_action :authenticate_user!
+  before_action :authorize_admin, only: %i(new create edit destroy)
 
   require 'roo'
 
@@ -34,21 +34,21 @@ class PlacementsController < ApplicationController
     format.html { render :index }
     end
   end
-  
+
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
     @service = Service.find(@placement.service_id)
     @comment = Comment.new(placement_id: @placement.id)
     @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
-    # Hash to build map with one marker on show page. 
+    # Hash to build map with one marker on show page.
     @hash = Gmaps4rails.build_markers(@placement) do |placement, marker|
       marker.lat placement.latitude
-      marker.lng placement.longitude  
+      marker.lng placement.longitude
       marker.infowindow placement.name
     end
   end
-  
+
   def edit
     @placement = Placement.find(params[:id])
     @licensees = Licensee.all
@@ -81,7 +81,7 @@ class PlacementsController < ApplicationController
 
     def placement_params
      params.require(:placement).permit(:name, :address, :city, :state, :zip,
-                                      :county, :phone, :licensee_id, :gender,
+                                      :county_id, :phone, :licensee_id, :service_id, :gender,
                                       :beds, :search)
     end
 end
