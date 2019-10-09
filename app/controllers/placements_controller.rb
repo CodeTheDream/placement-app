@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PlacementsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_admin, only: %i(new edit destroy)
+  # before_action :authenticate_user!
+  # before_action :authorize_admin, only: %i(new edit destroy)
 
   require 'roo'
 
@@ -14,7 +14,9 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    p = Placement.create(placement_params)
+    # p = Placement.create(placement_params)
+    @placement = Placement.create(placement_params)
+    @placement.save
     redirect_to admins_path
   end
 

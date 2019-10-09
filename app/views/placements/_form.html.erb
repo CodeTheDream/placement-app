@@ -47,7 +47,7 @@
                 <!--<= f.text_field :longitude, placeholder: 'Longitude', class: 'form-control col-5 mr-2 shadow' %>-->
             </div>
             <div class='row form-group'>
-                <%= f.submit 'Save', class: 'btn btn-primary' %>
+                <%= f.submit 'Save', data: { disable_with: false }, class: 'btn btn-primary' %>
             </div>
         </div>
     <% end %> 
