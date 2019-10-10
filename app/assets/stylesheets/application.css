@@ -198,4 +198,16 @@ body {
   font-size: 12px;
 }
 
+.admin-form {
+  background: rgba(201, 219, 245, 0.9);
+  margin: 10%;
+  margin-top: 5%;
+  color: black;
+  text-align: left;
+  padding: 15px;
+}
+
+.form-group {
+  padding: 10px;
+}
 

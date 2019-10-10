@@ -26,32 +26,43 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow' %>
   </div>
-  
+
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, class: 'form-control shadow' %>
   </div>
-  
+
   <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, class: 'form-control shadow' %>
   </div>
-    
+
   <div class="field">
     <%= f.label :phone %><br />
     <%= f.text_field :phone, class: 'form-control shadow' %>
   </div>
-    
+
   </div>
-    <div class="field">
-    <%= f.label :admin, 'Administrator' %>
-    <%= f.check_box :admin, class: 'ml-2 shadow' %>
+  <!--I've got to figure out how to keep both license_holder and admin from being true at the same time. -->
+    <% if @user.license_holder == false%>
+      <div class="field">
+      <%= f.label :admin, 'Administrator' %>
+      <%= f.check_box :admin, class: 'ml-2 shadow' %>
+      </div>
+    <% end %>
+
+    <% if @user.admin == false %>
+      <div class="field">
+      <%= f.label :license_holder, 'License Holder' %>
+      <%= f.check_box :license_holder, class: 'ml-2 shadow' %>
+      </div>
+    <% end %>
 
   <div class="actions">
     <%= f.submit "Update", class: 'btn btn-standard m-2' %>
     <%= link_to "Back", :back, class: 'btn btn-standard ml-4 mr-4' %>
-    <%= button_to "Delete Account", admin_path(@user), data: { confirm: 
-      "Are you sure?" }, method: :delete, class: 'btn btn-danger m-2' %>
+    <%= link_to "Delete Account", admin_destroy_user_path(@user), data: { confirm:
+      "Are you sure?" }, class: 'btn btn-danger m-2' %>
   </div>
 <% end %>
   </div>
