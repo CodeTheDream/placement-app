@@ -10,10 +10,13 @@ class PlacementsController < ApplicationController
     @placement = Placement.new
     @licensees = Licensee.all
     @services = Service.all
+    @counties = County.all
   end
 
   def create
-    p = Placement.create(placement_params)
+    # p = Placement.create(placement_params)
+    @placement = Placement.create(placement_params)
+    @placement.save
     redirect_to admins_path
   end
 
@@ -21,6 +24,7 @@ class PlacementsController < ApplicationController
     @licensees = Licensee.all
     @placements = Placement.all.order(:id)
     @services = Service.all
+    @counties = County.all
     respond_to do |format|
     format.xlsx do
       response.headers[
