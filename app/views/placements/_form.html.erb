@@ -50,7 +50,7 @@ aphebetical order.-->
         </div>
         <div class='row text-center'>
           <div class='col'>
-            <%= f.submit 'Save', data: { disable_with: false } %>            
+            <%= f.submit 'Save', data: { disable_with: false }, class: "btn btn-primary"%>            
           </div>
         </div>
     </div>
@@ -58,9 +58,7 @@ aphebetical order.-->
 
 <div class='row'>
   <div class='col'>
-    <%= image_tag ('https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjBwf3duKvlAhWSiOAKHbc1CfcQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.freepik.com%2Ffree-icon%2Fback-arrow-ios-7-interface-symbol_754190.htm&psig=AOvVaw2uj60ppcal92LkaVV3YCuI&ust=1571681700029240')%>
+    <img src='https://image.flaticon.com/icons/png/512/16/16116.png' height=30px>
+    <%= link_to "Back", admins_path, class: 'btn btn-secondary' %>
   </div>
-  <i class="material-icons"> arrow_back_ios </i>
-            <%= link_to "Back"%>
 </div>
-
