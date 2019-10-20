@@ -6,16 +6,21 @@ wb.styles do |style|
   
   wb.add_worksheet(name: "Downloaded Placements") do |sheet|
     # Title
-    sheet.add_row ["Placement Search Results", "", "Patient Name:"], style: project_heading
+    sheet.add_row ["Placement Search Results", "", "Patient Name:"], style: 
+    project_heading
     # Date downloaded
     sheet.add_row ["Downloaded on", Time.now.strftime("%b %-d, %Y")]
     # Blank row
     sheet.add_row []
     # Create the header row
-    sheet.add_row ["Placement Name", "Address", "City", "State", "Zip", "County", "Contact Person", "Phone", "Fax", "Gender", "Beds"], style: heading
+    sheet.add_row ["Placement Name", "Address", "City", "State", "Zip", 
+    "County", "Home Phone", "Contact Person", "Contact Phone", "Fax", "Gender", "Beds"], style: heading
     # Create entries for each item
     @cart.cart_placements.each do |p|
-      sheet.add_row [p.placement.name, p.placement.address, p.placement.city, p.placement.state, p.placement.zip, p.placement.county, p.placement.licensee.contact_name, p.placement.licensee.phone, p.placement.licensee.fax, p.placement.gender, p.placement.beds]
+      sheet.add_row [p.placement.name, p.placement.address, p.placement.city, 
+      p.placement.state, p.placement.zip, p.placement.county.name, p.placement.phone,  
+      p.placement.licensee.contact_name, p.placement.licensee.phone, 
+      p.placement.licensee.fax, p.placement.gender, p.placement.beds]
       sheet.add_row ["Notes:"]
     end
   end

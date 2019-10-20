@@ -15,7 +15,7 @@ gem 'axlsx_rails'
 gem 'roo-xls', '~> 1.1'
 gem 'pg_search', '~> 2.1', '>= 2.1.7'
 
-gem 'devise'
+gem "devise", ">= 4.7.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

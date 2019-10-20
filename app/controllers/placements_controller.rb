@@ -2,7 +2,7 @@
 
 class PlacementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin, only: %i(new edit)
+  before_action :authorize_admin, only: %i(new create edit destroy)
 
   require 'roo'
 
@@ -10,31 +10,44 @@ class PlacementsController < ApplicationController
     @placement = Placement.new
     @licensees = Licensee.all
     @services = Service.all
+    @counties = County.all
   end
 
   def create
-
-    p = Placement.create(placement_params)
-    
+    # p = Placement.create(placement_params)
+    @placement = Placement.create(placement_params)
+    @placement.save
     redirect_to admins_path
   end
 
   def index
-    if params[:query].present?
-      @licensees = Licensee.all
-      @placements = Placement.search_for(params[:query])
-    else
-      @licensees = Licensee.all
-      @placements = Placement.all
-       end
+    @licensees = Licensee.all
+    @placements = Placement.all.order(:id)
+    @services = Service.all
+    @counties = County.all
+    respond_to do |format|
+    format.xlsx do
+      response.headers[
+        'Content-Disposition'
+      ] = 'attachment; filename=placements.xlsx'
+    end
+    format.html { render :index }
+    end
   end
-  
+
   def show
     @placement = Placement.find(params[:id])
     @licensee = Licensee.find(@placement.licensee_id)
+    @service = Service.find(@placement.service_id)
     @comment = Comment.new(placement_id: @placement.id)
-    @comments = @placement.comments.collect
+    @comments = @placement.comments.collect.sort_by {|obj| obj.created_at }.reverse
+    # Hash to build map with one marker on show page.
+    @hash = Gmaps4rails.build_markers(@placement) do |placement, marker|
+      marker.lat placement.latitude
+      marker.lng placement.longitude
+      marker.infowindow placement.name
     end
+  end
 
   def edit
     @placement = Placement.find(params[:id])
@@ -68,7 +81,7 @@ class PlacementsController < ApplicationController
 
     def placement_params
      params.require(:placement).permit(:name, :address, :city, :state, :zip,
-                                      :county, :phone, :licensee_id, :gender,
+                                      :county_id, :phone, :licensee_id, :service_id, :gender,
                                       :beds, :search)
     end
 end

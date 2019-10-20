@@ -1,18 +1,14 @@
-<h4 class='mt-4 text-center'>Import Licensees from Excel</h4>
+<h3 class='page-header'>Import Licensees</h3>
 
-<div class='card bg-light col-10 rounded mb-2 shadow mx-auto border-info'>
-  <div class='card-body'>
-    Reminder: The application will read your spreadsheet and attempt to find the 
-    object by its ID, then update the record (if the ID exists) or create a new 
-    record (if the ID does not exist yet). 
-  </div>
-</div>
-
-<h4 class='text-center'>Requirements</h4>
-<div class='card bg-light col-10 rounded mb-2 shadow mx-auto border-info'>
-  <div class='card-body'>
+<div class='card bg-dark col-10 rounded mb-2 shadow mx-auto border-info'>
+  <h4 class='page-header'>Reminders</h4>
+  <div class='card-body text-white p-4'>
     <ul>
-      <li>Do not change existing IDs. Add new IDs in chronological order.</li>
+      <li>The application will read your spreadsheet and attempt to find the 
+          object by its ID, then update the record (if the ID exists) or create a new 
+          record (if the ID does not exist yet).</li>
+      <li>Do not change existing IDs. Add new IDs in chronological order. Do not
+          reassign IDs of previously deleted records.</li>
       <li>Only import spreadsheets that were previously downloaded from this 
           application; others cannot be read correctly.</li>
       <li>Always import licensees before importing placements.</li>
@@ -20,9 +16,10 @@
   </div>
 </div>
 
-<h5 class='text-center'>Select File</h5>
-<div class='card bg-light col-10 rounded mb-2 shadow mx-auto border-info'>
-  <div class='card-body'>
+
+<div class='card bg-dark col-10 rounded mb-2 shadow mx-auto border-info'>
+  <h4 class='page-header'>Select File</h4>
+  <div class='card-body text-white'>
     <%= form_for @licensees_import do |f| %>
       <% if @licensees_import.errors.any? %>
         <%= pluralize(@licensees_import.errors.count, "error") %> prevented us from
@@ -41,5 +38,5 @@
 </div>
 
 <div class='text-center'>
-    <%= link_to "Back", :back, class: 'btn btn-primary mt-2' %>
+    <%= link_to "Back", :back, class: 'btn btn-standard' %>
 </div>

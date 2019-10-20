@@ -1,0 +1,48 @@
+<head>
+  <style>
+     /* Set the size of the div element that contains the map */
+    #map {
+      height: 400px;  /* The height is 400 pixels */
+      width: 100%;  /* The width is the width of the web page */
+     }
+  </style>
+</head>
+<body>
+
+<h3>My Google Maps Demo</h3>
+<!--The div element for the map -->
+<div id="map"></div>
+
+<!-- <script> runs the javascript inside the element -->
+<%=@locations%>
+<!--<= gmaps4rails(@json) %>-->
+
+<%= gmaps("markers" => {"data" => @json, "options" => {"infobox" => "htmlContent" } }) %> 
+
+
+Javascript code to operate map for placements
+<script>
+  // Initialize and add the map
+  function initMap() {
+    //@locations is defined in the controller.  It is an array of arrays of lat,lng values.  ex [[35.6, -78.5], [35.4, -78.3], ...[lat,lng]]
+    var locations = <%=@locations%>;
+    var map = new google.maps.Map(
+      //centers the map on the first location in the array locations
+      document.getElementById('map'), {zoom: 12, center: {lat: locations[0][0], lng: locations[0][1]}});
+    //pass each location into addMarker one at a time with a map parameter
+    locations.forEach(loc => addMarker(map, loc))
+    //add each lat,lng to the specified map
+    function addMarker(map, loc) {
+      var marker = new google.maps.Marker({
+        position: {lat: loc[0], lng: loc[1]},
+        map: map,
+        title: {title: loc[2]},
+      });
+    };
+  };
+</script>
+  
+<script async defer
+       src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_maps_api_key%>&callback=initMap">
+</script>
+

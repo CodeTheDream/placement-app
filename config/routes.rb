@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users/registrations"} 
   
   resources :search, only: [:index]
-  resources :comments, :licensees, :announcements
+  resources :comments, :licensees, :announcements, :services
   # Plotting points on maps from scratch tutorial https://www.driftingruby.com/episodes/plotting-points-on-a-map-from-scratch
   resources :placements
   #   collection do

@@ -1,49 +1,66 @@
+<!--Form to add new placement to database. Should only be accessible to admins. 
+Spelled out all variables. Added .sort method to licensees, services, and counties so display in
+aphebetical order.-->
 
-<div class='card bg-light col-8 rounded mb-2 shadow-sm mx-auto'>
-    <div class='card-body'>
-        <%= form_for @placement do |f| %>
+<%= form_for @placement do |f| %>
     <div>
-        <%= f.hidden_field :id, :value => @placement.id %>
+      <%= f.hidden_field :id, :value => @placement.id %>
         <div class='row form-group'>
-            <%= f.text_field :name, placeholder: 'Name', class: 'form-control col-5 mr-2 shadow' %> 
-        
-            <%= f.select :licensee_id, 
-            @licensees.collect { |l| [l.facility_name, l.id]}, 
-            :prompt => 'Licensee' %> 
-        </div>
-
-        <div class='row form-group'>
-            <%= f.text_field :address, placeholder: 'Address', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.text_field :city, placeholder: 'City', class: 'form-control col-5 shadow' %> 
-        </div>
-        
-        <div class='row form-group'>
-            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.text_field :zip, placeholder: 'Zip', class: 'form-control col-5 shadow' %> 
-        </div>
-        
-        <div class='row form-group'>
-            <%= f.text_field :county, placeholder: 'County', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.telephone_field :phone, placeholder: 'Phone', class: 'form-control col-5 shadow' %>
-        </div>
-        <%#= f.select :service_id, @services.collect { |s| [s.name]}, include_blank: true %>
-        <div class='row form-group'>
-            <%= f.text_field :beds, placeholder: 'Beds', class: 'form-control col-5 mr-2 shadow' %>
-            <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Gender' %>
+            <%= f.label :licensee_id, "License Holder:", class: "required" %>
+            <%= f.select :licensee_id, @licensees.collect { |licensee| [licensee.facility_name, licensee.id]}.sort, :prompt => 'Select License Holder', class: "form-control" %> 
         </div>
         <div class='row form-group'>
-            <!--<= f.text_field :latitude, placeholder: 'Latitude', class: 'form-control col-5 mr-2 shadow' %>-->
-            <!--<= f.text_field :longitude, placeholder: 'Longitude', class: 'form-control col-5 mr-2 shadow' %>-->
+            <%= f.label :name, "Placement Name:", class: "required" %>
+            <%= f.text_field :name, placeholder: 'Enter the name of your home or facility.', class: "form-control" %> 
         </div>
         <div class='row form-group'>
-            <%= f.submit 'Save', class: 'btn btn-primary' %>
+            <%= f.label :address, "Physical Address:", class: "required" %>
+            <%= f.text_field :address, placeholder: 'Enter your physical address.', class: "form-control" %>
+        </div>
+        <div class='row form-group'>
+          <div class='col'>
+            <%= f.label :city, 'City:', class: "required" %>
+            <%= f.text_field :city, placeholder: 'City', class: "form-control" %> 
+          </div>
+          <div class='col'>
+            <%= f.label :state, 'State:', class: "required" %>
+            <%= f.text_field :state, placeholder: 'State', :value => 'NC', class: "form-control" %>
+          </div>
+          <div class='col'>
+            <%= f.label :zip, 'Zip Code', class: "required" %>
+            <%= f.text_field :zip, placeholder: 'Zip Code', class: "form-control" %> 
+          </div>
+        </div>
+        <div class='row form-group'>
+           <div class='col'>
+            <%= f.label :county_id, "County:", class: "required" %>
+            <%= f.select :county_id, @counties.collect { |county| [county.name, county.id]}.sort, :prompt => 'Select County', class: "form-control" %>
+          </div>
+          <div class='col'>
+            <%= f.label :phone, 'Office Phone', class: "required" %>
+            <%= f.telephone_field :phone, placeholder: '(123)456-7890', class: 'form-control' %>
+          </div>
+        </div>
+        <div class='row form-group'>
+          <div class='col'>
+            <%= f.label :service_id, 'Service Type:', class: "required" %>
+            <%= f.select :service_id, @services.collect { |service| [service.name, service.id]}.sort, :prompt => 'Select Service Type', class: "form-control" %>
+          </div>
+          <div class='col'>
+            <%= f.label :beds, 'Beds:', class: "required" %>
+            <%= f.text_field :beds, placeholder: 'Enter # of beds.', class: 'form-control' %>
+          </div>
+          <div class='col'>
+            <%= f.label :gender, 'Gender:', class: "required" %>
+            <%= f.select :gender, ["Male", "Female", "Co-Ed", "Other"], :prompt => 'Select Gender' %>
+          </div>
+        </div>
+        <div class='row form-group'>
+            <%= f.submit 'Save', data: { disable_with: false }, class: 'btn btn-primary' %>
         </div>
     </div>
-    <% end %> 
-    </div>
-</div>
+<% end %> 
 
 <div class='text-center'>
     <%= link_to "Back", :back, class: 'btn btn-primary mt-2' %>
 </div>
-    

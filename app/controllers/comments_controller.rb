@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
   end
   
   def index
-    @comments = Comment.all
+    @comments = Comment.all.sort_by {|obj| obj.created_at }.reverse
   end
 
   def destroy

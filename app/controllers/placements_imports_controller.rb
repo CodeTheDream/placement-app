@@ -9,8 +9,8 @@ class PlacementsImportsController < ApplicationController
   def create
     @placements_import = PlacementsImport.new(placements_import_params)
     if @placements_import.save
-      redirect_to placements_path
-      flash[:notice] = "Placement Successfully uploaded!"
+      redirect_to admins_path
+      flash[:notice] = "Placements successfully uploaded!"
     else
       render :new
     end
