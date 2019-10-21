@@ -27,6 +27,9 @@
               </li>
           </ul>
           <%= link_to 'Add to Cart', add_carts_path(placement_id: @placement.id), method: :post, class: 'btn btn-search mt-2 mb-3 col-4' %>
+          <!--Added link to edit placement. Not sure if this is where it goes. Perhaps a seperate show page for the license holder -->
+          <!--that only shows their facilities/homes. -->
+          <%= link_to 'Edit Placement', edit_placement_path(placement_id: @placement.id), class: 'btn btn-secondary mt-2 mb-3 col-4' %>
       </div>
     </div>
 

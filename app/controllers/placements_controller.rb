@@ -52,13 +52,17 @@ class PlacementsController < ApplicationController
   def edit
     @placement = Placement.find(params[:id])
     @licensees = Licensee.all
+    @services = Service.all
+    @counties = County.all
     session[:return_to] ||= request.referer #this and the redirect in the update
     # action redirect you back to the previous page after you update a placement
   end
 
   def update
     @placement = Placement.find(params[:id])
-
+    @licensees = Licensee.all
+    @services = Service.all
+    @counties = County.all
     @placement.update!(placement_params)
     if session[:return_to] != nil
       redirect_to session.delete(:return_to)
