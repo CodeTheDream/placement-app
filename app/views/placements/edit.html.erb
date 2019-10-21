@@ -1,3 +1,25 @@
-<h3 class='page-header'>Edit Placement</h3>
+<!--Code to display partial for admins/navbar, need style to only show this navbar-->
+<div>
+<%= render 'admins/navbar' %>
+</div>
 
-<%= render 'form' %>
+<div class="admin-form mb-10">
+  <div>
+    <h2 class='mt-4 mb-4 text-center'>Edit Placement</h2>
+      <p class='text-center'>
+        <strong><i>Only Home Page Administrators and Registered License Holders
+        are authorized to edit a placement.</i></strong> 
+      </p>
+      <p>
+        If you experience any problems editing or updating your placement facility
+        or home listing plese click this 
+        <a href="mailto:admin@homepagecarolina.org"target="_blank"><strong>
+        <u>link</u></strong></a>, send an email to <strong><u>
+        admin@homepagecarolina.org</u></strong> for assistance. A member of the
+        Home Page team will be in contact with you shortly. 
+      </p>
+  </div>
+  <div>
+    <%= render 'placements/form' %>
+  </div>      
+</div>
