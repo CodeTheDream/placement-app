@@ -1,0 +1,17 @@
+<div class='shadow card col-5 rounded mt-3 pb-3 mx-auto'>
+    <div class='card-body'>
+        <h4>Services</h4>
+        <% @services.order(:name).each do |s| %>
+            <ul class='list-group'>
+                <li class='list-group-item mt-2 pb-0 shadow'>
+                    <p class='mb-1'> Name: <%= s.name %> <br>
+                        Program Code: <%= s.prog_code %> <br>
+                        Age: <%= s.age_code %> <br>
+                    </p>
+                    <%= link_to "Edit", edit_service_path(s.id), class: 'btn btn-standard' %>
+                    <%= link_to "Delete", service_path(s.id), data: { confirm: "Are you sure? This cannot be undone." }, method: :delete, class: 'btn btn-danger' %></p>
+                </li>
+            </ul>
+        <% end %>
+    </div>
+</div>

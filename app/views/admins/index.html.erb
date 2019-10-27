@@ -11,8 +11,8 @@
             <h5 class="title2">Manage Users</h5>
               <ul>
                 <li><%= link_to 'Create New User', new_registration_path(resource_name),  class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'View or Edit Users', view_users_path, class:"text-secondary font-weight-bold" %></li>
                 <li><%= link_to 'View Comments', comments_path, class:"text-secondary font-weight-bold" %></li>
-                <li><%#= link_to 'View or Edit Users', users_path, class:"text-secondary font-weight-bold" %></li>
               </ul>
            </div>
         </div>
@@ -76,59 +76,12 @@
   </div>
 </div>
 
+<% if false %>
 <!--Code to display navbar on all admin related pages. Will replace with cards.-->
 <div>
 <%= render 'navbar' %>
 </div>
 
-<% if false %>
-
-  
-  <div class='col margin-auto'> 
-  </div>
-  <div class='col margin-auto'> 
-  </div>
-</div>
-
-
-<div class='shadow card col-5 rounded mt-3 pb-3 mx-auto'>
-    <div class='card-body'>
-        <h4>Users</h4>
-        <% @users.order(:last_name).each do |user| %>
-            <%#The current admin shouldn't be able to edit their own profile under users. 
-            They need to do it under they're own profile page. 
-            The if statement prevents them from seeing their own profile under all users %>
-            <% if user != current_user %>
-                <ul class='list-group'>
-                    <li class='list-group-item'>
-                        <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
-                        <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-standard ml-2' %>
-                    </li>
-                </ul>
-            <% end %>
-        <% end %>
-    </div>
-</div>
-
-<div class='shadow card col-5 rounded mt-3 pb-3 mx-auto'>
-    <div class='card-body'>
-        <h4>Services</h4>
-        <% @services.order(:name).each do |s| %>
-            <ul class='list-group'>
-                <li class='list-group-item mt-2 pb-0 shadow'>
-                    <p class='mb-1'> Name: <%= s.name %> <br>
-                        Program Code: <%= s.prog_code %> <br>
-                        Age: <%= s.age_code %> <br>
-                    </p>
-                    <%= link_to "Edit", edit_service_path(s.id), class: 'btn btn-standard' %>
-                    <%= link_to "Delete", service_path(s.id), data: { confirm: "Are you sure? This cannot be undone." }, method: :delete, class: 'btn btn-danger' %></p>
-                </li>
-            </ul>
-        <% end %>
-    </div>
-</div>
-    
-</div>
 <% end %>
 
 
