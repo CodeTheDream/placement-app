@@ -200,10 +200,28 @@ body {
 }
 
 .admin {
-  background: rgba(201, 219, 245, 0.9);
+  background: rgba(255,255,255, 0.9);
   margin: 10%;
   margin-top: 5%;
-  color: black;
+  color: black;    
   text-align: left;
   padding: 15px;
+}
+
+.tool {
+  background: rgba(255,255,255, 0.9);
+  margin: 10%;
+  margin-top: 5%;
+  text-align: left;
+  padding: 15px;
+  border-color: black;
+  border-width: medium;
+}
+
+.title1 {
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+.title2 {
+    color: black;
+    font-weight: bold;
 }
