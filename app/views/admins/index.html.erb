@@ -1,46 +1,87 @@
+<div class= "admin card">
+  <h2 class="title1 text-center">Admin Tools</h2>
+  <div class='row'>
+    <div class='col'>
+      <div class="tool card", style="max-width: 450px;">
+        <div class='row'>    
+          <div class="col-4">
+              <img src="https://icon-library.net/images/manage-icon/manage-icon-6.jpg", class="card-img">
+          </div>
+          <div class="col">
+            <h5 class="title2">Manage Users</h5>
+              <ul>
+                <li><%= link_to 'Create New User', new_registration_path(resource_name),  class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'View or Edit Users', view_users_path, class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'View Comments', comments_path, class:"text-secondary font-weight-bold" %></li>
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col">
+      <div class="tool card", style="max-width: 450px;">
+        <div class='row'>    
+          <div class="col-4">
+              <img src="https://static.thenounproject.com/png/10156-200.png", class="card-img">
+          </div>
+          <div class="col">
+            <h5 class="title2">Manage Services</h5>
+              <ul>
+                <li><%= link_to 'New Service' , new_service_path, class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'View or Edit Services', services_path,  class:"text-secondary font-weight-bold" %></li>
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class='row'>
+    <div class='col'>
+      <div class="tool card", style="max-width: 450px;">
+        <div class='row'>    
+          <div class="col-4">
+              <img src="https://img.pngio.com/licence-business-licence-certificate-icon-png-and-vector-for-licence-png-512_512.png", class="card-img">
+          </div>
+          <div class="col">
+            <h5 class="title2">Manage Licensees</h5>
+              <ul>
+                <li><%= link_to 'Create New Licensee', new_licensee_path, class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'Upload Licensees', new_licensees_import_path, class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'Download Licensees', licensees_path(format: :xlsx), class:"text-secondary font-weight-bold" %></li>
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col">
+      <div class="tool card", style="max-width: 450px;">
+        <div class='row'>    
+          <div class="col-4">
+              <img src="http://images.clipartpanda.com/house-outline-clipart-black-and-white-black-house-outline.svg", class="card-img">
+          </div>
+          <div class="col ">
+            <h5 class="title2">Manage Placements</h5>
+              <ul>
+                <li><%= link_to 'Create New Placement', new_placement_path, class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'Upload Placements', new_placements_import_path, class:"text-secondary font-weight-bold" %></li>
+                <li><%= link_to 'Download Placements', placements_path(format: :xlsx), class:"text-secondary font-weight-bold" %></li>
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if false %>
+<!--Code to display navbar on all admin related pages. Will replace with cards.-->
 <div>
 <%= render 'navbar' %>
 </div>
 
-<div class='row mx-auto'>
-
-<div class='shadow card col-5 rounded mt-3 pb-3 mx-auto'>
-    <div class='card-body'>
-        <h4>Users</h4>
-        <% @users.order(:last_name).each do |user| %>
-            <%#The current admin shouldn't be able to edit their own profile under users. 
-            They need to do it under they're own profile page. 
-            The if statement prevents them from seeing their own profile under all users %>
-            <% if user != current_user %>
-                <ul class='list-group'>
-                    <li class='list-group-item'>
-                        <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
-                        <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-standard ml-2' %>
-                    </li>
-                </ul>
-            <% end %>
-        <% end %>
-    </div>
-</div>
-
-<div class='shadow card col-5 rounded mt-3 pb-3 mx-auto'>
-    <div class='card-body'>
-        <h4>Services</h4>
-        <% @services.order(:name).each do |s| %>
-            <ul class='list-group'>
-                <li class='list-group-item mt-2 pb-0 shadow'>
-                    <p class='mb-1'> Name: <%= s.name %> <br>
-                        Program Code: <%= s.prog_code %> <br>
-                        Age: <%= s.age_code %> <br>
-                    </p>
-                    <%= link_to "Edit", edit_service_path(s.id), class: 'btn btn-standard' %>
-                    <%= link_to "Delete", service_path(s.id), data: { confirm: "Are you sure? This cannot be undone." }, method: :delete, class: 'btn btn-danger' %></p>
-                </li>
-            </ul>
-        <% end %>
-    </div>
-</div>
-    
-</div>
+<% end %>
 
 

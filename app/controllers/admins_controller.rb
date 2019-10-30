@@ -39,12 +39,9 @@ class AdminsController < ApplicationController
     redirect_to admins_path
   end
   
-  # def placements_index
-  #   @placements = Placement.all
-  #   @licensees = Licensee.all
-  #   @services = Service.all
-  #   @counties = County.all.order(:name)
-  # end
+def users_index
+    @users = User.all
+end
 
   def destroy
     @user = User.find(params[:id])

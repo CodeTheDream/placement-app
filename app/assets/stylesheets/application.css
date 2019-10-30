@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require rails_bootstrap_forms
  */
 
 .center {
@@ -198,16 +199,29 @@ body {
   font-size: 12px;
 }
 
-.admin-form {
-  background: rgba(201, 219, 245, 0.9);
+.admin {
+  background: rgba(255,255,255, 0.9);
   margin: 10%;
   margin-top: 5%;
-  color: black;
+  color: black;    
   text-align: left;
   padding: 15px;
 }
 
-.form-group {
-  padding: 10px;
+.tool {
+  background: rgba(255,255,255, 0.9);
+  margin: 10%;
+  margin-top: 5%;
+  text-align: left;
+  padding: 15px;
+  border-color: black;
+  border-width: medium;
 }
 
+.title1 {
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+.title2 {
+    color: black;
+    font-weight: bold;
+}

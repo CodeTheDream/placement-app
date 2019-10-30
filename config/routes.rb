@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #   collection do
   #   get :map
   # end
+  get 'view_users' => 'admins#users_index'
   get 'map' => 'placements#map'
   resources :placements_imports, only: [:new, :create]
   resources :licensees_imports, only: [:new, :create]

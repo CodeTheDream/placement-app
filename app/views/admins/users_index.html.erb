@@ -1,0 +1,19 @@
+
+<div class='shadow card col-5 rounded mt-3 pb-3 mx-auto'>
+    <div class='card-body'>
+        <h4>Users</h4>
+        <% @users.order(:last_name).each do |user| %>
+            <%#The current admin shouldn't be able to edit their own profile under users. 
+            They need to do it under they're own profile page. 
+            The if statement prevents them from seeing their own profile under all users %>
+            <% if user != current_user %>
+                <ul class='list-group'>
+                    <li class='list-group-item'>
+                        <%= user.first_name %> <%= user.last_name %> | <%=user.email %> 
+                        <%= link_to 'Edit', edit_admin_path(user), class: 'btn btn-standard ml-2' %>
+                    </li>
+                </ul>
+            <% end %>
+        <% end %>
+    </div>
+</div>
