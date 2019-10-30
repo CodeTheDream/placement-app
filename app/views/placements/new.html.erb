@@ -3,28 +3,26 @@
 <%= render 'admins/navbar' %>
 </div>
 
-<div class="admin-form mb-10">
+<div class="admin mb-10">
   <div>
     <h2 class='mt-4 mb-4 text-center'>New Placement</h2>
-      <p>
-        Home Page Administrators and Home Page Users registered as License 
-        Holders are authorized to add a new placement. If you are a Registered 
-        License Holder, you may complete the form below to submit a request to 
-        have your facility or home publicly listed as a placement. 
+      <p class='text-center'>
+        <strong><i>Only Home Page Administrators are authorized to register a
+        placement.</i></strong> 
       </p>
-      <br>
       <p>
-        Don't see your Licensee listed? Submit a request to the Home Page 
-        administrator by clicking this 
-        <a href="mailto:admin@homepagecarolina.org" target="_blank">link</a>, or
-        by sending an email to admin@homepagecarolina.org. A member of the Home
-        Page team will be in contact with you shortly to register your agency 
-        as a Licensee. 
+        If you reached this page by error, Registered License Holders with the
+        North Carolina Department of Health and Human Services must submit a 
+        request to the Home Page administrator by clicking this 
+        <a href="mailto:admin@homepagecarolina.org"target="_blank"><strong>
+        <u>link</u></strong></a>, or by sending an email to <strong><u>
+        admin@homepagecarolina.org</u></strong> to request to have your facility
+        or home publicly listed as a placement. A member of the Home Page team
+        will be in contact with you shortly to register your agency as a 
+        Licensee and any related facilities/homes as Placements. 
       </p>
   </div>
   <div>
     <%= render 'placements/form' %>
   </div>      
 </div>
-
-     
