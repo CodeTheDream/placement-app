@@ -22,11 +22,19 @@ class AnnouncementsController < ApplicationController
     @announcement = Announcement.find(params[:id])
     @licensees = Licensee.order(:facility_name).all
     @placements = Placement.order(:name).all
+    session[:return_to] ||= request.referer
   end
   
   def update
-    Announcement.update(announcement_params)
-    redirect_to announcements_path
+    @announcement = Announcement.find(params[:id])
+    @announcement.update!(announcement_params)
+    @licensees = Licensee.order(:facility_name).all
+    @placements = Placement.order(:name).all
+    if session[:return_to] != nil
+      redirect_to session.delete(:return_to)
+    else
+      redirect_to root_path
+    end
   end
   
   def destroy
@@ -38,7 +46,7 @@ class AnnouncementsController < ApplicationController
   private
   
     def announcement_params
-      params.require(:announcement).permit(:user_id, :text, :placement_id, 
+      params.require(:announcement).permit(:id, :user_id, :text, :placement_id, 
                                           :licensee_id, :bed_available)
     end
 end

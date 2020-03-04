@@ -12,41 +12,38 @@
       <ul>
         <div class='row mx-2'>
           <li class='col-3 list-group-item rounded mx-auto my-2'>
-            <p class='font-weight-bold m-0'>Placement</p>
               <% if a.placement_id != nil %>
                 <%= link_to a.placement.name, placement_path(a.placement.id), class: 'btn btn-info'%>
               <% else %>
-                None
+                No Placement
               <% end %>
-            <p class='font-weight-bold m-0'>Bed available?</p>
+          <br>
               <% if a.bed_available == true %>
-                <p class='m-0 btn-success disabled'>Yes</p>
+                <p class='btn btn-success disabled mt-2 mb-0'>Bed Open</p>
               <% else %>
-                <p class='m-0 btn-danger disabled'>No</p>
+                <p class='btn btn-danger disabled mt-2 mb-0'>No Bed</p>
               <% end %>
           </li>
         
           <li class='col-8 list-group-item rounded mx-auto my-2'>
-            <%= a.text %>
+            <p class='col text-left font-weight-bold my-0'>
+              <%= a.user.first_name %> <%= a.user.last_name %> at <%= a.created_at.strftime("%-I:%M %P on %-m/%-d/%y") %>:
+            </p>
+            <p class='col text-left my-0'>
+              <%= a.text %>
+            </p>
+            <p class='col text-left my-0'>
+              <% if current_user && current_user == a.user || current_user && 
+              current_user.admin? %>
+                <%= link_to 'Edit', edit_announcement_path(a.id), class:'btn btn-standard' %>
+                <%= link_to 'Delete', announcement_path(a.id), method: :delete, :data => 
+                {:confirm => "Are you sure?"}, class: ' btn btn-danger' %>
+              <% end %>
+            </p>
           </li>
         </div>
       </ul>
-        
-      <div class='row mt-1 mb-2 text-white'>
-        <p class='col ml-4 my-2'><%= a.user.first_name %> <%= a.user.last_name %>
-        | <%= a.created_at.strftime("%-I:%M %P | %-m/%-d/%y") %></p>
-          
-          <% if current_user && current_user == a.user || current_user && 
-          current_user.admin? %>
-            <p class='col mr-4 my-1'>
-            <%#= link_to 'Edit', edit_announcement_path(a.id), class:'btn btn-standard' %>
-              <%= link_to 'Delete', announcement_path(a.id), method: :delete, :data => 
-              {:confirm => "Are you sure?"}, class: ' btn btn-danger' %>
-            </p>
           <% end %>
-        </div>
-        
-    <% end %>
   </div>
 </div>
 

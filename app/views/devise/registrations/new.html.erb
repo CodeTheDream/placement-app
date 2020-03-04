@@ -1,56 +1,58 @@
 <h3 class='page-header'>Create New User</h3>
 
-<div class='card col-6 rounded mb-0 mx-auto'>
-    <div class='card-body'>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class='card col-6 rounded mx-auto'>
+  <div class='card-body m-2 pt-2 px-4'>
+  
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow' %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control shadow' %>
-  </div>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control shadow' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow' %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow' %>
+    </div>
   
     <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, class: 'form-control shadow' %>
-  </div>
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, class: 'form-control shadow' %>
+    </div>
+  
     <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, class: 'form-control shadow' %>
-  </div>
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name, class: 'form-control shadow' %>
+    </div>
+  
     <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, class: 'form-control shadow' %>
-  </div>
-  </div>
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, class: 'form-control shadow' %>
+    </div>
+  
     <div class="field">
-    <%= f.label :admin, 'Administrator' %>
-    <%= f.check_box :admin, class: 'ml-2 shadow' %>
-    <%#= f.select :admin, [['Yes', true], ['No', false]], {}, {class: "form-control mb-2"} %> <!-- This was code that I used to create a select for making a user admin. I decided it was better to go with a checkbox instead. -->
+      <%= f.label :admin, 'Administrator?' %>
+      <%= f.check_box :admin, class: 'ml-2 shadow' %>
+    </div>
+  
+    <div class='row form-group'>
+      <%= f.submit "Create User", class: 'btn btn-standard col mx-5' %>
+      <%= link_to "Back", :back, class: 'btn btn-primary col mx-5' %>
+    </div>
+  
   </div>
 
-  <div class="actions">
-    <%= f.submit "Create User", class: 'btn btn-primary mt-2 mb-2' %>
-  </div>
-<% end %>
-  </div>
-</div>
+  <% end %>
 
-<div class='text-center'>
-  <%= link_to "Back", :back, class: 'btn btn-primary mb-2 mt-2' %>
 </div>
 
 <%#= render "devise/shared/links" %>

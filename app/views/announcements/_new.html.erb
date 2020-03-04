@@ -1,6 +1,6 @@
-<div class='card col-8 rounded mt-4 shadow mx-auto'>
-  <div class='card-body my-2'>
-    
+<div class='card col-6 rounded mt-4 mx-auto'>
+  <div class='card-body px-4 pb-4 m-2'>
+
     <h4 class='title'>Make an announcement</h4>
     
     <%= form_for @announcement do |f| %>
@@ -11,7 +11,7 @@
       
       <div class='row'>
         
-        <div class='col'>
+        <div class='col-6'>
         <%= f.select :placement_id, 
         options_for_select(@placements.collect { |p| [p.name, p.id]}), 
         {:prompt => 'Placement (optional)'},
@@ -27,12 +27,12 @@
         </div>
         -->
         
-        <div class='col'>
-          <%= f.label :bed_available, 'Bed Available?', class: 'text-white mr-2 ml-5 mt-2' %>
-          <%= f.check_box :bed_available, class: 'shadow mt-2' %>
+        <div class='col-3'>
+          <%= f.label :bed_available, 'Open Bed?', class: 'text-white mx-auto mt-2' %>
+          <%= f.check_box :bed_available, class: 'shadow ml-2 mt-2' %>
         </div>
         
-        <div class='col'>
+        <div class='col-3'>
         <%= f.submit 'Post', class: 'btn btn-info px-5' %>
         </div>
         
