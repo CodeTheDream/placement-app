@@ -297,7 +297,7 @@ DEPENDENCIES
   pg (~> 1.1, >= 1.1.4)
   pg_search (~> 2.1, >= 2.1.7)
   postgresql (~> 1.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.2)
   roo (~> 2.8.0)
   roo-xls (~> 1.1)
